@@ -1078,7 +1078,15 @@ button {
 .contact-info ul li img {
   width: 30px;
   height: 30px;
-  margin-right: 20px;
+  margin-right: 30px;
+}
+
+.contact-info ul li {
+  display: flex;
+  align-items: flex-start; /* теперь элементы выравниваются по верху */
+}
+.contact-info ul li img {
+  margin-top: -5px; /* поднимает картинку вверх */
 }
 
 .contact-info ul li a,
@@ -1184,4 +1192,232 @@ button {
   .about-text p {
     max-width: 100%;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Burger */
+.burger {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  width: 44px;
+  height: 36px;
+  cursor: pointer;
+  z-index: 1300;
+}
+
+.burger span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background: #000;
+  margin: 7px 0;
+  border-radius: 2px;
+}
+
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: #ffffff;
+  padding: 40px 30px;
+
+  transform: translateX(100%);
+  transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+
+  z-index: 1200;
+}
+
+.side-menu.active {
+  transform: translateX(0);
+}
+
+
+/* Close */
+.side-menu__close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Navigation */
+.side-menu__nav {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.side-menu__nav a {
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+}
+
+/* Socials */
+.side-menu__socials {
+  margin-top: 40px;
+  display: flex;
+  gap: 15px;
+}
+
+/* Language switch */
+.side-menu__lang {
+  margin-top: 40px;
+  display: flex;
+}
+
+.side-menu__lang button {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #000;
+  background: transparent;
+  cursor: pointer;
+}
+
+.side-menu__lang button.active {
+  background: #000;
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.overlay {
+  transition: opacity 0.4s ease;
 }

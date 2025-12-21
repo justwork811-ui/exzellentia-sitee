@@ -33,3 +33,77 @@ document.addEventListener('DOMContentLoaded', function() {
   const firstSlideWidth = document.querySelector('.portfolio-item').clientWidth;
   slides.style.transform = `translateX(0px)`; // Начальная позиция
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const burger = document.getElementById('burger');
+  const sideMenu = document.getElementById('sideMenu');
+  const closeMenu = document.getElementById('closeMenu');
+  const overlay = document.getElementById('overlay');
+
+  burger.addEventListener('click', () => {
+    sideMenu.classList.add('active');
+    overlay.classList.add('active');
+  });
+
+  closeMenu.addEventListener('click', closeAll);
+  overlay.addEventListener('click', closeAll);
+
+  function closeAll() {
+    sideMenu.classList.remove('active');
+    overlay.classList.remove('active');
+  }
+});
+

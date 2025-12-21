@@ -313,7 +313,7 @@ body {
 }
 
 .section-header h2 {
-  font-size: 46px;
+  font-size: 25px;
   margin-bottom: 20px;
   color: #1c1c1c;
 }
@@ -1156,20 +1156,17 @@ button {
 
 
 
-
 @media (max-width: 768px) {
 
-  /* убираем правую картинку */
   .about-section::after {
+    content: none;
     display: none;
   }
 
-  /* уменьшаем отступы */
   .about-section {
     padding: 80px 0;
   }
 
-  /* страхуем текст от перекрытий */
   .about-text {
     position: relative;
     z-index: 2;

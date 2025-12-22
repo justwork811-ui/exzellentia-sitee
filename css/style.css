@@ -30,11 +30,12 @@ body {
   color: #000000; /* Черный цвет для логотипа */
 }
 
-.header-actions {
+ .header-actions {
   display: flex;
   align-items: center;
   justify-content: flex-end; /* Выравнивание элементов по правому краю */
   gap: 20px; /* Отступ между элементами */
+  flex-wrap: wrap; /* Разрешаем перенос элементов на мобильных */
 }
 
 .phone {
@@ -42,6 +43,7 @@ body {
   color: #d39c42; /* Цвет акцента для номера телефона */
   font-weight: bold;
   transition: color 0.3s ease; /* Плавный переход для цвета */
+  white-space: nowrap; /* Запрещаем перенос текста на новую строку */
 }
 
 .phone:hover {
@@ -68,11 +70,16 @@ body {
 
   .header-actions {
     flex-direction: column;
+    align-items: flex-start; /* Выравниваем элементы по левому краю на мобильных устройствах */
     gap: 10px; /* Сужаем отступы для мобильных */
+    padding: 0 10px; /* Добавляем отступы для мобильных устройств */
   }
 
   .phone {
-    font-size: 20px; /* Уменьшение размера шрифта */
+    font-size: 18px; /* Дополнительное уменьшение размера шрифта на мобильных устройствах */
+    word-wrap: break-word; /* Разрешаем перенос текста на новую строку, если не помещается */
+    white-space: normal; /* Позволяем перенос текста */
+    line-height: 1.2; /* Добавляем межстрочный интервал, чтобы текст не слипался */
   }
 }
 
@@ -1044,14 +1051,12 @@ button {
 
 
 
-
-
 /* ===== Блок "Что мы делаем" ===== */
 .what-we-do {
   padding: 150px 0; /* Увеличиваем отступы сверху и снизу */
   background-color: #fafafa; /* Светлый фон */
   text-align: center;
-  min-height: 1200px; /* Устанавливаем минимальную высоту блока (в два раза больше) */
+  min-height: 1200px; /* Устанавливаем минимальную высоту блока */
 }
 
 .what-we-do h2 {
@@ -1101,42 +1106,36 @@ button {
 
 .slide-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0; /* Начальная непрозрачность */
+  height: auto;
+  object-fit: cover; /* Обрезка изображений для хорошего вида */
+  opacity: 0;
   animation: fadeIn 1s ease-in-out forwards;
 }
 
 .text-overlay {
   position: absolute;
-  bottom: 40px; /* Располагаем текст немного ниже */
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1; /* Текст будет поверх изображения */
+  z-index: 1;
   color: white;
-  background: rgba(0, 0, 0, 0.6); /* Полупрозрачный черный фон для текста */
+  background: rgba(0, 0, 0, 0.6);
   padding: 25px;
   text-align: center;
   border-radius: 10px;
-  opacity: 0; /* Текст также будет начинать с нулевой непрозрачности */
+  opacity: 0;
   animation: fadeInText 1s ease-in-out forwards;
-  width: 80%; /* Увеличиваем ширину фона, например, до 80% от ширины блока */
-  max-width: 900px; /* Ограничиваем максимальную ширину фона */
+  width: 80%;
+  max-width: 900px;
 }
 
 .text-overlay h3 {
-  font-size: 2.8em; /* Увеличиваем размер заголовка для текста */
+  font-size: 2.8em;
   margin-bottom: 20px;
 }
 
 .text-overlay p {
   font-size: 1.3em;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.text-overlay p {
-  font-size: 1.4em;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -1227,6 +1226,12 @@ button {
     padding: 15px;
     font-size: 25px;
   }
+
+  /* Уменьшаем размер изображений на планшетах */
+  .slide-image {
+    width: 100%;
+    height: auto;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1246,12 +1251,18 @@ button {
   .prev-btn, .next-btn {
     padding: 15px;
     font-size: 24px;
-    left: -20px; /* Стрелки немного сдвигаем */
+    left: -20px;
     right: -20px;
   }
 
   .dots {
     bottom: 15px; /* Сдвигаем индикаторы вниз */
+  }
+
+  /* Уменьшаем размер изображений на мобильных устройствах */
+  .slide-image {
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -1274,11 +1285,13 @@ button {
     left: -15px; /* Стрелки еще немного смещаем */
     right: -15px;
   }
+
+  /* Уменьшаем изображения на маленьких экранах */
+  .slide-image {
+    width: 100%;
+    height: auto;
+  }
 }
-
-
-
-
 
 
 
@@ -1460,12 +1473,6 @@ button {
 
 
 
-/* Скрыть номер телефона в header-actions на мобильных устройствах и планшетах */
-@media only screen and (max-width: 768px) {
-    .header-actions .phone {
-        display: none;
-    }
-}
 
 
 

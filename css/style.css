@@ -1049,8 +1049,6 @@ button {
 
 
 
-
-
 /* ===== Блок "Что мы делаем" ===== */
 .what-we-do {
   padding: 150px 0;
@@ -1079,7 +1077,7 @@ button {
   padding: 40px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  height: 1200px;
+  height: auto;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -1168,25 +1166,25 @@ button {
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   border: none;
-  padding: 20px;
+  padding: 10px 15px; /* Уменьшаем размер кнопок */
   cursor: pointer;
   border-radius: 50%;
-  font-size: 30px;
+  font-size: 20px; /* Уменьшаем размер текста на кнопках */
   z-index: 2;
 }
 
 .prev-btn {
-  left: 40px;
+  left: 20px; /* Смещаем кнопки влево */
 }
 
 .next-btn {
-  right: 40px;
+  right: 20px; /* Смещаем кнопки вправо */
 }
 
 /* Индикаторы для слайдов */
 .dots {
   position: absolute;
-  bottom: 30px;
+  bottom: 15px; /* Сдвигаем индикаторы вниз */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1194,8 +1192,8 @@ button {
 }
 
 .dot {
-  height: 20px;
-  width: 20px;
+  height: 15px;
+  width: 15px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
@@ -1221,13 +1219,11 @@ button {
     font-size: 1.2em;
   }
 
-  /* Позиционирование стрелок для планшетов */
   .prev-btn, .next-btn {
-    padding: 15px;
-    font-size: 25px;
+    padding: 12px 18px;
+    font-size: 18px;
   }
 
-  /* Уменьшаем размер изображений на планшетах */
   .slide-image {
     width: 100%;
     height: auto;
@@ -1247,27 +1243,24 @@ button {
     font-size: 1.1em;
   }
 
-  /* Позиционирование стрелок для мобильных устройств */
   .prev-btn, .next-btn {
-    padding: 15px;
-    font-size: 24px;
-    left: -20px;
-    right: -20px;
+    padding: 10px 15px;
+    font-size: 16px; /* Уменьшаем размер текста на кнопках */
+    left: 10px;
+    right: 10px;
   }
 
   .dots {
-    bottom: 15px; /* Сдвигаем индикаторы вниз */
+    bottom: 10px; /* Сдвигаем индикаторы вниз */
   }
 
-  /* Уменьшаем размер изображений на мобильных устройствах */
   .slide-image {
     width: 100%;
     height: auto;
   }
 
-  /* Оптимизация слайдера на мобильных устройствах */
   .slider-container {
-    height: 60%; /* Уменьшаем высоту контейнера слайдера */
+    height: 50%; /* Уменьшаем высоту контейнера слайдера */
   }
 }
 
@@ -1285,18 +1278,18 @@ button {
   }
 
   .prev-btn, .next-btn {
-    padding: 12px;
-    font-size: 20px;
-    left: -15px; /* Стрелки еще немного смещаем */
-    right: -15px;
+    padding: 8px 12px; /* Уменьшаем кнопки на самых маленьких экранах */
+    font-size: 14px;
+    left: 5px;
+    right: 5px;
   }
 
-  /* Уменьшаем изображения на маленьких экранах */
   .slide-image {
     width: 100%;
     height: auto;
   }
 }
+
 
 
 

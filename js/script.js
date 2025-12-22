@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
   const burger = document.getElementById('burger');
   const sideMenu = document.getElementById('sideMenu');

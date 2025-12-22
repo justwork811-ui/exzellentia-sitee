@@ -1053,14 +1053,14 @@ button {
 
 /* ===== Блок "Что мы делаем" ===== */
 .what-we-do {
-  padding: 150px 0; /* Увеличиваем отступы сверху и снизу */
-  background-color: #fafafa; /* Светлый фон */
+  padding: 150px 0;
+  background-color: #fafafa;
   text-align: center;
-  min-height: 1200px; /* Устанавливаем минимальную высоту блока */
+  min-height: 1200px;
 }
 
 .what-we-do h2 {
-  font-size: 3.5em; /* Увеличиваем размер заголовка */
+  font-size: 3.5em;
   margin-bottom: 60px;
   color: #1c1c1c;
 }
@@ -1079,11 +1079,11 @@ button {
   padding: 40px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  height: 1200px; /* Увеличиваем высоту блока */
+  height: 1200px;
   overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: center; /* Центрируем содержимое */
+  justify-content: center;
 }
 
 .slider-container {
@@ -1107,7 +1107,7 @@ button {
 .slide-image {
   width: 100%;
   height: auto;
-  object-fit: cover; /* Обрезка изображений для хорошего вида */
+  object-fit: cover;
   opacity: 0;
   animation: fadeIn 1s ease-in-out forwards;
 }
@@ -1264,6 +1264,11 @@ button {
     width: 100%;
     height: auto;
   }
+
+  /* Оптимизация слайдера на мобильных устройствах */
+  .slider-container {
+    height: 60%; /* Уменьшаем высоту контейнера слайдера */
+  }
 }
 
 @media (max-width: 480px) {
@@ -1292,7 +1297,6 @@ button {
     height: auto;
   }
 }
-
 
 
 

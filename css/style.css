@@ -17,42 +17,63 @@ body {
   padding: 0 20px;
 }
 
-/* HEADER */
+/* Новый стиль для header */
 .header {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  background: url("../images/your-image.jpg") center/cover no-repeat; /* Задайте фоновое изображение */
-  background-color: rgba(0, 0, 0, 0.3); /* Добавьте полупрозрачный фон, если изображение темное */
-  padding: 20px 0; /* Отступы сверху и снизу для шапки */
-}
-
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 90px;
-  padding: 0 20px; /* Отступы по бокам */
+  background: rgba(0, 0, 0, 0.5); /* Темный полупрозрачный фон */
+  color: #faf6f0; /* Светлый текст */
+  padding: 20px 0; /* Отступы */
 }
 
 .logo {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  color: #000000; /* Белый цвет текста для логотипа, чтобы он выделялся на фоне */
+  color: #000000; /* Черный цвет для логотипа */
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: flex-end; /* Выравнивание элементов по правому краю */
+  gap: 20px; /* Отступ между элементами */
 }
 
 .phone {
-  font-size: 24px; /* Увеличиваем размер номера телефона */
-  color: #faf6f0; /* Золотистый цвет для приятного акцента */
+  font-size: 24px; /* Увеличение шрифта номера телефона */
+  color: #d39c42; /* Цвет акцента для номера телефона */
+  font-weight: bold;
+  transition: color 0.3s ease; /* Плавный переход для цвета */
+}
+
+.phone:hover {
+  color: #ffffff; /* Подсветка при наведении */
+}
+
+/* Иконка телефона */
+.phone::before {
+  content: "\260E"; /* Юникод символа телефона */
+  margin-right: 10px;
+  font-size: 28px;
+  color: #d39c42; /* Цвет иконки */
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 0;
+  }
+  
+  .logo {
+    font-size: 28px; /* Уменьшение шрифта на мобильных устройствах */
+  }
+
+  .header-actions {
+    flex-direction: column;
+    gap: 10px; /* Сужаем отступы для мобильных */
+  }
+
+  .phone {
+    font-size: 20px; /* Уменьшение размера шрифта */
+  }
 }
 
 
@@ -1024,6 +1045,245 @@ button {
 
 
 
+
+/* ===== Блок "Что мы делаем" ===== */
+.what-we-do {
+  padding: 150px 0; /* Увеличиваем отступы сверху и снизу */
+  background-color: #fafafa; /* Светлый фон */
+  text-align: center;
+  min-height: 1200px; /* Устанавливаем минимальную высоту блока (в два раза больше) */
+}
+
+.what-we-do h2 {
+  font-size: 3.5em; /* Увеличиваем размер заголовка */
+  margin-bottom: 60px;
+  color: #1c1c1c;
+}
+
+.what-we-do-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.what-we-do-item {
+  position: relative;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 1200px; /* Увеличиваем высоту блока */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Центрируем содержимое */
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.slide {
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0; /* Начальная непрозрачность */
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.text-overlay {
+  position: absolute;
+  bottom: 40px; /* Располагаем текст немного ниже */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1; /* Текст будет поверх изображения */
+  color: white;
+  background: rgba(0, 0, 0, 0.6); /* Полупрозрачный черный фон для текста */
+  padding: 25px;
+  text-align: center;
+  border-radius: 10px;
+  opacity: 0; /* Текст также будет начинать с нулевой непрозрачности */
+  animation: fadeInText 1s ease-in-out forwards;
+  width: 80%; /* Увеличиваем ширину фона, например, до 80% от ширины блока */
+  max-width: 900px; /* Ограничиваем максимальную ширину фона */
+}
+
+.text-overlay h3 {
+  font-size: 2.8em; /* Увеличиваем размер заголовка для текста */
+  margin-bottom: 20px;
+}
+
+.text-overlay p {
+  font-size: 1.3em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.text-overlay p {
+  font-size: 1.4em;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Анимация для появления текста */
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Анимация для появления слайда */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Кнопки для переключения слайдов */
+.prev-btn, .next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 30px;
+  z-index: 2;
+}
+
+.prev-btn {
+  left: 40px;
+}
+
+.next-btn {
+  right: 40px;
+}
+
+/* Индикаторы для слайдов */
+.dots {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+}
+
+.dot {
+  height: 20px;
+  width: 20px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #717171;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 1024px) {
+  .what-we-do-item {
+    height: 900px; /* Высота блока на планшетах */
+  }
+
+  .text-overlay h3 {
+    font-size: 2.5em; /* Уменьшаем размер заголовка на планшетах */
+  }
+
+  .text-overlay p {
+    font-size: 1.2em;
+  }
+
+  /* Позиционирование стрелок для планшетов */
+  .prev-btn, .next-btn {
+    padding: 15px;
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .what-we-do-item {
+    height: 700px; /* Высота блока на мобильных устройствах */
+  }
+
+  .text-overlay h3 {
+    font-size: 2.2em; /* Уменьшаем размер текста */
+  }
+
+  .text-overlay p {
+    font-size: 1.1em;
+  }
+
+  /* Позиционирование стрелок для мобильных устройств */
+  .prev-btn, .next-btn {
+    padding: 15px;
+    font-size: 24px;
+    left: -20px; /* Стрелки немного сдвигаем */
+    right: -20px;
+  }
+
+  .dots {
+    bottom: 15px; /* Сдвигаем индикаторы вниз */
+  }
+}
+
+@media (max-width: 480px) {
+  .what-we-do-item {
+    height: 500px; /* Еще меньше высота блока для маленьких экранов */
+  }
+
+  .text-overlay h3 {
+    font-size: 1.8em; /* Еще меньше размер текста */
+  }
+
+  .text-overlay p {
+    font-size: 1em;
+  }
+
+  .prev-btn, .next-btn {
+    padding: 12px;
+    font-size: 20px;
+    left: -15px; /* Стрелки еще немного смещаем */
+    right: -15px;
+  }
+}
+
+
+
+
+
+
+
+
+
 /* ===== 6-й Блок: Контакт ===== */
 .contact-section {
   padding: 100px 0;
@@ -1200,6 +1460,12 @@ button {
 
 
 
+/* Скрыть номер телефона в header-actions на мобильных устройствах и планшетах */
+@media only screen and (max-width: 768px) {
+    .header-actions .phone {
+        display: none;
+    }
+}
 
 
 
@@ -1350,17 +1616,20 @@ button {
 
 /* Navigation */
 .side-menu__nav {
-  margin-top: 60px;
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 26px;
 }
+
 
 .side-menu__nav a {
   text-decoration: none;
   color: #000;
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 1.4;
 }
+
 
 /* Socials */
 .side-menu__socials {
@@ -1420,4 +1689,9 @@ button {
 
 .overlay {
   transition: opacity 0.4s ease;
+}
+
+.burger.hidden {
+  opacity: 0;
+  pointer-events: none;
 }

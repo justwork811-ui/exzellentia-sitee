@@ -1048,7 +1048,6 @@ button {
 
 
 
-
 /* ===== Блок "Что мы делаем" ===== */
 .what-we-do {
   padding: 150px 0;
@@ -1208,11 +1207,11 @@ button {
 /* Адаптивность для мобильных устройств */
 @media (max-width: 1024px) {
   .what-we-do-item {
-    height: 900px; /* Высота блока на планшетах */
+    height: auto; /* Убираем жесткую высоту, чтобы блок подстраивался */
   }
 
   .text-overlay h3 {
-    font-size: 2.5em; /* Уменьшаем размер заголовка на планшетах */
+    font-size: 2.5em;
   }
 
   .text-overlay p {
@@ -1224,6 +1223,10 @@ button {
     font-size: 18px;
   }
 
+  .slider-container {
+    height: auto; /* Сделаем высоту слайдера адаптивной */
+  }
+
   .slide-image {
     width: 100%;
     height: auto;
@@ -1232,7 +1235,7 @@ button {
 
 @media (max-width: 768px) {
   .what-we-do-item {
-    height: 700px; /* Высота блока на мобильных устройствах */
+    height: auto; /* Убираем фиксированную высоту для мобильных устройств */
   }
 
   .text-overlay h3 {
@@ -1245,13 +1248,13 @@ button {
 
   .prev-btn, .next-btn {
     padding: 10px 15px;
-    font-size: 16px; /* Уменьшаем размер текста на кнопках */
+    font-size: 16px;
     left: 10px;
     right: 10px;
   }
 
   .dots {
-    bottom: 10px; /* Сдвигаем индикаторы вниз */
+    bottom: 10px; /* Позиционируем индикаторы ниже */
   }
 
   .slide-image {
@@ -1260,17 +1263,17 @@ button {
   }
 
   .slider-container {
-    height: 50%; /* Уменьшаем высоту контейнера слайдера */
+    height: auto; /* Сделаем слайдер адаптивным */
   }
 }
 
 @media (max-width: 480px) {
   .what-we-do-item {
-    height: 500px; /* Еще меньше высота блока для маленьких экранов */
+    height: auto; /* Блок будет подстраиваться по высоте */
   }
 
   .text-overlay h3 {
-    font-size: 1.8em; /* Еще меньше размер текста */
+    font-size: 1.8em; /* Еще меньше текст для маленьких экранов */
   }
 
   .text-overlay p {
@@ -1284,9 +1287,17 @@ button {
     right: 5px;
   }
 
+  .dots {
+    bottom: 8px; /* Сделаем индикаторы чуть ниже */
+  }
+
   .slide-image {
     width: 100%;
     height: auto;
+  }
+
+  .slider-container {
+    height: auto; /* Слайдер подстраивается */
   }
 }
 

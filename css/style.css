@@ -1047,7 +1047,6 @@ button {
 
 
 
-
 /* ===== Блок "Что мы делаем" ===== */
 .what-we-do {
   padding: 150px 0;
@@ -1211,7 +1210,7 @@ button {
   }
 
   .text-overlay h3 {
-    font-size: 2.5em;
+    font-size: 2.5em; /* Уменьшаем размер заголовка на планшетах */
   }
 
   .text-overlay p {

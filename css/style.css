@@ -510,6 +510,8 @@ body {
 .service-icon {
   font-size: 36px;
   margin-bottom: 25px;
+  max-width: 100%; /* Убедимся, что иконки не выходят за пределы */
+  height: auto;
 }
 
 .service-card h3 {
@@ -525,6 +527,8 @@ body {
 }
 
 /* Адаптивность */
+
+/* Для экранов от 992px (планшеты) */
 @media (max-width: 992px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr); /* Две колонки для планшетов */
@@ -535,6 +539,7 @@ body {
   }
 }
 
+/* Для экранов до 600px (мобильные устройства) */
 @media (max-width: 600px) {
   .services-grid {
     grid-template-columns: 1fr; /* Одна колонка для мобильных устройств */
@@ -545,7 +550,7 @@ body {
   }
 
   .service-card {
-    padding: 30px 20px; /* Уменьшаем отступы на мобильных */
+    padding: 20px 15px; /* Уменьшаем отступы на мобильных */
   }
 
   .service-card h3 {
@@ -554,6 +559,7 @@ body {
 
   .service-card p {
     font-size: 14px; /* Уменьшаем размер шрифта для текста */
+    line-height: 1.5; /* Уменьшаем расстояние между строками для мобильных */
   }
 
   .service-icon {

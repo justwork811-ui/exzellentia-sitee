@@ -316,6 +316,7 @@ body {
 
 
 
+
 /* ===== ABOUT SECTION ===== */
 .about-section {
   position: relative;
@@ -462,6 +463,29 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ===== SERVICES SECTION ===== */
 .services-section {
   padding: 100px 0;
@@ -490,7 +514,7 @@ body {
 /* Стиль для сетки услуг */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Три колонки на больших экранах */
+  grid-template-columns: repeat(3, 1fr); /* 3 колонки на больших экранах */
   gap: 40px;
 }
 
@@ -529,24 +553,29 @@ body {
 
 /* Адаптивность */
 
-/* Для экранов от 992px (планшеты) */
+/* Для экранов до 992px (планшеты) */
 @media (max-width: 992px) {
   .services-grid {
-    grid-template-columns: repeat(2, 1fr); /* Две колонки для планшетов */
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки для планшетов */
   }
 }
 
 /* Для экранов до 600px (мобильные устройства) */
 @media (max-width: 600px) {
   .services-grid {
-    grid-template-columns: 1fr; /* Одна колонка для мобильных устройств */
-    gap: 20px; /* Уменьшаем промежутки между блоками */
+    grid-template-columns: 1fr; /* 1 колонка для мобильных устройств (по одному) */
+    gap: 20px; /* Меньше промежутков между блоками */
   }
 
   .service-card {
-    padding: 30px 20px; /* Уменьшаем паддинги для мобильных */
+    padding: 30px 20px; /* Уменьшаем паддинги на мобильных */
   }
 }
+
+
+
+
+
 
 /* ===== ABOUT SECTION ===== */
 

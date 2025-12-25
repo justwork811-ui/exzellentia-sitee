@@ -1424,12 +1424,10 @@ button {
 
 
 
-
-
 /* ===== 6-й Блок: Контакт ===== */
 .contact-section {
   padding: 100px 0;
-  background-color: #c78a3a;
+  background-color: #faf8f2; /* оставляем фон, как есть */
   text-align: center;
 }
 
@@ -1480,16 +1478,8 @@ button {
 .contact-info ul li img {
   width: 30px;
   height: 30px;
-  margin-right: 30px;
-}
-
-.contact-info ul li {
-  display: flex;
-  align-items: flex-start; /* теперь элементы выравниваются по верху */
-}
-
-.contact-info ul li img {
-  margin-top: -5px; /* поднимает картинку вверх */
+  margin-right: 20px; /* Уменьшил отступ */
+  object-fit: contain; /* Чтобы иконки не искажались */
 }
 
 .contact-info ul li a,
@@ -1540,6 +1530,23 @@ button {
   .contact-images {
     flex-direction: column; /* Сортируем маленькие картинки вертикально */
     gap: 10px;
+  }
+
+  .contact-info h3 {
+    font-size: 1.5em; /* Уменьшаем размер заголовка на мобильных */
+  }
+
+  .contact-info ul li {
+    margin-bottom: 15px; /* Уменьшаем расстояние между пунктами */
+  }
+
+  .contact-info ul li img {
+    width: 25px; /* Уменьшаем размер иконок */
+    height: 25px;
+  }
+
+  .contact-info p, .contact-info ul li a {
+    font-size: 1em; /* Уменьшаем шрифт для мобильных */
   }
 }
 

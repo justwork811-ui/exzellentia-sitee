@@ -459,6 +459,9 @@ body {
     justify-content: flex-start;
   }
 }
+
+
+
 /* ===== SERVICES SECTION ===== */
 .services-section {
   padding: 100px 0;
@@ -510,8 +513,6 @@ body {
 .service-icon {
   font-size: 36px;
   margin-bottom: 25px;
-  max-width: 100%; /* Убедимся, что иконки не выходят за пределы */
-  height: auto;
 }
 
 .service-card h3 {
@@ -533,37 +534,17 @@ body {
   .services-grid {
     grid-template-columns: repeat(2, 1fr); /* Две колонки для планшетов */
   }
-
-  .service-card {
-    padding: 40px 30px; /* Уменьшаем отступы на планшетах */
-  }
 }
 
 /* Для экранов до 600px (мобильные устройства) */
 @media (max-width: 600px) {
   .services-grid {
     grid-template-columns: 1fr; /* Одна колонка для мобильных устройств */
-  }
-
-  .section-header h2 {
-    font-size: 28px; /* Уменьшаем размер заголовка на мобильных */
+    gap: 20px; /* Уменьшаем промежутки между блоками */
   }
 
   .service-card {
-    padding: 20px 15px; /* Уменьшаем отступы на мобильных */
-  }
-
-  .service-card h3 {
-    font-size: 18px; /* Уменьшаем размер шрифта для заголовков */
-  }
-
-  .service-card p {
-    font-size: 14px; /* Уменьшаем размер шрифта для текста */
-    line-height: 1.5; /* Уменьшаем расстояние между строками для мобильных */
-  }
-
-  .service-icon {
-    font-size: 28px; /* Уменьшаем размер иконки на мобильных */
+    padding: 30px 20px; /* Уменьшаем паддинги для мобильных */
   }
 }
 

@@ -17,81 +17,6 @@ body {
   padding: 0 20px;
 }
 
-/* Новый стиль для header */
-.header {
-  background: rgba(0, 0, 0, 0.5); /* Темный полупрозрачный фон */
-  color: #faf6f0; /* Светлый текст */
-  padding: 20px 0; /* Отступы */
-}
-.logo {
-  font-size: 36px;
-  font-weight: 600;
-  color: #DAA520; /* Черный цвет для логотипа */
-  transform: translateY(42px); /* Сдвигаем текст логотипа ещё ниже */
-}
-.logo-image {
-  max-width: 300px;          /* Максимальная ширина картинки */
-  max-height: 150px;         /* Максимальная высота картинки */
-  margin-right: -40px;        /* Отступ между картинкой и текстом */
-  object-fit: contain;       /* Сохраняем пропорции картинки */
-  transform: translateY(50px); /* Сдвигаем текст логотипа ещё ниже */
-}
-
-
-
-
- .header-actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; /* Выравнивание элементов по правому краю */
-  gap: 20px; /* Отступ между элементами */
-  flex-wrap: wrap; /* Разрешаем перенос элементов на мобильных */
-}
-
-.phone {
-  font-size: 24px; /* Увеличение шрифта номера телефона */
-  color: #d39c42; /* Цвет акцента для номера телефона */
-  font-weight: bold;
-  transition: color 0.3s ease; /* Плавный переход для цвета */
-  white-space: nowrap; /* Запрещаем перенос текста на новую строку */
-}
-
-.phone:hover {
-  color: #ffffff; /* Подсветка при наведении */
-}
-
-/* Иконка телефона */
-.phone::before {
-  content: "\260E"; /* Юникод символа телефона */
-  margin-right: 10px;
-  font-size: 28px;
-  color: #d39c42; /* Цвет иконки */
-}
-
-/* Мобильная версия */
-@media (max-width: 768px) {
-  .header {
-    padding: 10px 0;
-  }
-  
-  .logo {
-    font-size: 28px; /* Уменьшение шрифта на мобильных устройствах */
-  }
-
-  .header-actions {
-    flex-direction: column;
-    align-items: flex-start; /* Выравниваем элементы по левому краю на мобильных устройствах */
-    gap: 10px; /* Сужаем отступы для мобильных */
-    padding: 0 10px; /* Добавляем отступы для мобильных устройств */
-  }
-
-  .phone {
-    font-size: 18px; /* Дополнительное уменьшение размера шрифта на мобильных устройствах */
-    word-wrap: break-word; /* Разрешаем перенос текста на новую строку, если не помещается */
-    white-space: normal; /* Позволяем перенос текста */
-    line-height: 1.2; /* Добавляем межстрочный интервал, чтобы текст не слипался */
-  }
-}
 
 
 
@@ -368,8 +293,10 @@ body {
 .services-section {
   padding: 100px 0;
   background-color: #ffffff;
+  text-align: center;
 }
 
+/* Заголовок раздела */
 .section-header {
   text-align: center;
   max-width: 700px;
@@ -377,7 +304,7 @@ body {
 }
 
 .section-header h2 {
-  font-size: 25px;
+  font-size: 30px;
   margin-bottom: 20px;
   color: #1c1c1c;
 }
@@ -387,26 +314,26 @@ body {
   color: #666;
 }
 
-/* Grid */
+/* Стиль для сетки услуг */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* Три колонки на больших экранах */
   gap: 40px;
 }
 
-/* Card */
+/* Карточки услуг */
 .service-card {
   background: #faf9f7;
   padding: 50px 40px;
   border-radius: 20px;
   text-align: center;
   transition: all 0.35s ease;
-  cursor: default;
+  cursor: pointer;
 }
 
 .service-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
   background: #ffffff;
 }
 
@@ -427,22 +354,43 @@ body {
   line-height: 1.6;
 }
 
-/* Responsive */
+/* Адаптивность */
 @media (max-width: 992px) {
   .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Две колонки для планшетов */
+  }
+
+  .service-card {
+    padding: 40px 30px; /* Уменьшаем отступы на планшетах */
   }
 }
 
 @media (max-width: 600px) {
   .services-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Одна колонка для мобильных устройств */
   }
 
   .section-header h2 {
-    font-size: 36px;
+    font-size: 28px; /* Уменьшаем размер заголовка на мобильных */
+  }
+
+  .service-card {
+    padding: 30px 20px; /* Уменьшаем отступы на мобильных */
+  }
+
+  .service-card h3 {
+    font-size: 18px; /* Уменьшаем размер шрифта для заголовков */
+  }
+
+  .service-card p {
+    font-size: 14px; /* Уменьшаем размер шрифта для текста */
+  }
+
+  .service-icon {
+    font-size: 28px; /* Уменьшаем размер иконки на мобильных */
   }
 }
+
 /* ===== ABOUT SECTION ===== */
 
 .about-wrapper {
@@ -620,16 +568,14 @@ body {
   position: relative;
   z-index: 2;
 }
-
 /* ===== SERVICES SECTION ===== */
-
 .services-section {
   padding: 100px 0;
   background-color: #fafafa;
   text-align: center;
 }
 
-
+/* Лейбл раздела */
 .services-section .section-label {
   display: block;
   font-size: 40px;
@@ -638,6 +584,7 @@ body {
   margin-bottom: 40px;
 }
 
+/* Заголовок секции */
 .services-section h2 {
   font-size: 30px;
   line-height: 1.2;
@@ -645,12 +592,14 @@ body {
   color: #1c1c1c;
 }
 
+/* Сетка для карточек услуг */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* Три колонки для больших экранов */
   gap: 40px;
 }
 
+/* Карточки услуг */
 .service-card {
   background: #ffffff;
   padding: 35px 30px;
@@ -676,44 +625,29 @@ body {
   color: #666;
 }
 
-/* Адаптив */
-@media (max-width: 992px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .services-section h2 {
-    font-size: 28px;
-  }
-}
+/* Иконка в карточке */
 .service-icon-img {
-  width: 90px;   /* ширина иконки */
-  height: 90px;  /* высота иконки */
+  width: 90px;
+  height: 90px;
   display: block;
-  margin: 0 auto 15px auto; /* по центру и с отступом снизу */
+  margin: 0 auto 15px;
   transition: transform 0.3s, filter 0.3s;
 }
 
 .service-card:hover .service-icon-img {
-  transform: scale(1.1);   /* увеличиваем при hover */
-  filter: brightness(1.2); /* подсветка */
+  transform: scale(1.1);
+  filter: brightness(1.2);
 }
 
 .service-icon-img {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  border-radius: 12px; /* скругление для мягкого вида */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
 }
 
 .service-card p,
 .service-card h3 {
   position: relative;
-  z-index: 2; /* чтобы текст был поверх фона */
+  z-index: 2; /* Текст поверх фона */
 }
 
 .service-card-text-bg {
@@ -723,36 +657,76 @@ body {
   transform: translate(-50%, -50%);
   width: 90%;
   height: 70%;
-  background-color: rgba(217, 160, 102, 0.1); /* светлый акцентный цвет */
+  background-color: rgba(217, 160, 102, 0.1);
   border-radius: 16px;
   z-index: 1;
 }
+
 /* hover эффект: иконка становится темнее и немного увеличивается */
 .service-card:hover .service-icon-img {
   transform: scale(1.15);
-  filter: brightness(0.95)
+  filter: brightness(0.95);
 }
+
 /* Стили для седьмой карточки (Мебель) */
 .service-card.center-card {
   background-color: #fff;
-  padding: 30px; /* Уменьшаем отступы для меньшей высоты */
+  padding: 30px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  height: 320px; /* Уменьшаем высоту */
+  height: 320px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  grid-column: 2; /* Перемещаем карточку во вторую колонку */
+  grid-column: 2;
 }
 
+/* Адаптивность для планшетов */
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr); /* Две колонки для планшетов */
+  }
 
+  .service-card {
+    padding: 30px 25px; /* Меньше отступов на планшетах */
+  }
+}
 
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+  .services-grid {
+    grid-template-columns: 1fr; /* Одна колонка на мобильных */
+  }
 
+  .services-section h2 {
+    font-size: 28px; /* Уменьшаем размер шрифта заголовка */
+  }
 
+  .service-card {
+    padding: 25px 20px; /* Уменьшаем отступы */
+  }
 
+  .service-card h3 {
+    font-size: 18px; /* Меньше размер шрифта в карточках */
+  }
 
+  .service-card p {
+    font-size: 14px; /* Меньше размер шрифта текста */
+  }
+
+  .service-icon-img {
+    width: 70px;   /* Меньше иконки */
+    height: 70px;  /* Меньше иконки */
+  }
+
+  /* Для карточки с мебелью */
+  .service-card.center-card {
+    height: auto; /* Автоматическая высота */
+    padding: 25px 20px; /* Меньше отступов */
+  }
+}
 
 
 

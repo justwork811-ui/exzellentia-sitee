@@ -12,51 +12,42 @@
 </head>
 <body>
 
-<!-- Burger button -->
-<div class="burger" id="burger">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
 
-<!-- Slide Menu -->
-<div class="side-menu" id="sideMenu">
-  <div class="side-menu__close" id="closeMenu">✕</div>
-
-  <nav class="side-menu__nav">
-    <a href="index.html">Heim</a>
-    <a href="services.html">Dienstleistungen</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="about.html">Über uns</a>
-    <a href="contact.html">Kontakte</a>
-    
-  </nav>
-
-
-
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container header-inner">
-      <!-- Логотип (название фирмы) -->
-      <div class="logo">
-        <img src="images/Mein/logo.png" class="logo-image" alt="ExzellentiaConstructio Logo">
-        <span>ExzellentiaConstructio</span>
-      </div>
-
-      <!-- Номер телефона справа -->
-      <div class="header-actions">
-        <span class="phone">
-          <span class="phone-icon">☎</span> <!-- Иконка телефона -->
-          <a href="tel:+4916096273279" class="phone-link">+49 160 96273279</a> <!-- Номер с ссылкой для звонка -->
-        </span>
-      </div>
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
+    <!-- Логотип (название фирмы) -->
+    <div class="logo">
+      <img src="images/Mein/logo.png" class="logo-image" alt="ExzellentiaConstructio Logo">
+      <span>ExzellentiaConstructio</span>
     </div>
-  </header>
 
-  <!-- Остальная часть страницы -->
-  <div class="container">
-    <!-- Контент страницы -->
+    <!-- Номер телефона справа -->
+    <div class="header-actions">
+      <span class="phone">
+        <span class="phone-icon">☎</span> <!-- Иконка телефона -->
+        <a href="tel:+4916096273279" class="phone-link">+49 160 96273279</a> <!-- Номер с ссылкой для звонка -->
+      </span>
+      
+      <!-- Кнопка для открытия поп-апа, расположенная справа сверху -->
+      <button class="popup-btn" onclick="togglePopup()">☰</button>
+    </div>
   </div>
+
+  <!-- Поп-ап -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <span class="popup-close" onclick="togglePopup()">&times;</span>
+      <ul class="popup-links">
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#contact">Контакты</a></li>
+        <li><a href="#portfolio">Портфолио</a></li>
+        <!-- Добавь другие ссылки по необходимости -->
+      </ul>
+    </div>
+  </div>
+</header>
 
 
 
@@ -219,7 +210,6 @@
       <div class="portfolio-slider">
         <div class="slides">
           <img src="images/Portfolio/Osnova.png" alt="Luxus Badezimmer 1" class="portfolio-image">
-
           <img src="images/Portfolio/Vanna.jpg" alt="Luxus Badezimmer 2" class="portfolio-image">
           <img src="images/Portfolio/vanna2.jpg" alt="Luxus Badezimmer 3" class="portfolio-image">
           <img src="images/Portfolio/komnata2.jpg" alt="Luxus Badezimmer 4" class="portfolio-image">
@@ -286,7 +276,6 @@
 
 
 
-
 <!-- Контактная информация -->
 <section class="contact-section">
   <div class="container">
@@ -294,29 +283,35 @@
     <p class="contact-description">Ob Komplettrenovierung oder einzelne Gewerke – wir beraten Sie gerne persönlich und erstellen Ihnen ein maßgeschneidertes Angebot.</p>
     <div class="contact-info">
       <div class="contact-item">
-        <span class="contact-icon">📞</span>
+        <img src="images/kontakt/phone.png" alt="" class="contact-icon">
         <div class="contact-text">
-          <h3>Telefon</h3>
+          
           <p><a href="tel:+4916096273279">+49 160 96273279</a></p>
         </div>
       </div>
       <div class="contact-item">
-        <span class="contact-icon">📧</span>
+        <img src="images/kontakt/email.png"  class="contact-icon">
         <div class="contact-text">
-          <h3>E-Mail</h3>
+          
           <p><a href="mailto:kontakt@exzellentia-construction.de">kontakt@exzellentia-construction.de</a></p>
         </div>
       </div>
       <div class="contact-item">
-        <span class="contact-icon">📍</span>
+        <img src="images/kontakt/locations.png"  class="contact-icon">
         <div class="contact-text">
-          <h3>Standort</h3>
-          <p>München, Deutschland</p>
+          
+          <p><a> München, Deutschland</a></p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+
+
+
+
 
 
 

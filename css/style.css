@@ -165,6 +165,7 @@ body {
 
 @media (max-width: 600px) {
   .hero h1 {
+
     font-size: 30px; /* Уменьшаем шрифт еще больше */
   }
 
@@ -172,7 +173,6 @@ body {
     font-size: 16px;
   }
 }
-
 
 /* =============================== */
 /*       ШАПКА САЙТА               */
@@ -184,6 +184,7 @@ body {
   display: flex;
   align-items: center; /* Центрируем элементы по вертикали */
   justify-content: space-between; /* Логотип слева, номер телефона справа */
+  position: relative; /* Устанавливаем относительное позиционирование для размещения кнопки */
 }
 
 .header-inner {
@@ -220,36 +221,121 @@ body {
   font-size: 22px;               /* Размер шрифта для телефона */
   display: flex;                 /* Выравнивание элементов внутри телефона */
   align-items: center;           /* Центрируем элементы по вертикали */
-}
-
-.phone {
-  display: flex;                 /* Размещаем элементы (иконку и номер) в одну строку */
-  align-items: center;           /* Центрируем элементы по вертикали */
-  position: relative;            /* Позиционируем блок относительно его нормального положения */
-  top: 10px;                     /* Опускаем блок с номером телефона и иконкой вниз */
-  width: 100%;                   /* Блок с номером телефона и иконкой на всю ширину */
-}
-
-.phone-icon {
-  font-size: 30px;               /* Увеличиваем размер иконки */
-  margin-right: 10px;             /* Отступ между иконкой и номером */
-  position: relative;            /* Позиционируем иконку относительно её нормального положения */
-  top: -5px;                     /* Поднимаем иконку немного выше */
-   color: #f79c1c;                /* Золотисто-темный цвет для иконки */
+  position: relative;            /* Позиционируем блок с номером телефона и кнопкой относительно его нормального положения */
 }
 
 
-.phone-link {
-  color: #ffffff;                /* Золотой цвет для номера телефона */
-  text-decoration: none;         /* Убираем подчеркивание */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Кнопка для открытия поп-апа */
+.popup-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  color: white; /* Цвет кнопки - белый */
+  cursor: pointer;
+  padding: 10px;
+  position: absolute; /* Абсолютное позиционирование для размещения в правом верхнем углу */
+  top: 10px; /* Отступ сверху */
+  right: -150px; /* Увеличиваем отступ справа, чтобы кнопка была намного правее */
   font-weight: bold;
-  font-size: 22px;               /* Увеличиваем размер шрифта для номера телефона */
 }
 
-.phone-link:hover {
-  color: #ffecce;                /* Цвет при наведении */
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+  /* Кнопка в мобильной версии будет расположена по центру, чтобы её было легко нажать */
+  .popup-btn {
+    right: 20px; /* Сдвигаем кнопку ближе к правому краю */
+    top: 15px; /* Немного увеличиваем отступ сверху */
+    font-size: 28px; /* Увеличиваем размер шрифта на мобильных */
+  }
+
+  /* Настройка поп-апа на мобильных */
+  .popup-content {
+    max-width: 80%;
+    width: 90%; /* Сделаем поп-ап шире на мобильных устройствах */
+    padding: 15px; /* Меньше отступов, чтобы всё помещалось */
+  }
+
+  /* Стили для списка ссылок внутри поп-апа */
+  .popup-links a {
+    font-size: 16px; /* Уменьшаем размер шрифта для мобильных устройств */
+  }
+
+  .popup-links li {
+    margin-bottom: 10px; /* Уменьшаем отступ между пунктами */
+  }
 }
 
+
+/* ===== POP-UP ===== */
+.popup {
+  display: none; /* Скрыт по умолчанию */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Темный полупрозрачный фон */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Поверх других элементов */
+}
+
+/* Контейнер поп-апа */
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 300px;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative; /* Добавляем позиционирование для размещения кнопки внутри */
+}
+
+/* Кнопка закрытия поп-апа */
+.popup-close {
+  font-size: 28px;
+  color: #000;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px; /* Кнопка будет в правом верхнем углу */
+}
+
+/* Стили для списка ссылок внутри поп-апа */
+.popup-links {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.popup-links li {
+  margin-bottom: 15px;
+}
+
+.popup-links a {
+  font-size: 18px;
+  text-decoration: none;
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+.popup-links a:hover {
+  color: #6c5ce7; /* Цвет при наведении */
+}
 
 /* =============================== */
 /*       АДАПТИВНОСТЬ              */
@@ -315,15 +401,13 @@ body {
 
 
 
-
-
 /* ===== ABOUT SECTION ===== */
 .about-section {
   position: relative;
   padding: 120px 0;
   background: #f4efe9; /* или white, если фон светлый */
-  
 }
+
 .about-section::after {
   content: "";
   position: absolute;
@@ -337,8 +421,12 @@ body {
   z-index: 1;
 }
 
-
-
+/* Скрытие картинки на мобильных устройствах */
+@media (max-width: 992px) {
+  .about-section::after {
+    display: none; /* Скрываем картинку на экранах шириной до 992px */
+  }
+}
 
 .about-grid {
   display: grid;
@@ -460,20 +548,6 @@ body {
     justify-content: flex-start;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1548,3 +1622,136 @@ body {
     font-size: 14px;
   }
 }
+
+
+
+
+
+
+
+
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+  padding: 80px 0;
+  background-color: #f4f4f4;
+}
+
+.contact-title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffb87e; /* Изменили на чёрный */
+}
+
+.contact-description {
+  font-size: 16px;
+  text-align: center;
+  color: #000000; /* Изменили на чёрный */
+  margin-bottom: 40px;
+}
+
+/* Контейнер для информации */
+.contact-info {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+  text-align: center;
+  width: 100%;
+}
+
+/* Контактный блок */
+.contact-item {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(252, 252, 252, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-basis: 30%;
+  max-width: 380px;
+  min-width: 280px;
+  text-align: center;
+}
+
+/* Эффект при наведении на блок */
+.contact-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Контейнер для иконки и текста */
+.contact-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Изображения для иконок */
+.contact-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+}
+
+/* Текст в блоках */
+.contact-text h3 {
+  font-size: 22px;
+  color: #000000; /* Изменили на чёрный */
+  margin: 0;
+}
+
+.contact-text p {
+  font-size: 16px;
+  color: #000000; /* Изменили на чёрный */
+  margin: 0;
+}
+
+.contact-text a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-text a:hover {
+  text-decoration: underline;
+  color: #000000;
+}
+
+/* Responsive для мобильных устройств */
+@media (max-width: 768px) {
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-item {
+    width: 80%;
+    margin-bottom: 20px;
+    
+  }
+  .contact-text p {
+    font-size: 13px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Обнуление стилей для ссылок */
+a {
+  text-decoration: none; /* Убираем подчеркивание */
+  color: inherit; /* Ссылка будет наследовать цвет от родительского элемента */
+  outline: none; /* Убираем обводку, которая появляется при фокусе */
+  cursor: pointer; /* Устанавливаем указатель при наведении */
+}
+
+

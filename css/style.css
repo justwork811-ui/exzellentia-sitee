@@ -684,18 +684,18 @@ body {
   grid-column: 2;
 }
 
-/* Адаптивность для планшетов и мобильных устройств */
-@media (max-width: 992px) {
+/* Для мобильных устройств (ширина экрана <= 600px) */
+@media (max-width: 600px) {
   .services-grid {
-    grid-template-columns: 1fr; /* Одна колонка для планшетов и мобильных устройств */
+    grid-template-columns: 1fr; /* В одну колонку на телефонах */
   }
 
   .service-card {
-    padding: 25px 20px; /* Меньше отступов на планшетах и мобильных */
+    padding: 25px 20px; /* Меньше отступов на телефоне */
   }
 
   .services-section h2 {
-    font-size: 28px; /* Уменьшаем размер шрифта заголовка */
+    font-size: 28px; /* Уменьшаем размер шрифта заголовка на телефоне */
   }
 
   .service-card h3 {
@@ -707,14 +707,8 @@ body {
   }
 
   .service-icon-img {
-    width: 70px;   /* Меньше иконки */
-    height: 70px;  /* Меньше иконки */
-  }
-
-  /* Для карточки с мебелью */
-  .service-card.center-card {
-    height: auto; /* Автоматическая высота */
-    padding: 20px 15px; /* Меньше отступов */
+    width: 70px;   /* Меньше иконки на телефоне */
+    height: 70px;  /* Меньше иконки на телефоне */
   }
 }
 

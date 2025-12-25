@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const burger = document.getElementById('burger');
   const sideMenu = document.getElementById('sideMenu');
@@ -132,55 +131,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  let currentIndex = 0; // Текущий индекс изображения
-  const slides = document.querySelectorAll('.slide');
-  const totalSlides = slides.length;
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dots = document.querySelectorAll('.dot');
-
-  // Функция для переключения слайдов
-  function showSlide(index) {
-    // Скрываем все слайды
-    slides.forEach(slide => {
-      slide.style.display = 'none';
-      slide.style.opacity = 0; // Начальная непрозрачность для скрытых слайдов
-    });
-
-    // Показываем текущий слайд с анимацией
-    const currentSlide = slides[index];
-    currentSlide.style.display = 'block';
-    currentSlide.style.opacity = 1; // Текущий слайд становится видимым
-
-    // Устанавливаем активный класс для индикатора
-    dots.forEach(dot => {
-      dot.classList.remove('active');
-    });
-    dots[index].classList.add('active');
-  }
-
-  // Переключение на следующий слайд
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % totalSlides; // Переход к следующему слайду
-    showSlide(currentIndex);
-  });
-
-  // Переключение на предыдущий слайд
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // Переход к предыдущему слайду
-    showSlide(currentIndex);
-  });
-
-  // Переключение на слайд по индикатору
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      currentIndex = index;
-      showSlide(currentIndex);
-    });
-  });
-
-  // Инициализация слайдера
-  showSlide(currentIndex);
-});

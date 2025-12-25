@@ -23,12 +23,22 @@ body {
   color: #faf6f0; /* Светлый текст */
   padding: 20px 0; /* Отступы */
 }
-
 .logo {
   font-size: 36px;
   font-weight: 600;
-  color: #000000; /* Черный цвет для логотипа */
+  color: #DAA520; /* Черный цвет для логотипа */
+  transform: translateY(42px); /* Сдвигаем текст логотипа ещё ниже */
 }
+.logo-image {
+  max-width: 300px;          /* Максимальная ширина картинки */
+  max-height: 150px;         /* Максимальная высота картинки */
+  margin-right: -40px;        /* Отступ между картинкой и текстом */
+  object-fit: contain;       /* Сохраняем пропорции картинки */
+  transform: translateY(50px); /* Сдвигаем текст логотипа ещё ниже */
+}
+
+
+
 
  .header-actions {
   display: flex;
@@ -84,6 +94,15 @@ body {
 }
 
 
+
+
+
+
+
+
+
+
+
 /* BUTTONS */
 .btn {
   padding: 10px 18px;
@@ -136,6 +155,14 @@ body {
 }
 
 
+
+
+
+
+
+
+
+
 /* HERO */
 .hero {
   position: relative;
@@ -185,6 +212,15 @@ body {
   justify-content: center;
   gap: 16px;
 }
+
+
+
+
+
+
+
+
+
 /* ===== ABOUT SECTION ===== */
 .about-section {
   position: relative;
@@ -696,8 +732,20 @@ body {
   transform: scale(1.15);
   filter: brightness(0.95)
 }
-
-
+/* Стили для седьмой карточки (Мебель) */
+.service-card.center-card {
+  background-color: #fff;
+  padding: 30px; /* Уменьшаем отступы для меньшей высоты */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 320px; /* Уменьшаем высоту */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-column: 2; /* Перемещаем карточку во вторую колонку */
+}
 
 
 
@@ -1041,24 +1089,19 @@ button {
 }
 
 
-
-
-
-
-
-
-/* ===== Блок "Что мы делаем" ===== */
+/* ===== 5-й Блок: Что мы делаем ===== */
 .what-we-do {
-  padding: 150px 0;
+  padding: 100px 0; /* Немного уменьшаем отступы, чтобы сделать блок компактнее */
   background-color: #fafafa;
   text-align: center;
-  min-height: 1200px;
+  min-height: 600px;
 }
 
 .what-we-do h2 {
   font-size: 3.5em;
   margin-bottom: 60px;
   color: #1c1c1c;
+  font-weight: 600; /* Увеличиваем жирность для выделения заголовка */
 }
 
 .what-we-do-grid {
@@ -1072,7 +1115,7 @@ button {
 .what-we-do-item {
   position: relative;
   background-color: #ffffff;
-  padding: 40px;
+  padding: 30px; /* Уменьшаем padding для компактности */
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   height: auto;
@@ -1084,223 +1127,93 @@ button {
 
 .slider-container {
   position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  width: 80%; /* Уменьшаем ширину контейнера с изображением */
+  margin: 0 auto;
 }
 
 .slider {
-  display: flex;
-  transition: transform 1s ease-in-out;
+  display: block;
 }
 
 .slide {
-  display: none;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+  display: block;
 }
 
 .slide-image {
-  width: 100%;
+  width: 90%; /* Уменьшаем размер изображения */
   height: auto;
   object-fit: cover;
-  opacity: 0;
-  animation: fadeIn 1s ease-in-out forwards;
+  border-radius: 8px; /* Добавляем скругление углов изображения */
+  border: 0.5px solid #e0e0e0; /* Тонкая рамка вокруг изображения */
+  transition: transform 0.3s ease-in-out; /* Эффект нажатия для увеличения */
+}
+
+.slide-image:hover {
+  transform: scale(1.05); /* При наведении изображение будет немного увеличиваться */
 }
 
 .text-overlay {
   position: absolute;
-  bottom: 40px;
+  bottom: 10%; /* Перемещаем текст в самый низ рамки */
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); /* Выравниваем по центру */
   z-index: 1;
   color: white;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 25px;
+  background: rgba(0, 0, 0, 0.7); /* Темный фон для улучшения читаемости */
+  padding: 20px 30px;
   text-align: center;
   border-radius: 10px;
-  opacity: 0;
-  animation: fadeInText 1s ease-in-out forwards;
   width: 80%;
   max-width: 900px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень вокруг блока с текстом */
 }
 
 .text-overlay h3 {
-  font-size: 2.8em;
+  font-size: 2.6em;
   margin-bottom: 20px;
+  font-weight: 600; /* Сделаем заголовок более жирным для выделения */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Добавляем тень к заголовку для контраста */
 }
 
 .text-overlay p {
-  font-size: 1.3em;
+  font-size: 1.2em;
+  line-height: 1.6;
   max-width: 800px;
   margin: 0 auto;
-}
-
-/* Анимация для появления текста */
-@keyframes fadeInText {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Анимация для появления слайда */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Кнопки для переключения слайдов */
-.prev-btn, .next-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  border: none;
-  padding: 10px 15px; /* Уменьшаем размер кнопок */
-  cursor: pointer;
-  border-radius: 50%;
-  font-size: 20px; /* Уменьшаем размер текста на кнопках */
-  z-index: 2;
-}
-
-.prev-btn {
-  left: 20px; /* Смещаем кнопки влево */
-}
-
-.next-btn {
-  right: 20px; /* Смещаем кнопки вправо */
-}
-
-/* Индикаторы для слайдов */
-.dots {
-  position: absolute;
-  bottom: 15px; /* Сдвигаем индикаторы вниз */
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 15px;
-}
-
-.dot {
-  height: 15px;
-  width: 15px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-.dot.active {
-  background-color: #717171;
+  color: #f4f4f4; /* Более светлый текст для лучшего контраста */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Добавляем тень к параграфу */
 }
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 1024px) {
-  .what-we-do-item {
-    height: auto; /* Убираем жесткую высоту, чтобы блок подстраивался */
-  }
-
   .text-overlay h3 {
-    font-size: 2.5em; /* Уменьшаем размер заголовка на планшетах */
-  }
-
-  .text-overlay p {
-    font-size: 1.2em;
-  }
-
-  .prev-btn, .next-btn {
-    padding: 12px 18px;
-    font-size: 18px;
-  }
-
-  .slider-container {
-    height: auto; /* Сделаем высоту слайдера адаптивной */
-  }
-
-  .slide-image {
-    width: 100%;
-    height: auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .what-we-do-item {
-    height: auto; /* Убираем фиксированную высоту для мобильных устройств */
-  }
-
-  .text-overlay h3 {
-    font-size: 2.2em; /* Уменьшаем размер текста */
+    font-size: 2.4em;
   }
 
   .text-overlay p {
     font-size: 1.1em;
   }
+}
 
-  .prev-btn, .next-btn {
-    padding: 10px 15px;
-    font-size: 16px;
-    left: 10px;
-    right: 10px;
+@media (max-width: 768px) {
+  .text-overlay h3 {
+    font-size: 2em;
   }
 
-  .dots {
-    bottom: 10px; /* Позиционируем индикаторы ниже */
-  }
-
-  .slide-image {
-    width: 100%;
-    height: auto;
-  }
-
-  .slider-container {
-    height: auto; /* Сделаем слайдер адаптивным */
+  .text-overlay p {
+    font-size: 1.05em;
   }
 }
 
 @media (max-width: 480px) {
-  .what-we-do-item {
-    height: auto; /* Блок будет подстраиваться по высоте */
-  }
-
   .text-overlay h3 {
-    font-size: 1.8em; /* Еще меньше текст для маленьких экранов */
+    font-size: 1.6em;
   }
 
   .text-overlay p {
     font-size: 1em;
   }
-
-  .prev-btn, .next-btn {
-    padding: 8px 12px; /* Уменьшаем кнопки на самых маленьких экранах */
-    font-size: 14px;
-    left: 5px;
-    right: 5px;
-  }
-
-  .dots {
-    bottom: 8px; /* Сделаем индикаторы чуть ниже */
-  }
-
-  .slide-image {
-    width: 100%;
-    height: auto;
-  }
-
-  .slider-container {
-    height: auto; /* Слайдер подстраивается */
-  }
 }
-
-
 
 
 

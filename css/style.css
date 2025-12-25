@@ -1628,7 +1628,6 @@ body {
 
 
 
-
 /* ===== CONTACT SECTION ===== */
 .contact-section {
   padding: 80px 0;
@@ -1639,21 +1638,21 @@ body {
   font-size: 36px;
   margin-bottom: 20px;
   text-align: center;
-  color: #ffb87e; /* Изменили на чёрный */
+  color: #ffb87e;
 }
 
 .contact-description {
   font-size: 16px;
   text-align: center;
-  color: #000000; /* Изменили на чёрный */
+  color: #000000;
   margin-bottom: 40px;
 }
 
 /* Контейнер для информации */
 .contact-info {
   display: flex;
-  justify-content: space-around;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 30px;
   flex-wrap: wrap;
   text-align: center;
   width: 100%;
@@ -1667,9 +1666,11 @@ body {
   box-shadow: 0 8px 24px rgba(252, 252, 252, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   flex-basis: 30%;
-  max-width: 380px;
-  min-width: 280px;
+  max-width: 350px;
+  min-width: 250px;
   text-align: center;
+  margin-bottom: 20px;
+  /* Ограничиваем ширину блоков, чтобы они не расползались слишком широко */
 }
 
 /* Эффект при наведении на блок */
@@ -1687,21 +1688,21 @@ body {
 
 /* Изображения для иконок */
 .contact-icon {
-  width: 30px;
-  height: 30px;
-  margin-right: 8px;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
 }
 
 /* Текст в блоках */
 .contact-text h3 {
-  font-size: 22px;
-  color: #000000; /* Изменили на чёрный */
+  font-size: 18px;
+  color: #000000;
   margin: 0;
 }
 
 .contact-text p {
-  font-size: 16px;
-  color: #000000; /* Изменили на чёрный */
+  font-size: 14px;
+  color: #000000;
   margin: 0;
 }
 
@@ -1716,27 +1717,30 @@ body {
   color: #000000;
 }
 
-/* Responsive для мобильных устройств */
+/* =============================== */
+/*       АДАПТИВНОСТЬ для мобильных */
+/* =============================== */
 @media (max-width: 768px) {
   .contact-info {
     flex-direction: column;
     align-items: center;
+    gap: 20px; /* Увеличиваем промежуток между блоками */
   }
 
   .contact-item {
-    width: 80%;
-    margin-bottom: 20px;
-    /* Уменьшаем ширину для мобильных устройств */
+    width: 90%; /* Задаем ширину блоков на мобильных */
+    margin-bottom: 20px; /* Отступы между блоками */
+    padding: 15px; /* Меньше отступов внутри блока */
   }
 
   .contact-icon {
-    width: 25px;  /* Уменьшаем иконки */
-    height: 25px;
-    margin-right: 6px; /* Уменьшаем отступ */
+    width: 20px; /* Уменьшаем размер иконок */
+    height: 20px;
+    margin-right: 8px; /* Уменьшаем отступ */
   }
 
   .contact-text h3 {
-    font-size: 18px; /* Уменьшаем размер заголовка */
+    font-size: 16px; /* Уменьшаем размер заголовков */
   }
 
   .contact-text p {
@@ -1744,7 +1748,7 @@ body {
   }
 
   .contact-text a {
-    font-size: 13px; /* Уменьшаем размер ссылок */
+    font-size: 13px; /* Уменьшаем размер ссылки */
   }
 }
 

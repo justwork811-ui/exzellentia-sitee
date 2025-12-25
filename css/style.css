@@ -1423,207 +1423,128 @@ button {
 
 
 
-/* ===== 7-й Блок: Контакт ===== */
-.contact-section {
-  padding: 100px 0;
-  background-color: #faf8f2;
-  text-align: center;
-}
 
-.contact-wrapper {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
 
-/* Левый блок с контактными данными */
-.contact-info {
-  flex: 1;
-  max-width: 500px;
-  text-align: left;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-.contact-info h3 {
-  font-size: 1.8em;
-  margin-bottom: 20px;
-  color: #333;
-}
 
-.contact-info ul {
-  list-style: none;
+/* Общий стиль для страницы */
+* {
+  margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-.contact-info ul li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.contact-info ul li img {
-  width: 30px;
-  height: 30px;
-  margin-right: 20px;
-}
-
-.contact-info ul li a,
-.contact-info ul li p {
-  font-size: 1.1em;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
   color: #333;
 }
 
-/* Блок с маленькими иконками и текстом */
-.contact-images {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 40px;
+/* Контейнер */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
+/* Заголовок секции */
+.contact-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Описание под заголовком */
+.contact-description {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* Контактная информация */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Отступы между контактными блоками */
+  align-items: center;
+}
+
+/* Элемент контактной информации */
 .contact-item {
   display: flex;
   align-items: center;
-  text-align: left;
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 80%; /* Ширина каждого блока */
+  max-width: 500px; /* Ограничиваем максимальную ширину */
+  margin: 0 auto; /* Центрируем элементы */
 }
 
-.contact-images .small-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 10px;
+/* Иконки */
+.contact-icon {
+  font-size: 2em;
+  color: #d39c42;
+  margin-right: 20px; /* Отступ между иконкой и текстом */
 }
 
-.contact-item p {
-  font-size: 1em;
+/* Текст в каждом блоке */
+.contact-text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Заголовок для каждого типа контакта */
+.contact-text h3 {
+  font-size: 18px;
+  font-weight: bold;
   color: #333;
+  margin-bottom: 5px;
+}
+
+/* Текст с контактной информацией */
+.contact-text p {
+  font-size: 16px;
+  color: #666;
+}
+
+.contact-text a {
+  color: #d39c42; /* Золотой цвет для ссылок */
+  text-decoration: none;
+}
+
+.contact-text a:hover {
+  text-decoration: underline;
 }
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
-  .contact-wrapper {
-    flex-direction: column;
-    gap: 20px;
+  .contact-title {
+    font-size: 30px;
   }
 
-  .contact-info {
-    flex: 1 1 100%;
+  .contact-description {
+    font-size: 16px;
   }
 
-  .contact-images {
-    flex-direction: column;
-    gap: 10px;
+  .contact-item {
+    width: 100%;
+    padding: 15px;
   }
 
-  .contact-info h3 {
-    font-size: 1.5em;
+  .contact-icon {
+    font-size: 1.8em;
   }
 
-  .contact-info ul li {
-    margin-bottom: 15px;
+  .contact-text h3 {
+    font-size: 16px;
   }
 
-  .contact-info ul li img {
-    width: 25px;
-    height: 25px;
-  }
-
-  .contact-info p,
-  .contact-info ul li a {
-    font-size: 1em;
+  .contact-text p {
+    font-size: 14px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Стили для анимации */
-.fade-in {
-  opacity: 0;
-  transform: translateY(50px); /* Начальная позиция элемента */
-  transition: opacity 1s ease-out, transform 1s ease-out;
-}
-
-/* Когда элемент стал видимым, добавляем класс visible */
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0); /* Элемент поднимается на свое место */
-}
-
-
-
-/* CONTACT SECTION */
-.contact-section .section-label {
-  font-size: 2em;
-  letter-spacing: 2px;
-  font-weight: 600;
-  color: #c78a3a;
-  margin-bottom: 20px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media (max-width: 768px) {
-
-  .about-section::after {
-    content: none;
-    display: none;
-  }
-
-  .about-section {
-    padding: 80px 0;
-  }
-
-  .about-text {
-    position: relative;
-    z-index: 2;
-  }
-
-  .about-label {
-    font-size: 18px;
-  }
-
-  .about-text h2 {
-    font-size: 32px;
-    line-height: 1.25;
-  }
-
-  .about-text p {
-    max-width: 100%;
-  }
-}
-
-
-
-
-
-
-
-
-

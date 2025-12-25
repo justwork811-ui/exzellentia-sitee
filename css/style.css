@@ -270,7 +270,7 @@ body {
     display: flex;
     justify-content: flex-start;      /* Логотип по левому краю */
     word-wrap: break-word;            /* Чтобы текст не выходил за пределы */
-    margin-left: -20px;               /* Сдвигаем логотип влево на мобильных */
+    margin-left: -40px;               /* Сдвигаем логотип влево на мобильных */
   }
 
   .header-actions {

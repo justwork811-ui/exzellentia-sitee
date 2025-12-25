@@ -568,6 +568,7 @@ body {
   position: relative;
   z-index: 2;
 }
+
 /* ===== SERVICES SECTION ===== */
 .services-section {
   padding: 100px 0;
@@ -683,29 +684,18 @@ body {
   grid-column: 2;
 }
 
-/* Адаптивность для планшетов */
+/* Адаптивность для планшетов и мобильных устройств */
 @media (max-width: 992px) {
   .services-grid {
-    grid-template-columns: repeat(2, 1fr); /* Две колонки для планшетов */
+    grid-template-columns: 1fr; /* Одна колонка для планшетов и мобильных устройств */
   }
 
   .service-card {
-    padding: 30px 25px; /* Меньше отступов на планшетах */
-  }
-}
-
-/* Адаптивность для мобильных устройств */
-@media (max-width: 600px) {
-  .services-grid {
-    grid-template-columns: 1fr; /* Одна колонка на мобильных */
+    padding: 25px 20px; /* Меньше отступов на планшетах и мобильных */
   }
 
   .services-section h2 {
     font-size: 28px; /* Уменьшаем размер шрифта заголовка */
-  }
-
-  .service-card {
-    padding: 25px 20px; /* Уменьшаем отступы */
   }
 
   .service-card h3 {
@@ -724,10 +714,9 @@ body {
   /* Для карточки с мебелью */
   .service-card.center-card {
     height: auto; /* Автоматическая высота */
-    padding: 25px 20px; /* Меньше отступов */
+    padding: 20px 15px; /* Меньше отступов */
   }
 }
-
 
 
 

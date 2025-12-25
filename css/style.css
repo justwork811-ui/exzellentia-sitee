@@ -684,34 +684,6 @@ body {
   grid-column: 2;
 }
 
-/* Для мобильных устройств (ширина экрана <= 600px) */
-@media (max-width: 600px) {
-  .services-grid {
-    grid-template-columns: 1fr; /* В одну колонку на телефонах */
-  }
-
-  .service-card {
-    padding: 25px 20px; /* Меньше отступов на телефоне */
-  }
-
-  .services-section h2 {
-    font-size: 28px; /* Уменьшаем размер шрифта заголовка на телефоне */
-  }
-
-  .service-card h3 {
-    font-size: 18px; /* Меньше размер шрифта в карточках */
-  }
-
-  .service-card p {
-    font-size: 14px; /* Меньше размер шрифта текста */
-  }
-
-  .service-icon-img {
-    width: 70px;   /* Меньше иконки на телефоне */
-    height: 70px;  /* Меньше иконки на телефоне */
-  }
-}
-
 
 
 

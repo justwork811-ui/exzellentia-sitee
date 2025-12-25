@@ -1423,45 +1423,35 @@ button {
 
 
 
-
-/* ===== 6-й Блок: Контакт ===== */
+/* ===== 7-й Блок: Контакт ===== */
 .contact-section {
   padding: 100px 0;
-  background-color: #faf8f2; /* оставляем фон, как есть */
+  background-color: #faf8f2;
   text-align: center;
 }
 
 .contact-wrapper {
   display: flex;
-  justify-content: center; /* Центрируем весь блок */
+  justify-content: center;
   gap: 40px;
-  flex-wrap: wrap; /* чтобы блоки на мобильных устройствах шли друг под другом */
+  flex-wrap: wrap;
 }
 
 /* Левый блок с контактными данными */
 .contact-info {
   flex: 1;
-  max-width: 500px; /* Ограничиваем ширину */
+  max-width: 500px;
   text-align: left;
   padding: 30px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  opacity: 1;
-  transform: translateY(0);
-  animation: fadeInUp 1s forwards;
 }
 
 .contact-info h3 {
   font-size: 1.8em;
   margin-bottom: 20px;
   color: #333;
-}
-
-.contact-info p {
-  font-size: 1.1em;
-  color: #666;
-  margin-bottom: 30px;
 }
 
 .contact-info ul {
@@ -1478,8 +1468,7 @@ button {
 .contact-info ul li img {
   width: 30px;
   height: 30px;
-  margin-right: 20px; /* Уменьшил отступ */
-  object-fit: contain; /* Чтобы иконки не искажались */
+  margin-right: 20px;
 }
 
 .contact-info ul li a,
@@ -1488,12 +1477,18 @@ button {
   color: #333;
 }
 
-/* Новый блок с маленькими картинками */
+/* Блок с маленькими иконками и текстом */
 .contact-images {
   display: flex;
   gap: 20px;
-  justify-content: center; /* Центрируем картинки */
-  margin-top: 40px; /* Расстояние от блока с контактной информацией */
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  text-align: left;
 }
 
 .contact-images .small-icon {
@@ -1501,52 +1496,46 @@ button {
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  margin-right: 10px;
 }
 
-.contact-images .small-icon:hover {
-  transform: scale(1.1); /* Увеличение иконок при наведении */
-}
-
-/* Анимация появления элементов */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.contact-item p {
+  font-size: 1em;
+  color: #333;
 }
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .contact-wrapper {
-    flex-direction: column; /* Блоки будут располагаться вертикально на мобильных */
+    flex-direction: column;
     gap: 20px;
   }
 
   .contact-info {
-    flex: 1 1 100%; /* Каждый блок займет 100% ширины */
+    flex: 1 1 100%;
   }
 
   .contact-images {
-    flex-direction: column; /* Сортируем маленькие картинки вертикально */
+    flex-direction: column;
     gap: 10px;
   }
 
   .contact-info h3 {
-    font-size: 1.5em; /* Уменьшаем размер заголовка на мобильных */
+    font-size: 1.5em;
   }
 
   .contact-info ul li {
-    margin-bottom: 15px; /* Уменьшаем расстояние между пунктами */
+    margin-bottom: 15px;
   }
 
   .contact-info ul li img {
-    width: 25px; /* Уменьшаем размер иконок */
+    width: 25px;
     height: 25px;
   }
 
-  .contact-info p, .contact-info ul li a {
-    font-size: 1em; /* Уменьшаем шрифт для мобильных */
+  .contact-info p,
+  .contact-info ul li a {
+    font-size: 1em;
   }
 }
 

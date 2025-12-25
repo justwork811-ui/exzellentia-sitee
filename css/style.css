@@ -755,6 +755,16 @@ body {
   z-index: 2;
 }
 
+
+
+
+
+
+
+
+
+
+
 /* ===== SERVICES SECTION ===== */
 .services-section {
   padding: 100px 0;
@@ -849,27 +859,76 @@ body {
   z-index: 1;
 }
 
-/* hover эффект: иконка становится темнее и немного увеличивается */
-.service-card:hover .service-icon-img {
-  transform: scale(1.15);
-  filter: brightness(0.95);
+/* Адаптивность для планшетов (1024px) */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr); /* Две колонки для планшетов */
+    gap: 30px;
+  }
+
+  .service-card h3 {
+    font-size: 18px; /* Уменьшаем размер заголовка */
+  }
+
+  .service-card p {
+    font-size: 14px; /* Уменьшаем размер текста */
+  }
+
+  .service-icon-img {
+    width: 80px; /* Уменьшаем размер иконок */
+    height: 80px;
+  }
 }
 
-/* Стили для седьмой карточки (Мебель) */
-.service-card.center-card {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  height: 320px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  grid-column: 2;
+/* Адаптивность для мобильных устройств (768px) */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr; /* Одна колонка на мобильных устройствах */
+    gap: 20px;
+    overflow-y: scroll; /* Разрешаем прокрутку */
+  }
+
+  .service-card {
+    padding: 25px 20px; /* Уменьшаем padding */
+  }
+
+  .service-card h3 {
+    font-size: 16px; /* Меньше размер шрифта для заголовка */
+  }
+
+  .service-card p {
+    font-size: 13px; /* Меньше размер шрифта для текста */
+  }
+
+  .service-icon-img {
+    width: 60px; /* Уменьшаем размер иконок */
+    height: 60px;
+  }
 }
 
+/* Адаптивность для очень маленьких экранов (480px) */
+@media (max-width: 480px) {
+  .services-section .section-label {
+    font-size: 32px; /* Уменьшаем размер лейбла */
+  }
+
+  .services-section h2 {
+    font-size: 24px; /* Уменьшаем размер заголовка */
+  }
+
+  .service-card h3 {
+    font-size: 14px; /* Уменьшаем размер заголовка */
+  }
+
+  .service-card p {
+    font-size: 12px; /* Уменьшаем размер текста */
+  }
+
+  .service-icon-img {
+    width: 50px; /* Уменьшаем иконки */
+    height: 50px;
+  }
+}
 
 
 
@@ -1299,7 +1358,7 @@ button {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Добавляем тень к параграфу */
 }
 
-/* Адаптивность для мобильных устройств */
+/* Адаптивность для планшетов (1024px) */
 @media (max-width: 1024px) {
   .text-overlay h3 {
     font-size: 2.4em;
@@ -1308,8 +1367,18 @@ button {
   .text-overlay p {
     font-size: 1.1em;
   }
+
+  .text-overlay {
+    width: 90%; /* Уменьшаем ширину текста, чтобы не закрывать картинку */
+    bottom: 8%; /* Немного поднимем текст */
+  }
+
+  .slide-image {
+    width: 100%; /* Картинка будет занимать всю ширину */
+  }
 }
 
+/* Адаптивность для мобильных устройств (768px) */
 @media (max-width: 768px) {
   .text-overlay h3 {
     font-size: 2em;
@@ -1318,8 +1387,19 @@ button {
   .text-overlay p {
     font-size: 1.05em;
   }
+
+  .text-overlay {
+    width: 90%; /* Сужаем блок с текстом */
+    bottom: 5%; /* Поднимем текст чуть выше */
+    padding: 15px 20px; /* Уменьшаем отступы */
+  }
+
+  .slide-image {
+    width: 100%; /* Картинка будет занимать всю ширину */
+  }
 }
 
+/* Адаптивность для мобильных устройств (480px) */
 @media (max-width: 480px) {
   .text-overlay h3 {
     font-size: 1.6em;
@@ -1328,9 +1408,17 @@ button {
   .text-overlay p {
     font-size: 1em;
   }
+
+  .text-overlay {
+    width: 100%; /* Текст будет занимать всю ширину на самых маленьких экранах */
+    bottom: 0; /* Текст будет расположен внизу */
+    padding: 10px 15px; /* Меньшие отступы */
+  }
+
+  .slide-image {
+    width: 100%; /* Картинка будет занимать всю ширину */
+  }
 }
-
-
 
 
 
@@ -1410,6 +1498,26 @@ button {
   color: #333;
 }
 
+/* Новый блок с маленькими картинками */
+.contact-images {
+  display: flex;
+  gap: 20px;
+  justify-content: center; /* Центрируем картинки */
+  margin-top: 40px; /* Расстояние от блока с контактной информацией */
+}
+
+.contact-images .small-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.contact-images .small-icon:hover {
+  transform: scale(1.1); /* Увеличение иконок при наведении */
+}
+
 /* Анимация появления элементов */
 @keyframes fadeInUp {
   to {
@@ -1428,7 +1536,13 @@ button {
   .contact-info {
     flex: 1 1 100%; /* Каждый блок займет 100% ширины */
   }
+
+  .contact-images {
+    flex-direction: column; /* Сортируем маленькие картинки вертикально */
+    gap: 10px;
+  }
 }
+
 
 
 
@@ -1517,230 +1631,3 @@ button {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Burger */
-.burger {
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  width: 44px;
-  height: 36px;
-  cursor: pointer;
-  z-index: 1300;
-}
-
-.burger span {
-  display: block;
-  height: 4px;
-  width: 100%;
-  background: #000;
-  margin: 7px 0;
-  border-radius: 2px;
-}
-
-
-.side-menu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 320px;
-  height: 100vh;
-  background: #ffffff;
-  padding: 40px 30px;
-
-  transform: translateX(100%);
-  transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-
-  z-index: 1200;
-}
-
-.side-menu.active {
-  transform: translateX(0);
-}
-
-
-/* Close */
-.side-menu__close {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-/* Navigation */
-.side-menu__nav {
-  margin-top: 70px;
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-}
-
-
-.side-menu__nav a {
-  text-decoration: none;
-  color: #000;
-  font-size: 20px;
-  line-height: 1.4;
-}
-
-
-/* Socials */
-.side-menu__socials {
-  margin-top: 40px;
-  display: flex;
-  gap: 15px;
-}
-
-/* Language switch */
-.side-menu__lang {
-  margin-top: 40px;
-  display: flex;
-}
-
-.side-menu__lang button {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #000;
-  background: transparent;
-  cursor: pointer;
-}
-
-.side-menu__lang button.active {
-  background: #000;
-  color: #fff;
-}
-
-
-
-
-
-
-
-
-
-
-
-/* Overlay */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
-  z-index: 1000;
-}
-
-.overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-
-.overlay {
-  transition: opacity 0.4s ease;
-}
-
-.burger.hidden {
-  opacity: 0;
-  pointer-events: none;
-}

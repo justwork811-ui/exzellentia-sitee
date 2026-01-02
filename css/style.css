@@ -1740,21 +1740,21 @@ textarea {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(252, 252, 252, 0.1);
-  margin-top: 40px;
+  margin-top: 50px;
   text-align: left;
   position: relative; /* Позиционируем форму для фиксации кнопки */
   display: flex;
   flex-direction: column; /* Элементы внутри формы будут располагаться вертикально */
   justify-content: flex-start; /* Все элементы отжимаются к верхней части */
   min-height: 450px; /* Минимальная высота формы */
-  padding-bottom: 1px; /* Место для кнопки внизу */
+  padding-bottom: 20px; /* Место для кнопки внизу */
 }
 /* ===== Кнопка отправки в форме ===== */
 .submit-btn {
   background-color: #ffb87e;
   color: white;
-  font-size: 16px;
-  padding: 15px 40px; /* Размер кнопки */
+  font-size: 20px;
+  padding: 10px 40px; /* Размер кнопки */
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -1763,7 +1763,7 @@ textarea {
   
   /* Параметры, которые можно будет изменять вручную: */
   bottom: 10px; /* Расстояние от нижней части формы (можно изменить) */
-  right: 20px; /* Расстояние от правой части формы (можно изменить) */
+  right: 50px; /* Расстояние от правой части формы (можно изменить) */
   /* Для изменения расположения по вертикали и горизонтали: */
   /* Используйте margin-top или margin-left для дополнительного управления */
   margin-top: 310px; /* Пример: расстояние сверху, можно уменьшить или увеличить */
@@ -1860,7 +1860,7 @@ textarea {
   .submit-btn {
     font-size: 14px; /* Уменьшаем размер шрифта на кнопке */
     padding: 12px 25px; /* Уменьшаем отступы кнопки */
-    margin-top: 300px; /* Уменьшаем отступ сверху */
+    margin-top: 325px; /* Уменьшаем отступ сверху */
   }
 
   /* Уменьшаем размер текста для почты (снизу) */

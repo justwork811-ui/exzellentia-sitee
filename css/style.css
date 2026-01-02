@@ -1746,7 +1746,7 @@ textarea {
   display: flex;
   flex-direction: column; /* Элементы внутри формы будут располагаться вертикально */
   justify-content: flex-start; /* Все элементы отжимаются к верхней части */
-  min-height: 450px; /* Минимальная высота формы */
+  min-height: 650px; /* Минимальная высота формы */
   padding-bottom: 20px; /* Место для кнопки внизу */
 }
 /* ===== Кнопка отправки в форме ===== */
@@ -1818,37 +1818,18 @@ textarea {
 
 
 
+
 /* =============================== */
 /*       АДАПТИВНОСТЬ для мобильных */
 /* =============================== */
 @media (max-width: 768px) {
-  .contact-info {
-    flex-direction: column; /* Блоки будут в колонку на мобильных */
-    align-items: center;
-    gap: 20px;
-  }
-
-  .contact-item {
-    width: 100%; /* Увеличиваем ширину блока на мобильных */
-    margin-bottom: 30px;
-    padding: 20px;
-  }
-
-  .contact-icon {
-    width: 25px; /* Уменьшаем иконки */
-    height: 30px;
-    margin-right: 15px;
-  }
-
-  /* Увеличиваем высоту формы и добавляем гибкое поведение */
   .contact-form {
     padding: 15px; /* Уменьшаем отступы внутри формы */
+    min-height: 500px; /* Увеличиваем минимальную высоту формы на мобильных */
     margin-bottom: 20px; /* Уменьшаем отступ снизу формы */
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Располагаем элементы с отступами */
-    min-height: 400px; /* Увеличиваем минимальную высоту формы */
-    position: relative;
   }
 
   .contact-form h2 {
@@ -1869,22 +1850,21 @@ textarea {
     padding: 10px; /* Уменьшаем внутренние отступы */
   }
 
-  /* Кнопка внизу формы */
+  /* Для кнопки в мобильной версии */
   .submit-btn {
-    font-size: 14px; /* Уменьшаем размер шрифта на кнопке */
-    padding: 12px 25px; /* Уменьшаем отступы кнопки */
+    font-size: 14px;
+    padding: 12px 25px;
     margin-top: 20px; /* Отступ сверху */
-    margin-right: -45px;
-    align-self: flex-end; /* Располагаем кнопку справа */
-    width: auto; /* Делаем ширину кнопки авто */
+    align-self: center; /* Центрируем кнопку */
+    width: auto;
+    position: static; /* Убираем абсолютное позиционирование на мобильных */
+    margin-bottom: 20px; /* Увеличиваем отступ снизу */
   }
-
-  /* Уменьшаем размер текста для почты (снизу) */
+}
+ /* Уменьшаем размер текста для почты (снизу) */
   .contact-text a {
     font-size: 15px; /* Уменьшаем размер шрифта почты */
   }
-}
-
 
 
 

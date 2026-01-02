@@ -119,11 +119,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+let lastScrollTop = 0; // Переменная для отслеживания последней прокрутки
 
+// Функция для открытия и закрытия поп-ап меню
+function toggleMenu() {
+  const menu = document.getElementById('popupMenu');
+  menu.style.display = (menu.style.display === 'none' || menu.style.display === '') ? 'flex' : 'none';
+}
 
+// Функция для закрытия меню при клике за пределами меню
+function closeMenu(event) {
+  if (event.target === document.getElementById('popupMenu')) {
+    toggleMenu();
+  }
+}
 
-
-
+// Скроем меню при прокрутке вниз и покажем при прокрутке вверх
+window.addEventListener('scroll', function() {
+  let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  if (currentScroll > lastScrollTop) {
+    document.querySelector('.menu-btn').classList.add('hidden');
+  } else {
+    document.querySelector('.menu-btn').classList.remove('hidden');
+  }
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+});
 
 
 

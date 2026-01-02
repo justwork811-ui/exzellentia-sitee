@@ -1594,7 +1594,6 @@ body {
 
 
 
-
 /* ===== CONTACT SECTION ===== */
 .contact-section {
   padding: 100px 0;
@@ -1615,13 +1614,6 @@ body {
   color: #000000;
   margin-bottom: 50px;
 }
-
-
-
-
-
-
-
 
 /* Контактная информация */
 .contact-info {
@@ -1671,18 +1663,11 @@ body {
   font-size: 20px;
   white-space: nowrap; /* Запрещаем перенос текста на несколько строк */
   vertical-align: middle; /* Вертикальное выравнивание с иконкой */
- 
 }
 
 .contact-text a:hover {
   text-decoration: underline;
 }
-
-
-
-
-
-
 
 /* ===== FORM SECTION ===== */
 .contact-form {
@@ -1736,24 +1721,96 @@ body {
 textarea {
   resize: vertical;
 }
-/* ===== Кнопка отправки в форме (корректировка) ===== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== FORM SECTION ===== */
+.contact-form {
+  padding: 40 50px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(252, 252, 252, 0.1);
+  margin-top: 40px;
+  text-align: left;
+  position: relative; /* Позиционируем форму для фиксации кнопки */
+  display: flex;
+  flex-direction: column; /* Элементы внутри формы будут располагаться вертикально */
+  justify-content: flex-start; /* Все элементы отжимаются к верхней части */
+  min-height: 450px; /* Минимальная высота формы */
+  padding-bottom: 1px; /* Место для кнопки внизу */
+}
+/* ===== Кнопка отправки в форме ===== */
 .submit-btn {
   background-color: #ffb87e;
   color: white;
-  font-size: 20px;
-  padding: 20px 100px;
+  font-size: 16px;
+  padding: 15px 40px; /* Размер кнопки */
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: auto; /* Убираем ширину 100% для кнопки, чтобы она не растягивалась */
-  margin-top: 320px; /* Увеличиваем отступ сверху */
-  display: block; /* Обеспечиваем, чтобы кнопка была блочным элементом и не улетала */
-  text-align: center; /* Текст по центру */
+  position: absolute; /* Фиксируем кнопку */
+  
+  /* Параметры, которые можно будет изменять вручную: */
+  bottom: 10px; /* Расстояние от нижней части формы (можно изменить) */
+  right: 20px; /* Расстояние от правой части формы (можно изменить) */
+  /* Для изменения расположения по вертикали и горизонтали: */
+  /* Используйте margin-top или margin-left для дополнительного управления */
+  margin-top: 310px; /* Пример: расстояние сверху, можно уменьшить или увеличить */
+  margin-left: 0; /* По умолчанию кнопка справа, можно использовать для левого выравнивания */
+  height: 55px; /* Высота кнопки */
+  width: auto; /* Ширина кнопки под её контент */
+}
+
+/* ===== Эффекты для кнопки ===== */
+.submit-btn:hover {
+  background-color: #e8a85a;
+}
+
+.submit-btn:focus {
+  outline: none;
 }
 
 
 
+
+
+
+/* ===== Добавление стилей для радиокнопок ===== */
+.radio-group {
+  display: flex;
+  gap: 20px; /* Отступ между радиокнопками */
+  align-items: center;
+  margin-top: 10px;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+}
+
+.radio-item input[type="radio"] {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+}
+
+.radio-item label {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+  cursor: pointer;
+}
 
 /* =============================== */
 /*       АДАПТИВНОСТЬ для мобильных */
@@ -1803,14 +1860,14 @@ textarea {
   .submit-btn {
     font-size: 14px; /* Уменьшаем размер шрифта на кнопке */
     padding: 12px 25px; /* Уменьшаем отступы кнопки */
-    margin-top: 280px; /* Уменьшаем отступ сверху */
+    margin-top: 300px; /* Уменьшаем отступ сверху */
   }
- /* Уменьшаем размер текста для почты (снизу) */
+
+  /* Уменьшаем размер текста для почты (снизу) */
   .contact-text a {
-    font-size: 16px; /* Уменьшаем размер шрифта почты */
+    font-size: 15px; /* Уменьшаем размер шрифта почты */
   }
 }
-
 
 
 
@@ -1827,3 +1884,137 @@ a {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Стиль для кнопки открытия меню */
+.menu-btn {
+  font-size: 30px;
+  position: fixed;
+  top: 20px;
+  right: 20px; /* Перемещаем кнопку на правую часть */
+  background-color: #685800; /* Золотистый фон */
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000; /* Чтобы кнопка была поверх контента */
+  transition: background-color 0.3s ease, opacity 0.3s ease; /* Плавное изменение фона и прозрачности */
+}
+
+/* Стиль при наведении на кнопку */
+.menu-btn:hover {
+  background-color: #CDA434; /* Темно-золотистый для наведения */
+}
+
+/* Когда кнопка скрыта */
+.menu-btn.hidden {
+  opacity: 0;
+  pointer-events: none; /* Отключаем кнопку для кликов, когда она скрыта */
+}
+
+.menu-btn:focus {
+  outline: none; /* Убираем обводку при фокусировке */
+}
+
+
+/* Стиль для самого поп-ап меню */
+.popup-menu {
+  display: none; /* Меню скрыто по умолчанию */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+  z-index: 999; /* Размещаем меню поверх контента */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Стиль для содержимого меню */
+.popup-menu-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+.popup-menu-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.popup-menu-content ul li {
+  margin: 20px 0;
+}
+
+.popup-menu-content ul li a {
+  text-decoration: none;
+  color: black; /* Изменим цвет текста на черный */
+  font-size: 20px;
+}
+
+.popup-menu-content ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Кнопка закрытия */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #007BFF;
+}
+
+.close-btn:hover {
+  color: #0056b3;
+}
+
+
+
+
+
+
+html {
+  scroll-behavior: smooth;
+}

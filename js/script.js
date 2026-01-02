@@ -122,20 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Функция для переключения видимости поп-апа
-function togglePopup() {
-  var popup = document.getElementById("popup"); // Получаем поп-ап
-  popup.style.display = (popup.style.display === "flex") ? "none" : "flex"; // Если поп-ап видим, скрываем, иначе показываем
-}
-
-// Закрытие поп-апа при клике вне его области
-window.onclick = function(event) {
-  var popup = document.getElementById("popup");
-  if (event.target === popup) {
-    popup.style.display = "none"; // Если кликнули вне поп-апа, то закрываем его
-  }
-}
-
 
 
 

@@ -22,28 +22,8 @@
       <span>ExzellentiaConstructio</span>
     </div>
 
-    <!-- Номер телефона справа -->
-    <div class="header-actions">
-      <span class="phone">
-        <span class="phone-icon">☎</span> <!-- Иконка телефона -->
-        <a href="tel:+4916096273279" class="phone-link">+49 160 96273279</a> <!-- Номер с ссылкой для звонка -->
-      </span>
+   
       
-      <!-- Кнопка для открытия поп-апа, расположенная справа сверху -->
-      <button class="popup-btn" onclick="togglePopup()">☰</button>
-    </div>
-  </div>
-
-  <!-- Поп-ап -->
-  <div class="popup" id="popup">
-    <div class="popup-content">
-      <span class="popup-close" onclick="togglePopup()">&times;</span>
-      <ul class="popup-links">
-    <li><a href="about.html">Über uns</a></li> <!-- Перейдем на страницу about.html -->
-    <li><a href="services.html">Leistungen</a></li> <!-- Перейдем на страницу services.html -->
-    <li><a href="contact.html">Kontakt</a></li> <!-- Перейдем на страницу contact.html -->
-    <li><a href="portfolio.html">Portfolio</a></li> <!-- Перейдем на страницу portfolio.html -->
-</ul>
 
         <!-- Добавь другие ссылки по необходимости -->
       </ul>
@@ -52,7 +32,7 @@
   
 </header>
 
-<link rel="stylesheet" href="css/style.css">
+
 
 
 
@@ -281,35 +261,36 @@
 
 
 
-<!-- Контактная информация -->
-<section class="contact-section">
-  <div class="container">
-    <h2 class="contact-title">Sprechen Sie mit uns</h2>
-    <p class="contact-description">Ob Komplettrenovierung oder einzelne Gewerke – wir beraten Sie gerne persönlich und erstellen Ihnen ein maßgeschneidertes Angebot.</p>
-    <div class="contact-info">
-      <div class="contact-item">
-        <img src="images/Kontakt/phone.png" class="contact-icon">
-        <div class="contact-text">
-          
-          <p><a href="tel:+4916096273279">+49 160 96273279</a></p>
+
+
+
+
+
+
+
+
+
+
+<!-- Блок о наших инструментах -->
+<section id="tools" class="tools">
+    <h2>Die Werkzeuge, die wir verwenden</h2>
+    <div class="tools-container">
+        <!-- Блок с первым инструментом -->
+        <div class="tool-item">
+            <img src="images/more-work/instrm.png" alt="Werkzeug 1">
+            
         </div>
-      </div>
-      <div class="contact-item">
-        <img src="images/Kontakt/email.png"  class="contact-icon">
-        <div class="contact-text">
-          
-          <p><a href="mailto:kontakt@exzellentia-construction.de">kontakt@exzellentia-construction.de</a></p>
+        <!-- Блок со вторым инструментом -->
+        <div class="tool-item">
+            <img src="images/more-work/instrm.png" alt="Werkzeug 2">
+           
         </div>
-      </div>
-      <div class="contact-item">
-        <img src="images/Kontakt/locations.png"  class="contact-icon">
-        <div class="contact-text">
-          
-          <p><a> München, Deutschland</a></p>
+        <!-- Блок с третьим инструментом -->
+        <div class="tool-item">
+            <img src="images/more-work/instrm.png" alt="Werkzeug 3">
+            
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 
@@ -318,6 +299,59 @@
 
 
 
+
+
+<!-- Контактная информация -->
+<section class="contact-section">
+  <div class="container">
+    <!-- Форма с полями -->
+    <form class="contact-form">
+      <h2>Kontaktieren Sie uns</h2>
+      <p>Füllen Sie das Formular aus und wir setzen uns mit Ihnen in Verbindung.</p>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Telefonnummer</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Was möchten Sie uns mitteilen?</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
+
+      <!-- Кнопка отправки внутри формы -->
+      <button type="submit" class="submit-btn">Absenden</button>
+    </form>
+    
+    <!-- Контактная информация -->
+    <div class="contact-info">
+      <div class="contact-item">
+        <img src="images/Kontakt/phone.png" class="contact-icon">
+        <div class="contact-text">
+          <p><a href="tel:+4916096273279">+49 160 96273279</a></p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <img src="images/Kontakt/email.png" class="contact-icon">
+        <div class="contact-text">
+          <p><a href="mailto:kontakt@exzellentia-construction.de">kontakt@exzellentia-construction.de</a></p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <img src="images/Kontakt/locations.png" class="contact-icon">
+        <div class="contact-text">
+          <p><a> München, Deutschland</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 

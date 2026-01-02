@@ -238,104 +238,6 @@ body {
 
 
 
-/* Кнопка для открытия поп-апа */
-.popup-btn {
-  background-color: transparent;
-  border: none;
-  font-size: 24px;
-  color: white; /* Цвет кнопки - белый */
-  cursor: pointer;
-  padding: 10px;
-  position: absolute; /* Абсолютное позиционирование для размещения в правом верхнем углу */
-  top: 10px; /* Отступ сверху */
-  right: -150px; /* Увеличиваем отступ справа, чтобы кнопка была намного правее */
-  font-weight: bold;
-}
-
-/* Адаптация для мобильных устройств */
-@media (max-width: 768px) {
-  /* Кнопка в мобильной версии будет расположена по центру, чтобы её было легко нажать */
-  .popup-btn {
-    right: 20px; /* Сдвигаем кнопку ближе к правому краю */
-    top: 15px; /* Немного увеличиваем отступ сверху */
-    font-size: 28px; /* Увеличиваем размер шрифта на мобильных */
-  }
-
-  /* Настройка поп-апа на мобильных */
-  .popup-content {
-    max-width: 80%;
-    width: 90%; /* Сделаем поп-ап шире на мобильных устройствах */
-    padding: 15px; /* Меньше отступов, чтобы всё помещалось */
-  }
-
-  /* Стили для списка ссылок внутри поп-апа */
-  .popup-links a {
-    font-size: 16px; /* Уменьшаем размер шрифта для мобильных устройств */
-  }
-
-  .popup-links li {
-    margin-bottom: 10px; /* Уменьшаем отступ между пунктами */
-  }
-}
-
-
-/* ===== POP-UP ===== */
-.popup {
-  display: none; /* Скрыт по умолчанию */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Темный полупрозрачный фон */
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Поверх других элементов */
-}
-
-/* Контейнер поп-апа */
-.popup-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 300px;
-  width: 80%;
-  text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  position: relative; /* Добавляем позиционирование для размещения кнопки внутри */
-}
-
-/* Кнопка закрытия поп-апа */
-.popup-close {
-  font-size: 28px;
-  color: #000;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px; /* Кнопка будет в правом верхнем углу */
-}
-
-/* Стили для списка ссылок внутри поп-апа */
-.popup-links {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 30px;
-}
-
-.popup-links li {
-  margin-bottom: 15px;
-}
-
-.popup-links a {
-  font-size: 18px;
-  text-decoration: none;
-  color: #000;
-  transition: color 0.3s ease;
-}
-
-.popup-links a:hover {
-  color: #6c5ce7; /* Цвет при наведении */
-}
 
 /* =============================== */
 /*       АДАПТИВНОСТЬ              */
@@ -1337,10 +1239,66 @@ button {
 }
 
 
+
+
+/* Стили для блока "Инструменты" */
+.tools {
+    padding: 50px 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.tools h2 {
+    font-size: 35px;
+    margin-bottom: 30px;
+     color: #d39c42; /* Заменяем на нужный цвет (например, оранжевый) */
+}
+
+.tools-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: -25px; /* Уменьшаем расстояние между блоками */
+}
+
+.tool-item {
+    background-color: #fff;
+    border: 2px solid #afafaf;
+    border-radius: 8px;
+    padding: 15px; /* Уменьшаем внутренние отступы */
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tool-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px; /* Уменьшаем расстояние между фото и текстом */
+}
+
+.tool-item p {
+    font-size: 14px;
+    color: #555;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ===== 5-й Блок: Что мы делаем ===== */
 .what-we-do {
   padding: 100px 0; /* Немного уменьшаем отступы, чтобы сделать блок компактнее */
-  background-color: #fafafa;
+  background-color: #ffffec;
   text-align: center;
   min-height: 600px;
 }
@@ -1628,134 +1586,230 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
 /* ===== CONTACT SECTION ===== */
 .contact-section {
-  padding: 80px 0;
-  background-color: #f4f4f4;
+  padding: 100px 0;
+  background-color: rgb(255, 254, 245);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 239, 204, 0.8)); /* Легкий градиент */
 }
 
 .contact-title {
-  font-size: 36px;
-  margin-bottom: 20px;
+  font-size: 48px;
+  margin-bottom: 30px;
   text-align: center;
   color: #ffb87e;
 }
 
 .contact-description {
-  font-size: 16px;
+  font-size: 20px;
   text-align: center;
   color: #000000;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
-/* Контейнер для информации */
+
+
+
+
+
+
+
+/* Контактная информация */
 .contact-info {
   display: flex;
-  justify-content: space-between;
-  gap: 30px;
-  flex-wrap: wrap;
-  text-align: center;
+  justify-content: center; /* Центрируем блоки по горизонтали */
+  gap: 30px; /* Отступы между блоками */
+  flex-wrap: wrap; /* Добавляем возможность переноса на мобильных */
+  text-align: left; /* Текст по левому краю */
   width: 100%;
+  margin-top: 50px; /* Отступ сверху */
 }
 
-/* Контактный блок */
 .contact-item {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(252, 252, 252, 0.05);
+  box-shadow: 0 8px 24px rgba(252, 252, 252, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex-basis: 30%;
-  max-width: 350px;
-  min-width: 250px;
-  text-align: center;
-  margin-bottom: 20px;
-  /* Ограничиваем ширину блоков, чтобы они не расползались слишком широко */
+  flex-basis: 30%; /* Каждый блок занимает 30% ширины */
+  max-width: 500px; /* Ограничиваем максимальную ширину блоков */
+  min-width: 250px; /* Минимальная ширина блоков */
+  text-align: left; /* Изменили текст на выравнивание влево */
+  margin-bottom: 30px;
+  cursor: pointer; /* Курсор при наведении */
+  display: flex; /* Используем flex для выравнивания */
+  align-items: center; /* Центрируем по вертикали */
+  justify-content: flex-start; /* Прикрепляем элементы к левой стороне */
 }
 
-/* Эффект при наведении на блок */
-.contact-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* Контейнер для иконки и текста */
-.contact-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Изображения для иконок */
 .contact-icon {
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-}
-
-/* Текст в блоках */
-.contact-text h3 {
-  font-size: 18px;
-  color: #000000;
-  margin: 0;
+  width: 40px;
+  height: 45px;
+  margin-right: 15px;
 }
 
 .contact-text p {
-  font-size: 14px;
-  color: #000000;
-  margin: 0;
+  font-size: 16px;
+  color: #000;
+  display: inline-block; /* Убираем блочное поведение */
+  vertical-align: middle; /* Вертикальное выравнивание с иконкой */
 }
 
 .contact-text a {
-  color: #000000;
-  text-decoration: none;
   font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  font-size: 20px;
+  white-space: nowrap; /* Запрещаем перенос текста на несколько строк */
+  vertical-align: middle; /* Вертикальное выравнивание с иконкой */
+ 
 }
 
 .contact-text a:hover {
   text-decoration: underline;
-  color: #000000;
 }
+
+
+
+
+
+
+
+/* ===== FORM SECTION ===== */
+.contact-form {
+  padding: 50px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(252, 252, 252, 0.1);
+  margin-top: 40px;
+  text-align: left; /* Выравнивание текста по левому краю */
+  position: relative; /* Добавляем позиционирование для нормального расположения кнопки */
+}
+
+.contact-form h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #ffb87e;
+}
+
+.contact-form p {
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: block;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #ffb87e;
+}
+
+textarea {
+  resize: vertical;
+}
+/* ===== Кнопка отправки в форме (корректировка) ===== */
+.submit-btn {
+  background-color: #ffb87e;
+  color: white;
+  font-size: 20px;
+  padding: 20px 100px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto; /* Убираем ширину 100% для кнопки, чтобы она не растягивалась */
+  margin-top: 320px; /* Увеличиваем отступ сверху */
+  display: block; /* Обеспечиваем, чтобы кнопка была блочным элементом и не улетала */
+  text-align: center; /* Текст по центру */
+}
+
+
+
 
 /* =============================== */
 /*       АДАПТИВНОСТЬ для мобильных */
 /* =============================== */
 @media (max-width: 768px) {
   .contact-info {
-    flex-direction: column;
+    flex-direction: column; /* Блоки будут в колонку на мобильных */
     align-items: center;
-    gap: 20px; /* Увеличиваем промежуток между блоками */
+    gap: 20px;
   }
 
   .contact-item {
-    width: 90%; /* Задаем ширину блоков на мобильных */
-    margin-bottom: 20px; /* Отступы между блоками */
-    padding: 15px; /* Меньше отступов внутри блока */
+    width: 100%; /* Увеличиваем ширину блока на мобильных */
+    margin-bottom: 30px;
+    padding: 20px;
   }
 
   .contact-icon {
-    width: 20px; /* Уменьшаем размер иконок */
-    height: 20px;
-    margin-right: 8px; /* Уменьшаем отступ */
+    width: 25px; /* Уменьшаем иконки */
+    height: 30px;
+    margin-right: 15px;
   }
 
-  .contact-text h3 {
-    font-size: 16px; /* Уменьшаем размер заголовков */
+  .contact-form {
+    padding: 15px; /* Уменьшаем отступы внутри формы */
+    margin-bottom: 20px;
   }
 
-  .contact-text p {
-    font-size: 13px; /* Уменьшаем размер текста */
+  .contact-form h2 {
+    font-size: 35px; /* Уменьшаем размер заголовка */
   }
 
+  .contact-form p {
+    font-size: 16px; /* Уменьшаем размер описания */
+  }
+
+  .form-group label {
+    font-size: 15px; /* Уменьшаем размер меток */
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 14px; /* Уменьшаем шрифт полей ввода */
+    padding: 10px; /* Уменьшаем внутренние отступы */
+  }
+
+  .submit-btn {
+    font-size: 14px; /* Уменьшаем размер шрифта на кнопке */
+    padding: 12px 25px; /* Уменьшаем отступы кнопки */
+    margin-top: 280px; /* Уменьшаем отступ сверху */
+  }
+ /* Уменьшаем размер текста для почты (снизу) */
   .contact-text a {
-    font-size: 13px; /* Уменьшаем размер ссылки */
+    font-size: 18px; /* Уменьшаем размер шрифта почты */
   }
 }
-
-
-
-
-
 
 
 

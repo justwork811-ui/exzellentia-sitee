@@ -25,63 +25,59 @@ body {
 
 
 
+/* Анимация появления кнопки */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Кнопка будет немного ниже при загрузке */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Кнопка поднимется в свою исходную позицию */
+  }
+}
 
 
 
-/* BUTTONS */
+
+/* Плавная прокрутка на странице */
+html {
+  scroll-behavior: smooth;
+}
+
 .btn {
-  padding: 10px 18px;
-  font-size: 20px;
+  padding: 15px 40px; /* Увеличены внутренние отступы для более крупной кнопки */
+  font-size: 22px; /* Увеличен шрифт для более крупного текста */
   text-decoration: none;
-  border-radius: 4px;
-  transition: 0.3s;
+  border-radius: 50px; /* Округлые углы */
+  display: inline-block;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer; /* Указатель мыши на кнопке */
+  
+  /* Добавляем анимацию появления */
+  animation: fadeIn 1s ease-out forwards; /* Появление с анимацией */
+  opacity: 0; /* Начальная прозрачность */
+  transform: translateY(20px); /* Начальная позиция кнопки */
 }
 
 .btn-gold {
-  background: #d39c42;
+  background: linear-gradient(45deg, #d39c42, #f7b200); /* Градиент от золотого */
   color: #fff;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Легкая тень для кнопки */
+  border: none;
 }
 
 .btn-gold:hover {
-  background: #b98534;
+  background: linear-gradient(45deg, #b98534, #f7b200); /* Более темный градиент при наведении */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* Увеличенная тень при наведении */
+  transform: translateY(-5px); /* Легкий эффект подъема при наведении */
 }
 
-.btn-dark {
-  background: #1f2933;      /* заливка */
-  color: #ffffff;           /* текст */
-  padding: 12px 25px;       /* внутренние отступы */
-  border: none;             /* без рамки */
-  border-radius: 5px;       /* скругление углов */
-  text-decoration: none;    /* убрать подчёркивание */
-  font-weight: bold;
-  transition: background 0.3s; /* плавный эффект при наведении */
+.btn-gold:active {
+  transform: translateY(2px); /* При нажатии кнопка немного опускается */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Возвращение тени в исходное состояние */
 }
-
-.btn-dark:hover {
-  background-color: #1a73e8; /* более тёмный при наведении */
-  color: #ffffff;
-}
-
-
-.btn-outline {
-  background-color: #1f2933;  /* заливка кнопки */
-  color: #ffffff;              /* текст белый */
-  border: 1px solid #1f2933;  /* рамка совпадает с заливкой */
-  padding: 12px 25px;          /* внутренние отступы */
-  border-radius: 5px;          /* скругление углов */
-  text-decoration: none;       /* убрать подчёркивание ссылки */
-  font-weight: bold;           /* жирный текст */
-  transition: background 0.3s; /* плавная смена цвета при наведении */
-}
-
-.btn-outline:hover {
-  background-color: #155ab6;   /* более тёмный при наведении */
-  color: #ffffff;
-}
-
-
-
-
 
 
 
@@ -119,6 +115,8 @@ body {
   text-align: center;
   color: rgb(0, 0, 0); /* Белый текст для контраста */
 }
+
+
 
 .hero-subtitle {
   font-size: 40px;
@@ -2014,3 +2012,5 @@ a {
 html {
   scroll-behavior: smooth;
 }
+
+

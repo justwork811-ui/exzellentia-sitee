@@ -62,7 +62,7 @@ html {
 }
 
 .btn-gold {
-  background: linear-gradient(45deg, #d39c42, #f7b200); /* Градиент от золотого */
+  background: linear-gradient(45deg, #cfb26d, #f7b200); /* Градиент от золотого */
   color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Легкая тень для кнопки */
   border: none;
@@ -88,14 +88,14 @@ html {
 .hero {
   position: relative; /* Родительский элемент для текста и фона */
   height: 100vh; /* Задаем высоту блока на весь экран */
-  background: url("../images/Mein/hero-renovation.png") center/cover no-repeat; /* Фон */
+  background: url("../images/Mein/hero.png") center/cover no-repeat; /* Используем тот же фон */
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
 }
 
-/* Фон с блюром */
+/* Фон с блюром и затемнением */
 .hero-overlay {
   content: "";
   position: absolute;
@@ -103,10 +103,12 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("../images/Mein/hero-renovation.png") center/cover no-repeat; /* Используем тот же фон */
-  filter: blur(8px); /* Применяем размытие */
+  background: url("../images/Mein/hero.png") center/cover no-repeat; /* Используем тот же фон */
+  filter: blur(12px); /* Размытие фона */
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный для затемнения фона */
   z-index: -1; /* Фон будет под текстом */
 }
+
 
 /* Содержимое текста поверх фона */
 .hero-content {
@@ -119,11 +121,12 @@ html {
 
 
 .hero-subtitle {
-  font-size: 40px;
+  font-size: 38px;
   letter-spacing: 2px;
-  color: #d39c42; /* Золотой цвет */
+  color: #cfb26d;
   display: block;
   margin-bottom: 16px;
+  font-weight: bold; /* Делаем подзаголовок жирным */
 }
 
 .hero h1 {
@@ -172,12 +175,31 @@ html {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* =============================== */
 /*       ШАПКА САЙТА               */
 /* =============================== */
 .header {
   background-color: #333; /* Темный фон */
-  color: white; /* Белый цвет текста */
+  color: #cfb26d; /* Белый цвет текста */
   padding: 8px 20px; /* Легкое увеличение отступов сверху и снизу */
   display: flex;
   align-items: center; /* Центрируем элементы по вертикали */
@@ -196,11 +218,13 @@ html {
 .logo {
   font-size: 45px;               /* Размер шрифта для логотипа */
   font-weight: bold;             /* Жирный шрифт */
-  color: #d39c42;                /* Золотой цвет */
+  color: #cfb26d;                /* Золотой цвет */
   display: flex;
   justify-content: center;       /* Центрирует элементы по горизонтали */
   align-items: center;           /* Центрирует элементы по вертикали */
   margin: 0 auto;                /* Выравнивает блок по центру */
+  margin-left: -600px;
+  
   
   width: 100%;                   /* Логотип на всю ширину */
   max-width: 200px;              /* Ограничиваем максимальную ширину логотипа */
@@ -208,7 +232,7 @@ html {
 
 .logo span {
   position: relative;            /* Делаем текст позиционированным относительно его нормального положения */
-  top: 10px;                     /* Опускаем текст немного ниже */
+  top: 7px;                     /* Опускаем текст немного ниже */
 }
 
 
@@ -262,15 +286,7 @@ html {
     margin-left: -55px;               /* Сдвигаем логотип влево на мобильных */
   }
 
-  .header-actions {
-    text-align: left;                 /* Выравнивание номера телефона по левому краю */
-    font-size: 19px;                  /* Уменьшаем размер шрифта номера телефона */
-    margin-top: 10px;                 /* Отступ сверху */
-    width: 100%;                      /* Номер телефона на всю ширину */
-    display: flex;
-    justify-content: flex-start;      /* Номер телефона по левому краю */
-  }
-
+ 
   .phone {
     display: flex;                    /* Размещаем элементы (иконку и номер) в одну строку */
     align-items: center;              /* Центрируем элементы по вертикали */
@@ -283,7 +299,7 @@ html {
   }
 
   .phone-link {
-    color: #d39c42;                   /* Золотой цвет для номера телефона */
+    color: #cfb26d;                   /* Золотой цвет для номера телефона */
     text-decoration: none;            /* Убираем подчеркивание */
     font-weight: bold;
     font-size: 20px;                  /* Размер шрифта для номера телефона */
@@ -344,14 +360,14 @@ html {
   font-size: 12px;
   letter-spacing: 2px;
   font-weight: 600;
-  color: #c78a3a;
+  color: #cfb26d;
 }
 
 .about-content h2 {
   font-size: 48px;
   line-height: 1.15;
   margin-bottom: 30px;
-  color: #1c1c1c;
+  color: #cfb26d
 }
 
 .about-content p {
@@ -381,7 +397,7 @@ html {
   position: absolute;
   left: 0;
   top: 0;
-  color: #c78a3a;
+  color: #cfb26d;
   font-size: 14px;
 }
 
@@ -408,7 +424,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #c78a3a;
+  color: #cfb26d;
   margin: 0 auto 30px;
   font-size: 22px;
 }
@@ -567,7 +583,7 @@ html {
   font-size: 35px;
   letter-spacing: 2px;
   font-weight: 600;
-  color: #c78a3a;
+  color: #cfb26d
 }
 
 .about-text h2 {
@@ -600,7 +616,7 @@ html {
   content: "✔";
   position: absolute;
   left: 0;
-  color: #c78a3a;
+  color: #cfb26d
 }
 
 /* RIGHT SIDE */
@@ -629,7 +645,7 @@ html {
 
 .about-icon {
   font-size: 28px;
-  color: #c78a3a;
+  color: #cfb26d;
   margin-bottom: 20px;
 }
 
@@ -670,8 +686,8 @@ html {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  border: 1px solid #c58b2a;
-  color: #c58b2a;
+  border: 1px solid #cfb26d;
+  color: #cfb26d;
 
   display: flex;
   align-items: center;
@@ -706,7 +722,7 @@ html {
   justify-content: center;
 
   font-size: 22px;
-  color: #d8a35d;
+  color: #cfb26d
 }
 .about-overlay h3 {
   font-size: 22px;
@@ -754,7 +770,7 @@ html {
   display: block;
   font-size: 40px;
   letter-spacing: 2px;
-  color: #b08a5a;
+  color: #cfb26d;
   margin-bottom: 40px;
 }
 
@@ -925,7 +941,7 @@ html {
   font-size: 1.2em;
   letter-spacing: 2px;
   font-weight: 600;
-  color: #c78a3a;
+  color: #cfb26d;
   margin-bottom: 20px;
 }
 
@@ -1008,7 +1024,7 @@ html {
   font-size: 1.2em;
   letter-spacing: 2px;
   font-weight: 600;
-  color: #c78a3a;
+  color: #cfb26d;
   margin-bottom: 20px;
 }
 
@@ -1074,10 +1090,10 @@ html {
 }
 
 .portfolio-section .section-label {
-  font-size: 1.2em;
+  font-size: 55px;
   letter-spacing: 2px;
   font-weight: 600;
-  color: #c78a3a;
+  color: #cfb26d;
   margin-bottom: 20px;
 }
 
@@ -1153,7 +1169,7 @@ button {
 
 /* ===== 5-й Блок: Как мы работаем ===== */
 .work-process h2 {
-  color: rgb(199, 138, 58);  /* Цвет текста в формате RGB */
+  color: #cfb26d;
   text-align: center;  /* Центрируем текст */
   font-size: 2.5em;    /* Размер шрифта для "So arbeiten wir" */
   margin-bottom: 30px; /* Отступ снизу */
@@ -1207,7 +1223,7 @@ button {
   font-size: 1.2em;
   letter-spacing: 2px;
   font-weight: 600;
-  color: #c78a3a;
+  color: #cfb26d;
   margin-bottom: 20px;
 }
 
@@ -1252,7 +1268,7 @@ button {
 .tools h2 {
     font-size: 35px;
     margin-bottom: 30px;
-     color: #d39c42; /* Заменяем на нужный цвет (например, оранжевый) */
+     color: #cfb26d; /* Заменяем на нужный цвет (например, оранжевый) */
 }
 
 .tools-container {
@@ -1521,7 +1537,7 @@ body {
 /* Иконки */
 .contact-icon {
   font-size: 2em;
-  color: #d39c42;
+  color: #cfb26d;
   margin-right: 20px; /* Отступ между иконкой и текстом */
 }
 
@@ -1594,19 +1610,18 @@ body {
 
 
 
-
-/* ===== CONTACT SECTION ===== */
 .contact-section {
   padding: 100px 0;
-  background-color: rgb(255, 254, 245);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 239, 204, 0.8)); /* Легкий градиент */
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 239, 204, 0.8)), url('path_to_your_image.jpg') no-repeat center center;
+  background-size: cover; /* Обеспечивает растяжение изображения по всей секции */
 }
+
 
 .contact-title {
   font-size: 48px;
   margin-bottom: 30px;
   text-align: center;
-  color: #ffb87e;
+  color: #cfb26d;
 }
 
 .contact-description {
@@ -1684,7 +1699,7 @@ body {
 .contact-form h2 {
   font-size: 36px;
   margin-bottom: 20px;
-  color: #ffb87e;
+  color: #cfb26d
 }
 
 .contact-form p {
@@ -1716,7 +1731,7 @@ body {
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-color: #ffb87e;
+  border-color: #cfb26d
 }
 
 textarea {
@@ -1752,7 +1767,7 @@ textarea {
 }
 /* ===== Кнопка отправки в форме ===== */
 .submit-btn {
-  background-color: #ffb87e;
+  background-color: #cfb26d;
   color: white;
   font-size: 20px;
   padding: 10px 40px; /* Размер кнопки */
@@ -1901,42 +1916,26 @@ a {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Стиль для кнопки открытия меню */
 .menu-btn {
-  font-size: 30px;
+  font-size: 40px; /* Увеличиваем размер шрифта */
   position: fixed;
-  top: 20px;
-  right: 20px; /* Перемещаем кнопку на правую часть */
-  background-color: #685800; /* Золотистый фон */
-  color: white;
+  top: 84px;/* Опускаем кнопку ниже (можно настроить по вашему вкусу) */
+  right: 20px;
+
+  background: none; /* Убираем фон */
+  color: #cfb26d; /* Цвет текста кнопки */
   border: none;
-  padding: 15px;
+  padding: 20px; /* Увеличиваем отступы кнопки */
   border-radius: 5px;
   cursor: pointer;
   z-index: 1000; /* Чтобы кнопка была поверх контента */
-  transition: background-color 0.3s ease, opacity 0.3s ease; /* Плавное изменение фона и прозрачности */
+  transition: color 0.3s ease, opacity 0.3s ease; /* Плавное изменение цвета и прозрачности */
 }
 
 /* Стиль при наведении на кнопку */
 .menu-btn:hover {
-  background-color: #CDA434; /* Темно-золотистый для наведения */
+  color: #CDA434; /* Темно-золотистый цвет для текста при наведении */
 }
 
 /* Когда кнопка скрыта */
@@ -1948,6 +1947,26 @@ a {
 .menu-btn:focus {
   outline: none; /* Убираем обводку при фокусировке */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Стиль для самого поп-ап меню */
@@ -1985,7 +2004,7 @@ a {
 
 .popup-menu-content ul li a {
   text-decoration: none;
-  color: black; /* Изменим цвет текста на черный */
+  color: black; /* Цвет текста на черный */
   font-size: 20px;
 }
 
@@ -2000,20 +2019,38 @@ a {
   right: 20px;
   font-size: 30px;
   cursor: pointer;
-  color: #007BFF;
+  color: #cfb26d
 }
 
 .close-btn:hover {
-  color: #0056b3;
+  color: #a08852
 }
-
-
-
-
-
 
 html {
   scroll-behavior: smooth;
 }
 
 
+/* =============================== */
+/*       АДАПТИВНОСТЬ              */
+/* =============================== */
+@media (max-width: 768px) {
+  /* Уменьшаем размер кнопки и позиционирование на мобильных */
+  .menu-btn {
+    font-size: 34px; /* Уменьшаем размер шрифта для мобильных */
+    top: 20px; /* Понижаем кнопку на мобильных */
+    right: 15px; /* Сдвигаем кнопку немного ближе */
+    padding: 15px; /* Уменьшаем отступы кнопки */
+  }
+
+  /* Стиль для меню */
+  .popup-menu-content {
+    width: 90%; /* Увеличиваем ширину меню на мобильных */
+    max-width: 350px; /* Ограничиваем максимальную ширину */
+    padding: 20px; /* Уменьшаем отступы */
+  }
+
+  .popup-menu-content ul li a {
+    font-size: 18px; /* Уменьшаем шрифт для мобильных */
+  }
+}

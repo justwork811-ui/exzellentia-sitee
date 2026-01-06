@@ -150,3 +150,43 @@ window.addEventListener('scroll', function() {
 
 
 
+
+
+
+
+
+
+let currentIndex = 0;
+const slides = document.querySelectorAll('.team-member');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+    const slider = document.querySelector('.team-slider');
+    slider.style.transform = `translateX(-${index * 33.33}%)`;  // Сдвигаем на 1/3 экрана
+}
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;  // Переключаем на следующий слайд
+    showSlide(currentIndex);
+}
+
+function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;  // Переключаем на предыдущий слайд
+    showSlide(currentIndex);
+}
+
+// Убираем автоматическое переключение (убрали setInterval)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

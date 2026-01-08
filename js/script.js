@@ -192,14 +192,12 @@ function prevSlide() {
 
 
 
-
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('contact-form');
-    const modal = document.getElementById('myModal');  // Исправлено на правильный ID
-    const closeModal = document.getElementById('close-modal');  // Исправлено на правильный ID
+    const modal = document.getElementById('myModal');
+    const closeModal = document.querySelector('.close');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
         e.preventDefault(); // отменяем стандартную отправку
 
         // Получаем данные формы
@@ -219,9 +217,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Отправляем в Telegram
         fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`)
             .then(response => {
-                if(response.ok){
+                if (response.ok) {
                     modal.style.display = "block"; // Показываем модальное окно
                     form.reset(); // очищаем форму
+
+                    // Добавляем таймер, который закроет модальное окно через 5 секунд
+                    setTimeout(function () {
+                        modal.style.display = "none"; // Скрываем модальное окно
+                    }, 5000); // Закрытие через 5 секунд
                 } else {
                     alert("Fehler beim Senden der Nachricht. Bitte versuchen Sie es später.");
                 }
@@ -233,22 +236,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Закрытие модального окна при клике на крестик
-    closeModal.addEventListener('click', function() {
-        modal.classList.add('fade-out'); // Добавляем анимацию исчезновения
-        setTimeout(function() {
-            modal.style.display = "none"; // Скрываем модальное окно после анимации
-            modal.classList.remove('fade-out'); // Убираем класс после анимации
-        }, 300); // Ожидаем окончания анимации (0.3s)
+    closeModal.addEventListener('click', function () {
+        modal.style.display = "none"; // Закрытие окна при клике на крестик
     });
 
-    // Закрытие модального окна при клике за пределами окна
-    window.addEventListener('click', function(event) {
+    // Закрытие модального окна при клике вне его
+    window.addEventListener('click', function (event) {
         if (event.target === modal) {
-            modal.classList.add('fade-out'); // Анимация исчезновения
-            setTimeout(function() {
-                modal.style.display = "none";
-                modal.classList.remove('fade-out');
-            }, 300); // Задержка для анимации
+            modal.style.display = "none"; // Закрытие окна при клике вне его
         }
     });
 });

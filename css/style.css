@@ -62,7 +62,7 @@ html {
 }
 
 .btn-gold {
-  background: linear-gradient(45deg, #cfb26d, #f7b200); /* Градиент от золотого */
+  background: linear-gradient(45deg, #cfb26d, #bd8802); /* Градиент от золотого */
   color: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Легкая тень для кнопки */
   border: none;
@@ -263,10 +263,7 @@ html {
 
 
 
-
-/* =============================== */
-/*       АДАПТИВНОСТЬ              */
-/* =============================== */
+/* Логотип на мобильных */
 @media (max-width: 768px) {
   .header-inner {
     flex-direction: column;           /* Элементы по вертикали на мобильных */
@@ -286,7 +283,6 @@ html {
     margin-left: -55px;               /* Сдвигаем логотип влево на мобильных */
   }
 
- 
   .phone {
     display: flex;                    /* Размещаем элементы (иконку и номер) в одну строку */
     align-items: center;              /* Центрируем элементы по вертикали */
@@ -310,6 +306,28 @@ html {
   }
 }
 
+/* =============================== */
+/*  Логотип и шапка для экранов до 1024px */
+/* =============================== */
+@media (max-width: 1024px) {
+  .logo {
+    margin-left: 0; /* Убираем сдвиг логотипа на экранах до 1024px */
+    width: 80%; /* Логотип на 80% ширины на экранах до 1024px */
+    max-width: 150px; /* Ограничиваем максимальную ширину */
+    margin-bottom: 15px; /* Добавляем отступ снизу для улучшения внешнего вида */
+    font-size: 36px; /* Уменьшаем шрифт логотипа */
+    margin-left: -250px;
+  }
+
+  .header-inner {
+    flex-direction: column; /* Элементы по вертикали на экранах до 1024px */
+    align-items: center; /* Центрируем элементы по центру */
+  }
+
+  .header-actions {
+    font-size: 20px; /* Уменьшаем размер шрифта для телефона */
+  }
+}
 
 
 
@@ -2186,25 +2204,41 @@ html {
 }
 
 
+/* Стиль для модального окна */
+.modal {
+  display: none; /* По умолчанию скрыто */
+  position: fixed; /* Окно фиксировано */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+  z-index: 1000; /* Высокий индекс для того, чтобы окно было сверху */
+  justify-content: center; /* Центрируем окно по вертикали */
+  align-items: center; /* Центрируем окно по горизонтали */
+}
 
-/* Стиль для заголовка */
+/* Контейнер содержимого модального окна */
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%; /* 80% от ширины экрана */
+  max-width: 500px; /* Ограничиваем максимальную ширину */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Заголовок в модальном окне */
 .modal h2 {
-  color: #cfb26d; /* Зеленый цвет для заголовка */
-  font-size: 28px;
+  color: #cfb26d;
+  font-size: 24px; /* Размер шрифта для заголовка */
   font-weight: bold;
   margin-bottom: 20px;
-  font-family: 'Roboto', sans-serif; /* Шрифт для заголовка */
+  font-family: 'Roboto', sans-serif;
 }
 
-/* Стиль для текста внутри модального окна */
-.modal p {
-  font-size: 16px;
-  color: #333;
-  font-family: 'Arial', sans-serif; /* Легкий шрифт для текста */
-  line-height: 1.6;
-}
-
-/* Кнопка для закрытия модального окна (крестик) */
+/* Кнопка закрытия */
 .close {
   color: #aaa;
   font-size: 30px;
@@ -2221,13 +2255,24 @@ html {
   color: #d9534f; /* Красный цвет при наведении */
 }
 
-/* Стиль для кнопки закрытия модального окна */
-.close:focus {
-  outline: none;
-}
-
 /* Стиль для анимации скрытия */
 .modal.fade-out {
   opacity: 0;
   pointer-events: none;
 }
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%; /* Меньше пространство на мобильных устройствах */
+  }
+
+  .modal h2 {
+    font-size: 20px; /* Уменьшаем размер шрифта заголовка */
+  }
+
+  .close {
+    font-size: 25px; /* Уменьшаем размер крестика на мобильных */
+  }
+}
+

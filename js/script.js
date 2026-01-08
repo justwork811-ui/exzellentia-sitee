@@ -196,7 +196,6 @@ function prevSlide() {
 
 
 
-
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contact-form');
     const modal = document.getElementById('thank-you-modal');
@@ -237,13 +236,76 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Закрытие модального окна при клике на крестик
     closeModal.addEventListener('click', function() {
-        modal.style.display = "none";
+        modal.classList.add('fade-out'); // Добавляем анимацию исчезновения
+        setTimeout(function() {
+            modal.style.display = "none"; // Скрываем модальное окно после анимации
+            modal.classList.remove('fade-out'); // Убираем класс после анимации
+        }, 300); // Ожидаем окончания анимации (0.3s)
     });
 
-    // Закрытие модального окна при клике за пределами модального окна
+    // Закрытие модального окна при клике за пределами окна
     window.addEventListener('click', function(event) {
         if (event.target === modal) {
-            modal.style.display = "none";
+            modal.classList.add('fade-out'); // Анимация исчезновения
+            setTimeout(function() {
+                modal.style.display = "none";
+                modal.classList.remove('fade-out');
+            }, 300); // Задержка для анимации
         }
     });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Функция для отображения модального окна
+function showModal() {
+  const modal = document.getElementById('myModal');
+  modal.style.display = "block";
+
+  // Закрытие через 5 секунд
+  setTimeout(() => {
+    modal.style.display = "none";
+  }, 5000);
+}
+
+// Закрытие модального окна при клике на крестик
+const closeButton = document.querySelector('.close');
+closeButton.addEventListener('click', () => {
+  document.getElementById('myModal').style.display = "none";
+});
+
+// Закрытие модального окна при клике вне его
+window.addEventListener('click', function(event) {
+  const modal = document.getElementById('myModal');
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+// Вызов функции при успешной отправке формы
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // Останавливаем стандартную отправку формы
+
+    // Отправка формы и показывание модального окна
+    showModal();
 });

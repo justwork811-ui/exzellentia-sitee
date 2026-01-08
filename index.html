@@ -312,16 +312,10 @@
     </div>
 </section>
 
-
-
-
-
-
-
 <!-- Секция "Контакты" -->
 <section id="contact">
   <div class="container">
-    <form class="contact-form" action="form-handler.php" method="POST">
+    <form class="contact-form" id="contact-form">
       <h2>Kontaktieren Sie uns</h2>
       <p>Füllen Sie das Formular aus und wir setzen uns mit Ihnen in Verbindung.</p>
       
@@ -345,7 +339,6 @@
         <textarea id="message" name="message" rows="5" required></textarea>
       </div>
 
-      <!-- Добавляем радиокнопки для выбора типа объекта -->
       <div class="form-group">
         <label>Ist es ein kommerzielles oder privates Objekt?</label>
         <div class="radio-group">
@@ -360,11 +353,22 @@
         </div>
       </div>
 
-      <!-- Кнопка отправки -->
       <button type="submit" class="submit-btn">Absenden</button>
     </form>
   </div>
 </section>
+
+<!-- Модальное окно для успешной отправки -->
+<div id="thank-you-modal" class="modal">
+  <div class="modal-content">
+    <span id="close-modal" class="close">&times;</span>
+    <h2>Vielen Dank!</h2>
+    <p>Ihre Nachricht wurde gesendet.</p>
+  </div>
+</div>
+
+<!-- Подключаем JS -->
+<script src="js/contact-form.js"></script>
 
 
 
@@ -408,12 +412,7 @@
 
 
 
-
-
  
-
-
-
 
 
 

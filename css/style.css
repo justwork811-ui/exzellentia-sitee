@@ -2130,3 +2130,102 @@ html {
     font-size: 18px; /* Уменьшаем шрифт для мобильных */
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Стиль для фона модального окна */
+.modal {
+  display: none; /* По умолчанию скрыто */
+  position: fixed;
+  z-index: 1; /* Ставим поверх всего */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+  padding-top: 50px; /* Сдвигаем вниз, чтобы окно не прилипало к верхнему краю */
+  transition: opacity 0.3s ease; /* Плавное появление */
+}
+
+/* Стили для самого модального окна */
+.modal-content {
+  background: #fff;
+  margin: 15% auto;
+  padding: 30px;
+  border-radius: 10px; /* Скругленные углы */
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Тень для объема */
+  animation: fadeIn 0.4s ease-out; /* Плавное появление */
+}
+
+/* Анимация для появления модального окна */
+@keyframes fadeIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Стиль для заголовка */
+.modal h2 {
+  color: #cfb26d; /* Зеленый цвет для заголовка */
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: 'Roboto', sans-serif; /* Шрифт для заголовка */
+}
+
+/* Стиль для текста внутри модального окна */
+.modal p {
+  font-size: 16px;
+  color: #333;
+  font-family: 'Arial', sans-serif; /* Легкий шрифт для текста */
+  line-height: 1.6;
+}
+
+/* Кнопка для закрытия модального окна (крестик) */
+.close {
+  color: #aaa;
+  font-size: 30px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #d9534f; /* Красный цвет при наведении */
+}
+
+/* Стиль для кнопки закрытия модального окна */
+.close:focus {
+  outline: none;
+}
+
+/* Стиль для анимации скрытия */
+.modal.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}

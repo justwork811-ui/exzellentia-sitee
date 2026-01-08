@@ -47,44 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const burger = document.getElementById('burger');
   const sideMenu = document.getElementById('sideMenu');
@@ -106,6 +68,22 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.classList.remove('hidden');
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -156,6 +134,19 @@ window.addEventListener('scroll', function() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 let currentIndex = 0;
 const slides = document.querySelectorAll('.team-member');
 const totalSlides = slides.length;
@@ -190,3 +181,69 @@ function prevSlide() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    const modal = document.getElementById('thank-you-modal');
+    const closeModal = document.getElementById('close-modal');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // отменяем стандартную отправку
+
+        // Получаем данные формы
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const message = document.getElementById('message').value;
+        const propertyType = document.querySelector('input[name="propertyType"]:checked').value;
+
+        // Ваши данные Telegram
+        const botToken = "8282995143:AAEirmJ1t54WmHrlV268wcTdVMmYYN9Rcw0";
+        const chatId = "-1003663720487";
+
+        // Формируем сообщение
+        const text = `Neue Anfrage:\n\nName: ${name}\nE-Mail: ${email}\nTelefon: ${phone}\nNachricht: ${message}\nObjekttyp: ${propertyType}`;
+
+        // Отправляем в Telegram
+        fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`)
+            .then(response => {
+                if(response.ok){
+                    modal.style.display = "block"; // Показываем модальное окно
+                    form.reset(); // очищаем форму
+                } else {
+                    alert("Fehler beim Senden der Nachricht. Bitte versuchen Sie es später.");
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Fehler beim Senden der Nachricht. Bitte versuchen Sie es später.");
+            });
+    });
+
+    // Закрытие модального окна при клике на крестик
+    closeModal.addEventListener('click', function() {
+        modal.style.display = "none";
+    });
+
+    // Закрытие модального окна при клике за пределами модального окна
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+});

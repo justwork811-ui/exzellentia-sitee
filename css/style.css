@@ -184,150 +184,200 @@ html {
 
 
 
-
-
-
-
-
-
-
-
-
-
-/* =============================== */
-/*       ШАПКА САЙТА               */
-/* =============================== */
 .header {
-  background-color: #333; /* Темный фон */
-  color: #cfb26d; /* Белый цвет текста */
-  padding: 8px 20px; /* Легкое увеличение отступов сверху и снизу */
-  display: flex;
-  align-items: center; /* Центрируем элементы по вертикали */
-  justify-content: space-between; /* Логотип слева, номер телефона справа */
-  position: relative; /* Устанавливаем относительное позиционирование для размещения кнопки */
+  background-color: #333;
+  color: #cfb26d;
+  padding: 8px 0; /* убираем боковые отступы */
 }
 
 .header-inner {
-  display: flex;                /* Используем Flexbox */
-  justify-content: space-between; /* Распределение элементов по краям */
-  align-items: center;          /* Центрируем по вертикали */
-  max-width: 1200px;             /* Ограничиваем ширину контейнера */
-  margin: 0 auto;               /* Центрируем контейнер по горизонтали */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;  /* прижимаем всё к левому краю */
+  gap: 8px;                     /* расстояние между логотипом и телефоном */
+  padding-left: 0;               /* полностью слева */
+  margin-left: 100px;                /* убираем любые внешние отступы */
 }
 
 .logo {
-  font-size: 45px;               /* Размер шрифта для логотипа */
-  font-weight: bold;             /* Жирный шрифт */
-  color: #cfb26d;                /* Золотой цвет */
   display: flex;
-  justify-content: center;       /* Центрирует элементы по горизонтали */
-  align-items: center;           /* Центрирует элементы по вертикали */
-  margin: 0 auto;                /* Выравнивает блок по центру */
-  margin-left: -600px;
-  
-  
-  width: 100%;                   /* Логотип на всю ширину */
-  max-width: 200px;              /* Ограничиваем максимальную ширину логотипа */
+  align-items: center;  
+  gap: 2px;                      /* минимальный отступ между картинкой и текстом */
+}
+
+.logo img {
+  width: clamp(40px, 6vw, 100px);
+  height: auto;
+  flex-shrink: 0;
 }
 
 .logo span {
-  position: relative;            /* Делаем текст позиционированным относительно его нормального положения */
-  top: 7px;                     /* Опускаем текст немного ниже */
-}
-
-
-.logo img {
-  width: 100px;                   /* Ширина логотипа */
-  height: auto;                  /* Автоматическое масштабирование */
-  margin-right: -20px;            /* Отступ между изображением и текстом */
+  font-size: clamp(22px, 4vw, 45px);
+  font-weight: bold;
+  position: relative;
+  top: 8px;
+  margin-left: -15px; /* было 2px */
 }
 
 .header-actions {
-  font-size: 22px;               /* Размер шрифта для телефона */
-  display: flex;                 /* Выравнивание элементов внутри телефона */
-  align-items: center;           /* Центрируем элементы по вертикали */
-  position: relative;            /* Позиционируем блок с номером телефона и кнопкой относительно его нормального положения */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(18px, 3vw, 22px);
+  flex-shrink: 0;
+}
+
+.phone-link {
+  color: #cfb26d;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-/* Логотип на мобильных */
-@media (max-width: 768px) {
-  .header-inner {
-    flex-direction: column;           /* Элементы по вертикали на мобильных */
-    align-items: flex-start;          /* Выравнивание по левому краю */
-    padding: 10px 20px;               /* Добавляем отступы */
-    width: 100%;                      /* Ширина контейнера на 100% */
-  }
-
-  .logo {
-    margin-bottom: 15px;              /* Отступ между логотипом и телефоном */
-    font-size: 28px;                  /* Уменьшаем размер шрифта логотипа */
-    width: 100%;                      /* Логотип на всю ширину */
-    max-width: 50px;                  /* Ограничиваем максимальную ширину логотипа */
-    display: flex;
-    justify-content: flex-start;      /* Логотип по левому краю */
-    word-wrap: break-word;            /* Чтобы текст не выходил за пределы */
-    margin-left: -55px;               /* Сдвигаем логотип влево на мобильных */
-  }
-
-  .phone {
-    display: flex;                    /* Размещаем элементы (иконку и номер) в одну строку */
-    align-items: center;              /* Центрируем элементы по вертикали */
-    width: 100%;                      /* Блок с номером телефона на всю ширину */
-  }
-
-  .phone-icon {
-    font-size: 24px;                  /* Увеличиваем размер иконки */
-    margin-right: 10px;               /* Отступ между иконкой и номером */
-  }
-
-  .phone-link {
-    color: #cfb26d;                   /* Золотой цвет для номера телефона */
-    text-decoration: none;            /* Убираем подчеркивание */
-    font-weight: bold;
-    font-size: 20px;                  /* Размер шрифта для номера телефона */
-  }
-
-  .phone-link:hover {
-    color: #e3eefd;                   /* Цвет при наведении */
-  }
-}
 
 /* =============================== */
-/*  Логотип и шапка для экранов до 1024px */
+/*       АДАПТИВНОСТЬ ДЛЯ ВСЕХ ЭКРАНОВ */
 /* =============================== */
-@media (max-width: 1024px) {
-  .logo {
-    margin-left: 0; /* Убираем сдвиг логотипа на экранах до 1024px */
-    width: 80%; /* Логотип на 80% ширины на экранах до 1024px */
-    max-width: 150px; /* Ограничиваем максимальную ширину */
-    margin-bottom: 15px; /* Добавляем отступ снизу для улучшения внешнего вида */
-    font-size: 36px; /* Уменьшаем шрифт логотипа */
-    margin-left: -250px;
-  }
 
+/* Ноутбуки и ПК (1025px и больше) */
+@media (min-width: 1025px) {
+  .logo span {
+    font-size: 45px;
+    margin-left: -15px;
+    top: 8px;
+  }
+  
+  .logo img {
+    width: 100px;
+  }
+  
   .header-inner {
-    flex-direction: column; /* Элементы по вертикали на экранах до 1024px */
-    align-items: center; /* Центрируем элементы по центру */
-  }
-
-  .header-actions {
-    font-size: 20px; /* Уменьшаем размер шрифта для телефона */
+    margin-left: 100px;
   }
 }
+
+/* Планшеты в альбомной ориентации (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .logo span {
+    font-size: 38px;
+    margin-left: -13px;
+    top: 7px;
+  }
+  
+  .logo img {
+    width: 85px;
+  }
+  
+  .header-inner {
+    margin-left: 60px;
+  }
+}
+
+/* Планшеты в портретной (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .logo span {
+    font-size: 32px;
+    margin-left: -14px;
+    top: 5px;
+  }
+  
+  .logo img {
+    width: 70px;
+  }
+  
+  .header-inner {
+    margin-left: 30px;
+  }
+}
+
+/* Большие смартфоны (426px - 480px) */
+@media (min-width: 426px) and (max-width: 480px) {
+  .logo span {
+    font-size: 28px;
+    margin-left: -13px;
+    top: 4px;
+  }
+  
+  .logo img {
+    width: 60px;
+  }
+  
+  .header-inner {
+    margin-left: 20px;
+  }
+}
+
+/* Средние смартфоны (376px - 425px) */
+@media (min-width: 376px) and (max-width: 425px) {
+  .logo span {
+    font-size: 26px;
+    margin-left: -12px;
+    top: 4px;
+  }
+  
+  .logo img {
+    width: 55px;
+  }
+  
+  .header-inner {
+    margin-left: 15px;
+  }
+}
+
+/* Маленькие смартфоны (321px - 375px) */
+@media (min-width: 321px) and (max-width: 375px) {
+  .logo span {
+    font-size: 24px;
+    margin-left: -11px;
+    top: 3px;
+  }
+  
+  .logo img {
+    width: 50px;
+  }
+  
+  .header-inner {
+    margin-left: 12px;
+  }
+}
+
+/* Очень маленькие смартфоны (до 320px) */
+@media (max-width: 320px) {
+  .logo span {
+    font-size: 22px;
+    margin-left: -10px;
+    top: 3px;
+    white-space: normal; /* разрешаем перенос текста */
+  }
+  
+  .logo img {
+    width: 45px;
+  }
+  
+  .header-inner {
+    margin-left: 10px;
+  }
+}
+
+/* Для ландшафтной ориентации на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+  .logo span {
+    white-space: nowrap;
+  }
+  
+  .header-inner {
+    margin-left: 20px;
+  }
+}
+
+
+
+
+
+
+
 
 
 
@@ -2014,8 +2064,8 @@ a {
 .menu-btn {
   font-size: 40px; /* Увеличиваем размер шрифта */
   position: fixed;
-  top: 84px;/* Опускаем кнопку ниже (можно настроить по вашему вкусу) */
-  right: 20px;
+  top: 66px;/* Опускаем кнопку ниже (можно настроить по вашему вкусу) */
+  right: 50px;
 
   background: none; /* Убираем фон */
   color: #cfb26d; /* Цвет текста кнопки */
@@ -2128,24 +2178,88 @@ html {
 /* =============================== */
 /*       АДАПТИВНОСТЬ              */
 /* =============================== */
-@media (max-width: 768px) {
-  /* Уменьшаем размер кнопки и позиционирование на мобильных */
+
+/* ПК и ноутбуки (1025px и больше) */
+@media (min-width: 1025px) {
   .menu-btn {
-    font-size: 34px; /* Уменьшаем размер шрифта для мобильных */
-    top: 20px; /* Понижаем кнопку на мобильных */
-    right: 15px; /* Сдвигаем кнопку немного ближе */
-    padding: 15px; /* Уменьшаем отступы кнопки */
+    top: 63px;
+    right: 50px;
+    font-size: 40px;
+    padding: 20px;
   }
+}
 
-  /* Стиль для меню */
+/* Планшеты (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .menu-btn {
+    top: 55px;
+    right: 40px;
+    font-size: 36px;
+    padding: 18px;
+  }
+}
+
+/* Планшеты (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .menu-btn {
+    top: 46px;
+    right: 30px;
+    font-size: 32px;
+    padding: 15px;
+  }
+  
   .popup-menu-content {
-    width: 90%; /* Увеличиваем ширину меню на мобильных */
-    max-width: 350px; /* Ограничиваем максимальную ширину */
-    padding: 20px; /* Уменьшаем отступы */
+    width: 85%;
+    max-width: 350px;
+    padding: 25px;
   }
-
+  
   .popup-menu-content ul li a {
-    font-size: 18px; /* Уменьшаем шрифт для мобильных */
+    font-size: 19px;
+  }
+}
+
+/* Смартфоны (до 480px) */
+@media (max-width: 480px) {
+  .menu-btn {
+    top: 37px;
+    right: 0px;
+    font-size: 28px;
+    padding: 12px;
+  }
+  
+  .popup-menu-content {
+    width: 90%;
+    max-width: 300px;
+    padding: 20px;
+  }
+  
+  .popup-menu-content ul li a {
+    font-size: 17px;
+  }
+  
+  .close-btn {
+    font-size: 26px;
+  }
+}
+
+/* Маленькие смартфоны (до 360px) */
+@media (max-width: 360px) {
+  .menu-btn {
+    top: 35px;
+    right: 15px;
+    font-size: 24px;
+    padding: 10px;
+  }
+  
+  .popup-menu-content {
+    width: 95%;
+    max-width: 260px;
+    padding: 18px;
+  }
+  
+  .popup-menu-content ul li a {
+    font-size: 16px;
   }
 }
 

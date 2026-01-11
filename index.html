@@ -14,7 +14,6 @@
 
 
 
-
 <header class="header">
   <div class="header-inner">
     <!-- Логотип -->
@@ -22,6 +21,9 @@
       <img src="images/Mein/logo.png" class="logo-image" alt="ExzellentiaConstructio Logo">
       <span>ExzellentiaConstructio</span>
     </div>
+    
+    <!-- Кнопка меню - теперь в header -->
+    <button class="menu-btn">☰</button>
   </div>
 </header>
 
@@ -29,11 +31,6 @@
 
 
 
-
-    <!-- Кнопка для открытия меню -->
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-  </div>
-</header>
 
 <!-- POP-UP MENU -->
 <div id="popupMenu" class="popup-menu" onclick="closeMenu(event)">
@@ -293,35 +290,101 @@
 
 
 
-
-<!-- Блок с командой -->
-<section id="team" class="team">
-    <h2>TEAM & WERKZEUG</h2>
-    <div class="team-slider-container">
-        <div class="team-slider">
-            <!-- Блок с первым человеком -->
-            <div class="team-member">
-                <img src="images/more-work/ins1.jpg" alt="">
+<!-- Блок с разделенным слайдером -->
+<section id="split-slider" class="split-slider">
+    <h2> TEAM & WERKZEUGE</h2>
+    
+    <div class="split-container">
+        <!-- Левая панель - Портфолио -->
+        <div class="split-panel left-panel">
+            <div class="panel-header">
+                <h3>WERKZEUGE</h3>
+                <div class="panel-indicators">
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-            <!-- Блок со вторым человеком -->
-            <div class="team-member">
-                <img src="images/more-work/ins2.jpg" alt="">
-            </div>
-            <!-- Блок с третьим человеком -->
-            <div class="team-member">
-                <img src="images/more-work/fwa.JPG" alt="">
-            </div>
-            <!-- Блок с четвертым человеком -->
-            <div class="team-member">
-                <img src="images/more-work/oleg.jpg" alt="">
+            
+            <div class="split-slider-container">
+                <div class="split-slides">
+                    <div class="split-slide active">
+                        <img src="images/portfolio1.jpg" alt="Проект 1">
+                        <div class="slide-info">
+                           
+                        </div>
+                    </div>
+                    <div class="split-slide">
+                        <img src="images/portfolio2.jpg" alt="Проект 2">
+                        <div class="slide-info">
+                            
+                        </div>
+                    </div>
+                    <div class="split-slide">
+                        <img src="images/portfolio3.jpg" alt="Проект 3">
+                        <div class="slide-info">
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Кнопки левого слайдера -->
+                <button class="split-prev left-prev">‹</button>
+                <button class="split-next left-next">›</button>
             </div>
         </div>
-        <!-- Кнопки для переключения слайдов -->
-        <button class="prev" onclick="prevSlide()">←</button>
-        <button class="next" onclick="nextSlide()">→</button>
+        
+        <!-- Правая панель - Команда -->
+        <div class="split-panel right-panel">
+            <div class="panel-header">
+                <h3>TEAM</h3>
+                <div class="panel-indicators">
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <div class="split-slider-container">
+                <div class="split-slides">
+                    <div class="split-slide active">
+                        <img src="images/team1.jpg" alt="Сотрудник 1">
+                        <div class="slide-info">
+                            
+                           
+                        </div>
+                    </div>
+                    <div class="split-slide">
+                        <img src="images/team2.jpg" alt="Сотрудник 2">
+                        <div class="slide-info">
+                           
+                            
+                        </div>
+                    </div>
+                    <div class="split-slide">
+                        <img src="images/team3.jpg" alt="Сотрудник 3">
+                        <div class="slide-info">
+                          
+                           
+                        </div>
+                    </div>
+                    <div class="split-slide">
+                        <img src="images/team4.jpg" alt="Сотрудник 4">
+                        <div class="slide-info">
+                        
+                          
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Кнопки правого слайдера -->
+                <button class="split-prev right-prev">‹</button>
+                <button class="split-next right-next">›</button>
+            </div>
+        </div>
     </div>
 </section>
-
 
 
 

@@ -104,7 +104,7 @@ html {
   right: 0;
   bottom: 0;
   background: url("../images/Mein/hero.png") center/cover no-repeat; /* Используем тот же фон */
-  filter: blur(2px); /* Размытие фона */
+  filter: blur(1px); /* Размытие фона */
   background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный для затемнения фона */
   z-index: -1; /* Фон будет под текстом */
 }

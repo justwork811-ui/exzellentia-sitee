@@ -448,7 +448,7 @@ class ContactForm {
         
         setTimeout(() => {
             this.closeModalWindow();
-        }, 5000);
+        }, 30000);
     }
     
     closeModalWindow() {

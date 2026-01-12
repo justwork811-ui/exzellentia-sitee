@@ -3336,119 +3336,258 @@ html {
 
 
 
-
-/* Стиль для фона модального окна */
-.modal {
-  display: none; /* По умолчанию скрыто */
-  position: fixed;
-  z-index: 1; /* Ставим поверх всего */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
-  padding-top: 50px; /* Сдвигаем вниз, чтобы окно не прилипало к верхнему краю */
-  transition: opacity 0.3s ease; /* Плавное появление */
+/* ===== СОВРЕМЕННОЕ МОДАЛЬНОЕ ОКНО ===== */
+#myModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
-/* Стили для самого модального окна */
-.modal-content {
-  background: #fff;
-  margin: 15% auto;
-  padding: 30px;
-  border-radius: 10px; /* Скругленные углы */
-  width: 80%;
-  max-width: 500px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Тень для объема */
-  animation: fadeIn 0.4s ease-out; /* Плавное появление */
+#myModal .modal-content {
+    position: relative;
+    background: white;
+    margin: 10% auto;
+    padding: 0;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Анимация для появления модального окна */
-@keyframes fadeIn {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+/* Заголовок модалки */
+.modal-header {
+    background: linear-gradient(135deg, #cfb26d 0%, #a08852 100%);
+    padding: 30px;
+    text-align: center;
+    color: white;
+    position: relative;
 }
 
-
-/* Стиль для модального окна */
-.modal {
-  display: none; /* По умолчанию скрыто */
-  position: fixed; /* Окно фиксировано */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
-  z-index: 1000; /* Высокий индекс для того, чтобы окно было сверху */
-  justify-content: center; /* Центрируем окно по вертикали */
-  align-items: center; /* Центрируем окно по горизонтали */
+.modal-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.1;
 }
 
-/* Контейнер содержимого модального окна */
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%; /* 80% от ширины экрана */
-  max-width: 500px; /* Ограничиваем максимальную ширину */
-  text-align: center;
-  box-sizing: border-box;
+.modal-header h2 {
+    margin: 0;
+    font-size: 2.2em;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
 }
 
-/* Заголовок в модальном окне */
-.modal h2 {
-  color: #cfb26d;
-  font-size: 24px; /* Размер шрифта для заголовка */
-  font-weight: bold;
-  margin-bottom: 20px;
-  font-family: 'Roboto', sans-serif;
+.modal-header p {
+    margin: 10px 0 0 0;
+    font-size: 1.1em;
+    opacity: 0.9;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+}
+
+/* Иконка успеха */
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.success-icon svg {
+    width: 40px;
+    height: 40px;
+    color: #cfb26d;
+}
+
+/* Тело модалки */
+.modal-body {
+    padding: 40px 30px;
+    text-align: center;
+    background: #fafafa;
+}
+
+.modal-body h3 {
+    color: #333;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.modal-body p {
+    color: #666;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Прогресс-бар (таймер) */
+.progress-timer {
+    width: 100%;
+    height: 6px;
+    background: #eee;
+    border-radius: 3px;
+    margin: 30px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #cfb26d, #a08852);
+    border-radius: 3px;
+    animation: progressShrink 30s linear forwards;
+    transform-origin: left center;
 }
 
 /* Кнопка закрытия */
 .close {
-  color: #aaa;
-  font-size: 30px;
-  font-weight: bold;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  cursor: pointer;
-  transition: color 0.3s;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 32px;
+    font-weight: 300;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    z-index: 2;
+    border: none;
 }
 
-.close:hover,
-.close:focus {
-  color: #d9534f; /* Красный цвет при наведении */
+.close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
 }
 
-/* Стиль для анимации скрытия */
-.modal.fade-out {
-  opacity: 0;
-  pointer-events: none;
+/* Дополнительная информация */
+.modal-info {
+    background: white;
+    padding: 20px 30px;
+    border-top: 1px solid #eee;
+    text-align: center;
 }
 
-/* Мобильная адаптация */
+.modal-info p {
+    color: #888;
+    font-size: 0.9em;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes progressShrink {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+}
+
+@keyframes checkmark {
+    0% { stroke-dashoffset: 100; }
+    100% { stroke-dashoffset: 0; }
+}
+
+/* Адаптация */
 @media (max-width: 768px) {
-  .modal-content {
-    width: 90%; /* Меньше пространство на мобильных устройствах */
-  }
-
-  .modal h2 {
-    font-size: 20px; /* Уменьшаем размер шрифта заголовка */
-  }
-
-  .close {
-    font-size: 25px; /* Уменьшаем размер крестика на мобильных */
-  }
+    #myModal .modal-content {
+        margin: 20% auto;
+        width: 95%;
+        max-width: 400px;
+    }
+    
+    .modal-header {
+        padding: 25px 20px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.8em;
+    }
+    
+    .modal-body {
+        padding: 30px 20px;
+    }
+    
+    .success-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .success-icon svg {
+        width: 35px;
+        height: 35px;
+    }
 }
 
+@media (max-width: 480px) {
+    #myModal .modal-content {
+        margin: 15% auto;
+        border-radius: 20px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.6em;
+    }
+    
+    .modal-body h3 {
+        font-size: 1.2em;
+    }
+    
+    .modal-body p {
+        font-size: 1em;
+    }
+    
+    .close {
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        font-size: 28px;
+    }
+}
 
 
 

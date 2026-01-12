@@ -444,14 +444,38 @@
 
 
 
-<!-- Модальное окно -->
 <div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="close-modal">&times;</span>
-    <h2>Vielen Dank! Ihre Nachricht wurde gesendet.</h2>
-  </div>
+    <div class="modal-content">
+        <button class="close">&times;</button>
+        
+        <div class="modal-header">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+            </div>
+            <h2>Vielen Dank!</h2>
+            <p>Ihre Nachricht wurde erfolgreich gesendet</p>
+        </div>
+        
+        <div class="modal-body">
+            <h3>Wir melden uns bald bei Ihnen</h3>
+            <p>Unser Team wird Ihre Anfrage innerhalb von 24 Stunden bearbeiten und sich mit Ihnen in Verbindung setzen.</p>
+            
+            <div class="progress-timer">
+                <div class="progress-bar"></div>
+            </div>
+            
+            <p style="font-size: 0.9em; color: #888;">
+                Dieses Fenster schließt sich automatisch in 30 Sekunden
+            </p>
+        </div>
+        
+        <div class="modal-info">
+            <p>Bei dringenden Anfragen: +49 160 96273279</p>
+        </div>
+    </div>
 </div>
-
 
 
 
@@ -533,7 +557,7 @@
             </div>
             <div class="contact-details">
                 <h4>Telefon</h4>
-                <a href="tel:+49123456789" class="contact-link">+49 123 456 789</a>
+                <a href="tel:+49 160 96273279" class="contact-link">+49 160 96273279</a>
                 <p class="contact-subtext">Allgemeine Anfragen</p>
             </div>
         </div>

@@ -189,7 +189,7 @@ html {
   min-height: -20px;
   display: flex;
   align-items: center;
-  position: sticky;
+  position: static;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -1585,7 +1585,7 @@ button.next {
     max-width: 1400px;
     margin: 0 auto;
     gap: 30px;
-    min-height: 600px;
+    min-height: 1000px;
 }
 
 /* Общие стили для обеих панелей */
@@ -1667,17 +1667,17 @@ button.next {
 
 .split-slide img {
     width: 100%;
-    height: 70%;
+    height: 100%;
     object-fit: cover;
     display: block;
 }
 
 /* Информация о слайде */
 .slide-info {
-    padding: 25px 30px;
+    padding: 15px 30px;
     text-align: left;
     background: white;
-    height: 30%;
+    height: 15%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2043,184 +2043,275 @@ body {
   margin-bottom: 40px;
 }
 
-/* Контактная информация */
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Отступы между контактными блоками */
-  align-items: center;
+
+
+
+
+/* ===== КОНТАКТНАЯ СЕКЦИЯ ===== */
+.contact-info-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 60px 20px;
+    border-radius: 20px;
+    margin: 40px auto;
+    max-width: 1200px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    text-align: center;
 }
 
-/* Элемент контактной информации */
-.contact-item {
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  padding: 15px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 80%; /* Ширина каждого блока */
-  max-width: 500px; /* Ограничиваем максимальную ширину */
-  margin: 0 auto; /* Центрируем элементы */
+.contact-info-section h3 {
+    font-size: 2.2em;
+    color: #cfb26d;
+    margin-bottom: 50px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+
+.contact-info-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #cfb26d, #a08852);
+    border-radius: 2px;
+}
+
+/* Сетка контактов */
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Карточки контактов */
+.contact-card {
+    background: white;
+    border-radius: 16px;
+    padding: 35px 25px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(207, 178, 109, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(207, 178, 109, 0.15);
+    border-color: rgba(207, 178, 109, 0.3);
+}
+
+/* Обертка для иконки */
+.contact-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 /* Иконки */
 .contact-icon {
-  font-size: 2em;
-  color: #cfb26d;
-  margin-right: 20px; /* Отступ между иконкой и текстом */
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
 }
 
-/* Текст в каждом блоке */
-.contact-text {
-  display: flex;
-  flex-direction: column;
+.contact-icon svg {
+    width: 32px;
+    height: 32px;
+    display: block;
 }
 
-/* Заголовок для каждого типа контакта */
-.contact-text h3 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
+/* Цвета иконок */
+.founder-icon {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
 }
 
-/* Текст с контактной информацией */
-.contact-text p {
-  font-size: 16px;
-  color: #666;
+.ceo-icon {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
 }
 
-.contact-text a {
-  color: #d39c42; /* Золотой цвет для ссылок */
-  text-decoration: none;
+.manager-icon {
+    background: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
 }
 
-.contact-text a:hover {
-  text-decoration: underline;
+.phone-icon {
+    background: rgba(255, 152, 0, 0.1);
+    color: #FF9800;
 }
 
-/* Адаптивность для мобильных устройств */
-@media (max-width: 768px) {
-  .contact-title {
-    font-size: 30px;
-  }
+.contact-card:hover .contact-icon {
+    transform: scale(1.15);
+}
 
-  .contact-description {
-    font-size: 16px;
-  }
-
-  .contact-item {
+/* Детали контакта */
+.contact-details {
+    text-align: center;
     width: 100%;
-    padding: 15px;
-  }
+}
 
-  .contact-icon {
-    font-size: 1.8em;
-  }
+.contact-details h4 {
+    font-size: 1.3em;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-align: center;
+}
 
-  .contact-text h3 {
-    font-size: 16px;
-  }
+.contact-link {
+    color: #cfb26d;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-bottom: 5px;
+    text-align: center;
+    word-break: break-word;
+}
 
-  .contact-text p {
-    font-size: 14px;
-  }
+.contact-link:hover {
+    color: #a08852;
+    text-decoration: underline;
+}
+
+.contact-subtext {
+    color: #888;
+    font-size: 0.9em;
+    font-style: italic;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+
+/* Планшеты */
+@media (max-width: 1024px) {
+    .contact-info-section {
+        padding: 50px 20px;
+        margin: 30px 20px;
+    }
+    
+    .contact-info-section h3 {
+        font-size: 2em;
+        margin-bottom: 40px;
+    }
+    
+    .contact-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+    .contact-info-section {
+        padding: 40px 15px;
+        border-radius: 15px;
+        margin: 30px 15px;
+    }
+    
+    .contact-info-section h3 {
+        font-size: 1.8em;
+        margin-bottom: 35px;
+    }
+    
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contact-card {
+        padding: 30px 20px;
+    }
+    
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .contact-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .contact-details h4 {
+        font-size: 1.2em;
+    }
+    
+    .contact-link {
+        font-size: 1em;
+    }
+}
+
+/* Маленькие мобильные */
+@media (max-width: 480px) {
+    .contact-info-section h3 {
+        font-size: 1.6em;
+    }
+    
+    .contact-card {
+        padding: 25px 15px;
+    }
+    
+    .contact-icon {
+        width: 55px;
+        height: 55px;
+    }
+    
+    .contact-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Большие экраны */
+@media (min-width: 1400px) {
+    .contact-info-section {
+        max-width: 1300px;
+        padding: 70px 30px;
+    }
+    
+    .contact-info-grid {
+        max-width: 1200px;
+        gap: 40px;
+    }
+    
+    .contact-card {
+        padding: 40px 30px;
+    }
+}
+
+/* Высокий DPI экраны */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .contact-icon {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .contact-card {
+        border: 1px solid rgba(207, 178, 109, 0.15);
+    }
 }
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.contact-section {
-  padding: 100px 0;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 239, 204, 0.8)), url('path_to_your_image.jpg') no-repeat center center;
-  background-size: cover; /* Обеспечивает растяжение изображения по всей секции */
-}
-
-
-.contact-title {
-  font-size: 48px;
-  margin-bottom: 30px;
-  text-align: center;
-  color: #cfb26d;
-}
-
-.contact-description {
-  font-size: 20px;
-  text-align: center;
-  color: #000000;
-  margin-bottom: 50px;
-}
-
-/* Контактная информация */
-.contact-info {
-  display: flex;
-  justify-content: center; /* Центрируем блоки по горизонтали */
-  gap: 30px; /* Отступы между блоками */
-  flex-wrap: wrap; /* Добавляем возможность переноса на мобильных */
-  text-align: left; /* Текст по левому краю */
-  width: 100%;
-  margin-top: 100px; /* Отступ сверху */
-}
-
-.contact-item {
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(252, 252, 252, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex-basis: 30%; /* Каждый блок занимает 30% ширины */
-  max-width: 500px; /* Ограничиваем максимальную ширину блоков */
-  min-width: 250px; /* Минимальная ширина блоков */
-  text-align: left; /* Изменили текст на выравнивание влево */
-  margin-bottom: 30px;
-  cursor: pointer; /* Курсор при наведении */
-  display: flex; /* Используем flex для выравнивания */
-  align-items: center; /* Центрируем по вертикали */
-  justify-content: flex-start; /* Прикрепляем элементы к левой стороне */
-}
-
-.contact-icon {
-  width: 40px;
-  height: 45px;
-  margin-right: 15px;
-}
-
-.contact-text p {
-  font-size: 16px;
-  color: #000;
-  display: inline-block; /* Убираем блочное поведение */
-  vertical-align: middle; /* Вертикальное выравнивание с иконкой */
-}
-
-.contact-text a {
-  font-weight: 600;
-  color: #000;
-  text-decoration: none;
-  font-size: 20px;
-  white-space: nowrap; /* Запрещаем перенос текста на несколько строк */
-  vertical-align: middle; /* Вертикальное выравнивание с иконкой */
-}
-
-.contact-text a:hover {
-  text-decoration: underline;
-}
 
 /* ===== ФИКС ДЛЯ КОНТЕЙНЕРА ФОРМЫ ===== */
 .contact-form {
@@ -2513,8 +2604,6 @@ a {
 
 
 
-
-
 /* Стиль для самого поп-ап меню */
 .popup-menu {
   display: none; /* Меню скрыто по умолчанию */
@@ -2525,18 +2614,21 @@ a {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
   z-index: 999; /* Размещаем меню поверх контента */
-  justify-content: center;
-  align-items: center;
 }
 
-/* Стиль для содержимого меню */
+/* Стиль для содержимого меню - БЕЛАЯ ТЕМА С АНИМАЦИЯМИ */
 .popup-menu-content {
   background-color: white;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 12px; /* Немного больше скругление */
   text-align: center;
   width: 80%;
   max-width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Лёгкая тень */
 }
 
 .popup-menu-content ul {
@@ -2548,32 +2640,118 @@ a {
   margin: 20px 0;
 }
 
+/* Ссылки с анимацией при наведении */
 .popup-menu-content ul li a {
   text-decoration: none;
-  color: black; /* Цвет текста на черный */
+  color: #333; /* Тёмный текст */
   font-size: 20px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Плавная анимация */
+  display: block;
+  padding: 10px 0;
+  border-radius: 8px;
+  position: relative;
 }
 
+/* Эффект при наведении на ссылку */
 .popup-menu-content ul li a:hover {
-  text-decoration: underline;
+  color: #cfb26d; /* Золотой цвет текста */
+  background-color: rgba(207, 178, 109, 0.1); /* Светлый золотой фон */
+  padding-left: 20px;
+  padding-right: 20px;
+  transform: scale(1.05); /* Лёгкое увеличение */
 }
 
-/* Кнопка закрытия */
+/* Подчёркивание при наведении */
+.popup-menu-content ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #cfb26d;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.popup-menu-content ul li a:hover::after {
+  width: 80%; /* Появляется подчёркивание */
+}
+
+/* Кнопка закрытия с анимацией */
 .close-btn {
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 20px;
-  font-size: 30px;
+  font-size: 28px;
   cursor: pointer;
-  color: #cfb26d
+  color: #666; /* Серый цвет */
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .close-btn:hover {
-  color: #a08852
+  color: #cfb26d; /* Золотой при наведении */
+  background-color: rgba(207, 178, 109, 0.1); /* Светлый золотой фон */
+  transform: rotate(90deg) scale(1.1); /* Вращение + увеличение */
+}
+
+/* Заголовок меню (опционально) */
+.popup-menu-content h3 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.popup-menu-content h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: #cfb26d;
+}
+
+/* Разделитель между пунктами меню */
+.popup-menu-content ul li:not(:last-child) {
+  border-bottom: 1px solid #eee; /* Светлый разделитель */
+  padding-bottom: 15px;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 480px) {
+  .popup-menu-content {
+    width: 90%;
+    padding: 25px 20px;
+  }
+  
+  .popup-menu-content ul li a {
+    font-size: 18px;
+  }
+  
+  .popup-menu-content ul li a:hover {
+    padding-left: 15px;
+    padding-right: 15px;
+    transform: scale(1.03);
+  }
 }
 
 

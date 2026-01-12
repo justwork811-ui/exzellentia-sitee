@@ -48,7 +48,7 @@ class PortfolioSlider {
 }
 
 // ================================
-// МОДУЛЬ: СЛАЙДЕР КОМАНДЫ
+// МОДУЛЬ: MENU
 // ================================
 class TeamSlider {
     constructor() {
@@ -186,85 +186,110 @@ class MobileMenu {
 }
 
 // ================================
-// МОДУЛЬ: POPUP МЕНЮ (кнопка в углу)
+// МОДУЛЬ: POPUP МЕНЮ (с закрытием при клике вне)
 // ================================
-class PopupMenu {
+class SimplePopupMenu {
     constructor() {
         this.menuBtn = document.querySelector('.menu-btn');
         this.menu = document.getElementById('popupMenu');
-        this.lastScrollTop = 0;
+        this.menuContent = this.menu ? this.menu.querySelector('.popup-menu-content') : null;
+        
+        if (!this.menuBtn || !this.menu || !this.menuContent) {
+            console.log('Popup menu elements not found');
+            return;
+        }
         
         this.init();
     }
     
     init() {
-        if (!this.menuBtn || !this.menu) return;
+        console.log('Initializing SimplePopupMenu...');
         
         // Клик по кнопке меню
         this.menuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            this.toggle();
+            this.toggleMenu();
         });
         
-        // Закрытие при клике вне меню
-        document.addEventListener('click', (e) => {
-            if (this.isOpen() && 
-                !this.menu.contains(e.target) && 
-                e.target !== this.menuBtn) {
-                this.close();
+        // Закрытие при клике на оверлей (вне меню)
+        this.menu.addEventListener('click', (e) => {
+            // Если клик был на самом меню (не на контенте)
+            if (e.target === this.menu) {
+                this.closeMenu();
             }
         });
+        
+        // Закрытие при клике на кнопку закрытия
+        const closeBtn = this.menu.querySelector('.close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.closeMenu();
+            });
+        }
         
         // Закрытие по Escape
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isOpen()) {
-                this.close();
+            if (e.key === 'Escape' && this.menu.style.display === 'block') {
+                this.closeMenu();
             }
         });
         
-        // Скрытие/показ при скролле
-        window.addEventListener('scroll', () => this.handleScroll());
-        
-        // Закрытие при клике на ссылку внутри меню
+        // Закрытие при клике на ссылки внутри меню
         const menuLinks = this.menu.querySelectorAll('a');
         menuLinks.forEach(link => {
-            link.addEventListener('click', () => this.close());
+            link.addEventListener('click', () => this.closeMenu());
         });
     }
     
-    toggle() {
-        if (this.isOpen()) {
-            this.close();
+    toggleMenu() {
+        if (this.menu.style.display === 'block') {
+            this.closeMenu();
         } else {
-            this.open();
+            this.openMenu();
         }
     }
     
-    open() {
-        this.menu.style.display = 'flex';
+    openMenu() {
+        this.menu.style.display = 'block';
+        console.log('Menu opened');
     }
     
-    close() {
+    closeMenu() {
         this.menu.style.display = 'none';
-    }
-    
-    isOpen() {
-        return this.menu.style.display === 'flex';
-    }
-    
-    handleScroll() {
-        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (currentScroll > this.lastScrollTop) {
-            this.menuBtn.classList.add('hidden');
-            this.close();
-        } else {
-            this.menuBtn.classList.remove('hidden');
-        }
-        
-        this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        console.log('Menu closed');
     }
 }
+
+// ================================
+// ИНИЦИАЛИЗАЦИЯ (с новой версией PopupMenu)
+// ================================
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Initializing website...');
+    
+    // Инициализируем модули
+    const modules = {
+        portfolioSlider: new PortfolioSlider(),
+        teamSlider: new TeamSlider(),
+        splitSlider: new SplitSliderManager(),
+        mobileMenu: new MobileMenu(),
+        popupMenu: new SimplePopupMenu(), // ← ИСПОЛЬЗУЕМ НОВЫЙ КЛАСС
+        contactForm: new ContactForm(),
+        modalManager: new ModalManager()
+    };
+    
+    // Вспомогательные функции
+    initSmoothScroll();
+    initLazyLoading();
+    
+    window.app = modules;
+    console.log('Website initialized!');
+});
+
+
+
+
+
 
 // ================================
 // МОДУЛЬ: ФОРМА ОБРАТНОЙ СВЯЗИ
@@ -559,3 +584,107 @@ function setupOutsideClickClose(element, closeCallback, excludeElements = []) {
     });
 }
 
+
+
+
+
+
+// ================================
+// МОДУЛЬ: SPLIT-SCREEN СЛАЙДЕР (два независимых слайдера)
+// ================================
+class SplitSliderManager {
+    constructor() {
+        this.leftPanel = document.querySelector('.left-panel');
+        this.rightPanel = document.querySelector('.right-panel');
+        
+        this.init();
+    }
+    
+    init() {
+        // Инициализируем левый слайдер
+        if (this.leftPanel) {
+            this.initSlider(this.leftPanel, 'left');
+        }
+        
+        // Инициализируем правый слайдер
+        if (this.rightPanel) {
+            this.initSlider(this.rightPanel, 'right');
+        }
+    }
+    
+    initSlider(panel, side) {
+        const slides = panel.querySelectorAll('.split-slide');
+        const prevBtn = panel.querySelector(`.${side}-prev`);
+        const nextBtn = panel.querySelector(`.${side}-next`);
+        const indicators = panel.querySelectorAll('.panel-indicators span');
+        
+        if (slides.length === 0) return;
+        
+        let currentIndex = 0;
+        
+        const showSlide = (index) => {
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+                slide.style.opacity = '0';
+            });
+            
+            slides[index].classList.add('active');
+            slides[index].style.opacity = '1';
+            
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
+            
+            currentIndex = index;
+        };
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                let newIndex = currentIndex - 1;
+                if (newIndex < 0) newIndex = slides.length - 1;
+                showSlide(newIndex);
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                let newIndex = currentIndex + 1;
+                if (newIndex >= slides.length) newIndex = 0;
+                showSlide(newIndex);
+            });
+        }
+        
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+        
+        showSlide(0);
+    }
+}
+
+// ================================
+// ИНИЦИАЛИЗАЦИЯ (ОБНОВЛЁННАЯ)
+// ================================
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Initializing website...');
+    
+    // Инициализируем модули
+    const modules = {
+        portfolioSlider: new PortfolioSlider(),
+        teamSlider: new TeamSlider(),
+        splitSlider: new SplitSliderManager(), // ← ИЗМЕНИЛИ ИМЯ ТУТ
+        mobileMenu: new MobileMenu(),
+        popupMenu: new PopupMenu(),
+        contactForm: new ContactForm(),
+        modalManager: new ModalManager()
+    };
+    
+    // Вспомогательные функции
+    initSmoothScroll();
+    initLazyLoading();
+    
+    window.app = modules;
+    console.log('Website initialized!');
+});

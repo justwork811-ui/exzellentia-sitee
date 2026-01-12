@@ -258,8 +258,16 @@ html {
 }
 
 .menu-btn.hidden {
-  opacity: 0;
-  pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+.menu-btn {
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
 }
 
 
@@ -1525,6 +1533,11 @@ button.next {
   margin-bottom: 20px;
 }
 
+
+
+
+
+
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
   .work-process .steps {
@@ -1533,14 +1546,27 @@ button.next {
   }
 
   .work-process .step {
-    width: 80%;  /* Блоки с иконками занимают 80% ширины */
+    width: 80%;
     margin: 0 auto;
+    text-align: center;
+  }
+
+  /* ВЫРАВНИВАЕМ ВСЕ ЗАГОЛОВКИ */
+  .work-process h3 {
+    font-size: 1.2em !important; /* Единый размер для всех */
+    min-height: 2.8em; /* Фиксированная высота для 2 строк */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.4;
+    margin: 10px 0;
+    padding: 0 5px;
   }
 }
 
 @media (max-width: 480px) {
   .work-process h2 {
-    font-size: 2em;
+    font-size: 1.8em; /* Чуть меньше */
   }
 
   .work-process .step-number {
@@ -1549,7 +1575,21 @@ button.next {
   }
 
   .work-process h3 {
-    font-size: 1.2em;
+    font-size: 1.1em !important; /* Ещё немного меньше */
+    min-height: 2.6em; /* Немного меньше высота */
+  }
+  
+  /* Для очень длинных текстов - переносим */
+  .work-process h3 {
+    word-break: break-word; /* Разрешаем перенос длинных слов */
+    hyphens: auto; /* Автоматические переносы (для немецкого) */
+  }
+}
+
+/* Дополнительно: если нужно сократить "Planung & Angebot" */
+@media (max-width: 480px) {
+  .work-process .step:nth-child(1) h3 {
+    font-size: 1em !important; /* Чуть меньше для самого длинного */
   }
 }
 
@@ -1562,11 +1602,7 @@ button.next {
 
 
 
-
-
-
-
-/* ===== SPLIT-SCREEN СЛАЙДЕР ===== */
+/* ===== SPLIT-SCREEN СЛАЙДЕР - С БОЛЬШИМИ ИЗОБРАЖЕНИЯМИ ===== */
 .split-slider {
     padding: 80px 20px;
     background-color: #fafafa;
@@ -1585,7 +1621,7 @@ button.next {
     max-width: 1400px;
     margin: 0 auto;
     gap: 30px;
-    min-height: 1000px;
+    min-height: 900px; /* Увеличили */
 }
 
 /* Общие стили для обеих панелей */
@@ -1596,6 +1632,8 @@ button.next {
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease;
+    position: relative;
+    height: 850px; /* Увеличили высоту */
 }
 
 .split-panel:hover {
@@ -1605,12 +1643,14 @@ button.next {
 
 /* Заголовок панели */
 .panel-header {
-    padding: 25px 30px;
+    padding: 20px 30px; /* Уменьшили отступы */
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+    height: 70px; /* Уменьшили заголовок */
+    box-sizing: border-box;
 }
 
 .panel-header h3 {
@@ -1619,7 +1659,7 @@ button.next {
     margin: 0;
 }
 
-/* Индикаторы в заголовке */
+/* Индикаторы */
 .panel-indicators {
     display: flex;
     gap: 8px;
@@ -1638,10 +1678,10 @@ button.next {
     transform: scale(1.3);
 }
 
-/* Контейнер слайдера внутри панели */
+/* Контейнер слайдера */
 .split-slider-container {
     position: relative;
-    height: calc(100% - 80px);
+    height: calc(100% - 70px); /* Учитываем уменьшенный заголовок */
     overflow: hidden;
 }
 
@@ -1649,6 +1689,7 @@ button.next {
 .split-slides {
     height: 100%;
     position: relative;
+    width: 100%;
 }
 
 .split-slide {
@@ -1659,46 +1700,62 @@ button.next {
     height: 100%;
     opacity: 0;
     transition: opacity 0.5s ease;
+    z-index: 1;
+    display: block !important;
 }
 
 .split-slide.active {
-    opacity: 1;
+    opacity: 1 !important;
+    z-index: 2;
 }
 
+/* ИЗОБРАЖЕНИЯ - МАКСИМАЛЬНАЯ ВЫСОТА */
 .split-slide img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    height: 95% !important; /* 95% для фото, только 5% для текста */
+    object-fit: cover !important;
+    object-position: center !important; /* Центрируем чтобы видно всё */
+    display: block !important;
+    background-color: #f5f5f5;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-/* Информация о слайде */
+/* Информация о слайде - минимальная */
 .slide-info {
-    padding: 15px 30px;
+    padding: 10px 30px;
     text-align: left;
     background: white;
-    height: 15%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    height: 5% !important; /* Минимальная высота */
+    min-height: 50px; /* Минимально возможная */
+    box-sizing: border-box;
+    border-top: 1px solid #eee;
+    font-size: 0.9em; /* Меньший текст */
 }
 
 .slide-info h4 {
-    font-size: 1.3em;
+    font-size: 1.1em; /* Меньше */
     color: #1c1c1c;
-    margin-bottom: 8px;
+    margin-bottom: 5px; /* Меньше отступов */
 }
 
 .slide-info p {
     color: #666;
-    font-size: 1em;
+    font-size: 0.9em; /* Меньше */
     margin: 0;
+    display: none; /* Можно скрыть совсем если не нужно */
 }
 
-/* ===== КНОПКИ СЛАЙДЕРА ===== */
+/* Кнопки слайдера */
 .split-prev, .split-next {
     position: absolute;
-    top: 50%;
+    top: 45% !important; /* Ещё ниже */
     transform: translateY(-50%);
     width: 50px;
     height: 50px;
@@ -1710,12 +1767,13 @@ button.next {
     font-size: 22px;
     font-weight: 300;
     z-index: 10;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     opacity: 0.9;
+    visibility: visible !important;
 }
 
 .split-prev:hover, .split-next:hover {
@@ -1726,7 +1784,7 @@ button.next {
     opacity: 1;
 }
 
-/* Позиционирование кнопок внутри панелей */
+/* Позиционирование кнопок */
 .left-prev, .right-prev {
     left: 20px;
 }
@@ -1735,11 +1793,8 @@ button.next {
     right: 20px;
 }
 
-/* Цветовые акценты для панелей */
-.left-panel .panel-header {
-    border-top: 4px solid #cfb26d;
-}
-
+/* Цветовые акценты */
+.left-panel .panel-header,
 .right-panel .panel-header {
     border-top: 4px solid #cfb26d;
 }
@@ -1748,57 +1803,57 @@ button.next {
     background-color: #cfb26d;
 }
 
-/* ===== АДАПТИВНОСТЬ ===== */
-
-/* Планшеты */
-@media (max-width: 1024px) {
-    .split-container {
-        flex-direction: column;
-        gap: 40px;
-        max-width: 800px;
-    }
-    
-    .split-panel {
-        min-height: 500px;
-    }
-    
-    .split-slide img {
-        height: 65%;
-    }
-    
-    .slide-info {
-        height: 35%;
-    }
-}
-
-/* Мобильные */
+/* ===== АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ ===== */
 @media (max-width: 768px) {
     .split-slider {
-        padding: 60px 15px;
+        padding: 50px 15px;
     }
     
     .split-slider h2 {
-        font-size: 2em;
-        margin-bottom: 40px;
+        font-size: 1.8em;
+        margin-bottom: 30px;
     }
     
+    /* ВЕРТИКАЛЬНОЕ РАСПОЛОЖЕНИЕ */
+    .split-container {
+        flex-direction: column !important;
+        gap: 30px !important;
+        min-height: auto !important;
+        max-width: 100% !important;
+    }
+    
+    /* МАКСИМАЛЬНАЯ ВЫСОТА ДЛЯ МОБИЛЬНЫХ */
     .split-panel {
-        min-height: 450px;
+        width: 100% !important;
+        height: 550px !important; /* Увеличили высоту */
+        min-height: 550px !important;
+        flex: none !important;
+        display: block !important;
+    }
+    
+    /* ЕЩЁ БОЛЬШЕ МЕСТА ДЛЯ ФОТО */
+    .split-slide img {
+        height: 90% !important; /* 90% на мобильных */
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block !important;
+        opacity: 1 !important;
+        min-height: 450px !important; /* Гарантируем минимальную высоту */
+    }
+    
+    /* Минимальный текст */
+    .slide-info {
+        height: 10% !important;
+        padding: 8px 15px;
+        min-height: 40px;
     }
     
     .panel-header {
-        padding: 20px;
+        padding: 15px 20px;
+        height: 60px; /* Ещё меньше заголовок */
     }
     
     .panel-header h3 {
-        font-size: 1.3em;
-    }
-    
-    .slide-info {
-        padding: 20px;
-    }
-    
-    .slide-info h4 {
         font-size: 1.2em;
     }
     
@@ -1806,30 +1861,44 @@ button.next {
         width: 44px;
         height: 44px;
         font-size: 20px;
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        top: 40% !important; /* Ниже чтобы не мешать */
+        display: flex !important;
+        opacity: 1 !important;
     }
     
     .left-prev, .right-prev {
-        left: 15px;
+        left: 10px;
     }
     
     .left-next, .right-next {
-        right: 15px;
+        right: 10px;
     }
 }
 
-/* Маленькие мобильные */
+/* Очень маленькие телефоны */
 @media (max-width: 480px) {
     .split-panel {
-        min-height: 400px;
+        height: 500px !important;
+        min-height: 500px !important;
+    }
+    
+    .split-slider h2 {
+        font-size: 1.6em;
     }
     
     .split-slide img {
-        height: 60%;
+        height: 88% !important;
+        object-fit: cover !important;
     }
     
     .slide-info {
-        height: 40%;
-        padding: 15px;
+        height: 12% !important;
+        font-size: 0.8em;
+    }
+    
+    .panel-header h3 {
+        font-size: 1.1em;
     }
     
     .split-prev, .split-next {
@@ -1839,6 +1908,11 @@ button.next {
     }
 }
 
+/* Для очень высоких изображений (инструменты) */
+.split-slide img {
+    object-fit: contain !important; /* Показываем ВСЁ изображение */
+    background-color: #fff !important; /* Белый фон вместо серого */
+}
 
 
 
@@ -2004,7 +2078,297 @@ button.next {
 
 
 
+/* ===== КОНТАКТНАЯ ФОРМА ===== */
+.contact-form-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+}
 
+.contact-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #cfb26d, #a08852);
+}
+
+.contact-form-section h2 {
+    text-align: center;
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.contact-form-section .subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+}
+
+
+#contact .contact-form h2 {
+    color: #cfb26d !important;
+    font-size: 2.8em !important; /* Увеличили размер */
+    text-align: left;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+#contact .contact-form p {
+    color: #333 !important; /* Чёрнее */
+    font-weight: 600 !important; /* Жирнее */
+    text-align: left;
+    margin-bottom: 40px;
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+/* Для максимальной жирности */
+#contact .contact-form p {
+    font-weight: 700 !important; /* Ещё жирнее */
+    color: #000 !important; /* Абсолютно чёрный */
+}
+
+/* Для адаптации на мобильных */
+@media (max-width: 768px) {
+    #contact .contact-form h2 {
+        font-size: 2.2em !important;
+    }
+}
+
+/* Форма */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95em;
+}
+
+.form-group .required {
+    color: #e74c3c;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 15px 20px;
+    border: 2px solid #eaeaea;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: #fafafa;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #cfb26d;
+    background: white;
+    box-shadow: 0 5px 20px rgba(207, 178, 109, 0.2);
+    transform: translateY(-2px);
+}
+
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+    border-color: #cfb26d;
+}
+
+/* Текстовое поле */
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Селект (выпадающий список) */
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 20px;
+    padding-right: 50px;
+}
+
+/* Радио кнопки (тип собственности) */
+.property-type-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.property-type-label {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    background: #f5f5f5;
+    border: 2px solid #eaeaea;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 150px;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.property-type-label:hover {
+    border-color: #cfb26d;
+    background: rgba(207, 178, 109, 0.1);
+}
+
+.property-type-input {
+    display: none;
+}
+
+.property-type-input:checked + .property-type-label {
+    background: #cfb26d;
+    color: white;
+    border-color: #cfb26d;
+    box-shadow: 0 5px 15px rgba(207, 178, 109, 0.3);
+}
+
+/* Кнопка отправки */
+.submit-btn {
+    background: linear-gradient(135deg, #cfb26d 0%, #a08852 100%);
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(207, 178, 109, 0.4);
+    background: linear-gradient(135deg, #a08852 0%, #cfb26d 100%);
+}
+
+.submit-btn:active {
+    transform: translateY(-2px);
+}
+
+.submit-btn.loading {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.submit-btn .btn-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Сообщение об успехе/ошибке */
+.form-message {
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 500;
+    display: none;
+}
+
+.form-message.success {
+    background: rgba(46, 204, 113, 0.1);
+    color: #27ae60;
+    border: 1px solid #2ecc71;
+    display: block;
+}
+
+.form-message.error {
+    background: rgba(231, 76, 60, 0.1);
+    color: #c0392b;
+    border: 1px solid #e74c3c;
+    display: block;
+}
+
+/* Адаптация формы */
+@media (max-width: 768px) {
+    .contact-form-section {
+        padding: 50px 15px;
+    }
+    
+    .contact-form-container {
+        padding: 30px 20px;
+        border-radius: 15px;
+    }
+    
+    .contact-form-section h2 {
+        font-size: 2em;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .property-type-label {
+        min-width: 120px;
+        padding: 10px 20px;
+    }
+    
+    .submit-btn {
+        padding: 16px 30px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .property-type-group {
+        flex-direction: column;
+    }
+    
+    .property-type-label {
+        width: 100%;
+        justify-content: center;
+    }
+}
 
 /* Общий стиль для страницы */
 * {
@@ -2046,7 +2410,6 @@ body {
 
 
 
-
 /* ===== КОНТАКТНАЯ СЕКЦИЯ ===== */
 .contact-info-section {
     background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
@@ -2060,7 +2423,7 @@ body {
 
 .contact-info-section h3 {
     font-size: 2.2em;
-    color: #cfb26d;
+    color: #e6a206;
     margin-bottom: 50px;
     position: relative;
     display: inline-block;
@@ -2079,13 +2442,17 @@ body {
     border-radius: 2px;
 }
 
-/* Сетка контактов */
 .contact-info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 30px;
-    max-width: 1100px;
-    margin: 0 auto;
+    margin: 0 auto 50px;
+}
+
+.contact-card {
+    width: 250px; /* фиксированная ширина карточки */
+    flex-shrink: 0; /* чтобы не сжимались */
 }
 
 /* Карточки контактов */
@@ -2155,7 +2522,13 @@ body {
     color: #FF9800;
 }
 
-.contact-card:hover .contact-icon {
+.address-icon {
+    background: rgba(0, 150, 136, 0.1);
+    color: #009688;
+}
+
+.contact-card:hover .contact-icon,
+.address-card:hover .contact-icon {
     transform: scale(1.15);
 }
 
@@ -2190,6 +2563,14 @@ body {
     text-decoration: underline;
 }
 
+.contact-address {
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.5;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
 .contact-subtext {
     color: #888;
     font-size: 0.9em;
@@ -2198,188 +2579,84 @@ body {
     text-align: center;
 }
 
-/* ===== АДАПТИВНОСТЬ ===== */
-
-/* Планшеты */
-@media (max-width: 1024px) {
-    .contact-info-section {
-        padding: 50px 20px;
-        margin: 30px 20px;
-    }
-    
-    .contact-info-section h3 {
-        font-size: 2em;
-        margin-bottom: 40px;
-    }
-    
-    .contact-info-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-    }
+/* ===== АДРЕС - ОТДЕЛЬНО ПО ЦЕНТРУ ===== */
+.address-section {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 2px solid rgba(207, 178, 109, 0.2);
 }
 
-/* Мобильные устройства */
+.address-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px 40px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(207, 178, 109, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    display: inline-block;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.address-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(207, 178, 109, 0.15);
+    border-color: rgba(207, 178, 109, 0.3);
+}
+
+.address-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.address-details {
+    text-align: center;
+}
+
+.address-details h4 {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+
 @media (max-width: 768px) {
     .contact-info-section {
         padding: 40px 15px;
-        border-radius: 15px;
         margin: 30px 15px;
     }
     
     .contact-info-section h3 {
         font-size: 1.8em;
-        margin-bottom: 35px;
     }
     
     .contact-info-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+        margin-bottom: 40px;
     }
     
-    .contact-card {
-        padding: 30px 20px;
+    .address-section {
+        margin-top: 30px;
+        padding-top: 30px;
     }
     
-    .contact-icon {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .contact-icon svg {
-        width: 28px;
-        height: 28px;
-    }
-    
-    .contact-details h4 {
-        font-size: 1.2em;
-    }
-    
-    .contact-link {
-        font-size: 1em;
+    .address-card {
+        padding: 25px 20px;
+        width: 90%;
     }
 }
 
-/* Маленькие мобильные */
-@media (max-width: 480px) {
-    .contact-info-section h3 {
-        font-size: 1.6em;
-    }
-    
-    .contact-card {
-        padding: 25px 15px;
-    }
-    
-    .contact-icon {
-        width: 55px;
-        height: 55px;
-    }
-    
-    .contact-icon svg {
-        width: 24px;
-        height: 24px;
-    }
-}
-
-/* Большие экраны */
-@media (min-width: 1400px) {
-    .contact-info-section {
-        max-width: 1300px;
-        padding: 70px 30px;
-    }
-    
+@media (min-width: 769px) and (max-width: 1024px) {
     .contact-info-grid {
-        max-width: 1200px;
-        gap: 40px;
-    }
-    
-    .contact-card {
-        padding: 40px 30px;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
-
-/* Высокий DPI экраны */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .contact-icon {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    .contact-card {
-        border: 1px solid rgba(207, 178, 109, 0.15);
-    }
-}
-
-
-
-
-
-
-/* ===== ФИКС ДЛЯ КОНТЕЙНЕРА ФОРМЫ ===== */
-.contact-form {
-  padding: 40px 50px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(252, 252, 252, 0.1);
-  margin-top: 50px;
-  text-align: left;
-  min-height: 650px;
-  position: relative;
-  /* Убедитесь, что это есть: */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Дополнительный padding снизу для кнопки */
-.contact-form::after {
-  content: "";
-  display: block;
-  height: 40px; /* Место для кнопки */
-  width: 100%;
-}
-
-
-.contact-form h2 {
-  font-size: 36px;
-  margin-bottom: 20px;
-  color: #cfb26d
-}
-
-.contact-form p {
-  font-size: 18px;
-  color: #000;
-  margin-bottom: 30px;
-}
-
-.form-group {
-  margin-bottom: 30px;
-}
-
-.form-group label {
-  font-size: 16px;
-  margin-bottom: 8px;
-  display: block;
-  color: #555;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px;
-  font-size: 12px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #cfb26d
-}
-
-textarea {
-  resize: vertical;
-}
-
 
 
 
@@ -2438,33 +2715,46 @@ textarea {
 
 
 
-
-/* ===== Добавление стилей для радиокнопок ===== */
-.radio-group {
-  display: flex;
-  gap: 20px; /* Отступ между радиокнопками */
-  align-items: center;
-  margin-top: 10px;
+/* Исправляем радио кнопки */
+#contact .radio-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    justify-content: flex-start; /* ← выравниваем по левому краю */
 }
 
-.radio-item {
-  display: flex;
-  align-items: center;
+#contact .radio-item {
+    flex: 0 1 auto; /* ← не растягиваем на всю ширину */
+    min-width: 150px; /* ← фиксированная минимальная ширина */
 }
 
-.radio-item input[type="radio"] {
-  margin-right: 10px;
-  width: 18px;
-  height: 18px;
+#contact .radio-item label {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    background: #f8f8f8;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    justify-content: center; /* ← текст по центру внутри кнопки */
+    text-align: center;
+    white-space: nowrap; /* ← текст в одну строку */
 }
 
-.radio-item label {
-  font-size: 16px;
-  color: #555;
-  margin: 0;
-  cursor: pointer;
+/* Для мобильных */
+@media (max-width: 768px) {
+    #contact .radio-group {
+        flex-direction: column;
+        align-items: center; /* ← центрируем на мобильных */
+    }
+    
+    #contact .radio-item {
+        width: 100%;
+        max-width: 250px;
+    }
 }
-
 
 
 
@@ -2534,7 +2824,196 @@ a {
 
 
 
+/* ===== УЛУЧШЕННАЯ ФОРМА С РАМКОЙ И СВЕЧЕНИЕМ ===== */
+#contact .container {
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(207, 178, 109, 0.2);
+    position: relative;
+    overflow: hidden;
+}
 
+/* Свечение по краям */
+#contact .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    padding: 3px;
+    background: linear-gradient(135deg, 
+        rgba(207, 178, 109, 0.3) 0%, 
+        rgba(207, 178, 109, 0.1) 50%, 
+        rgba(207, 178, 109, 0.3) 100%);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Или вариант с простой элегантной рамкой */
+#contact .container {
+   max-width: 1600px; 
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 15px 50px rgba(207, 178, 109, 0.15);
+    border: 1px solid #eaeaea;
+    position: relative;
+}
+
+#contact .container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        #cfb26d, 
+        #a08852, 
+        #cfb26d);
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* Улучшаем поля формы */
+#contact .contact-form {
+    position: relative;
+    z-index: 1;
+}
+
+#contact .form-group {
+    margin-bottom: 25px;
+}
+
+#contact .form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+    font-size: 1em;
+}
+
+#contact .form-group input,
+#contact .form-group textarea {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: #fafafa;
+    box-sizing: border-box;
+}
+
+#contact .form-group input:focus,
+#contact .form-group textarea:focus {
+    outline: none;
+    border-color: #cfb26d;
+    background: white;
+    box-shadow: 0 5px 25px rgba(207, 178, 109, 0.2);
+    transform: translateY(-2px);
+}
+
+#contact .form-group input:hover,
+#contact .form-group textarea:hover {
+    border-color: #cfb26d;
+}
+
+#contact .form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* Радио кнопки улучшенные */
+#contact .radio-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+#contact .radio-item {
+    flex: 1;
+}
+
+#contact .radio-item label {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    background: #f8f8f8;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    justify-content: center;
+}
+
+#contact .radio-item input[type="radio"] {
+    display: none;
+}
+
+#contact .radio-item input[type="radio"]:checked + label {
+    background: #cfb26d;
+    color: white;
+    border-color: #cfb26d;
+    box-shadow: 0 5px 20px rgba(207, 178, 109, 0.3);
+}
+
+#contact .radio-item label:hover {
+    border-color: #cfb26d;
+    background: rgba(207, 178, 109, 0.1);
+}
+
+/* Кнопка отправки улучшенная */
+#contact .submit-btn {
+    background: linear-gradient(135deg, #cfb26d 0%, #a08852 100%);
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin-top: 20px;
+    width: 100%;
+    display: block;
+}
+
+#contact .submit-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(207, 178, 109, 0.4);
+    background: linear-gradient(135deg, #a08852 0%, #cfb26d 100%);
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    #contact .container {
+        padding: 30px 20px;
+        margin: 0 15px;
+        border-radius: 15px;
+    }
+    
+    #contact .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #contact .submit-btn {
+        padding: 16px 30px;
+        font-size: 16px;
+    }
+}
 
 
 
@@ -2969,4 +3448,17 @@ html {
     font-size: 25px; /* Уменьшаем размер крестика на мобильных */
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 

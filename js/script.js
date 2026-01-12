@@ -186,13 +186,20 @@ class MobileMenu {
 }
 
 // ================================
-// МОДУЛЬ: POPUP МЕНЮ (с закрытием при клике вне)
+// МОДУЛЬ: POPUP МЕНЮ (полный с эффектом скролла)
 // ================================
 class SimplePopupMenu {
     constructor() {
         this.menuBtn = document.querySelector('.menu-btn');
         this.menu = document.getElementById('popupMenu');
         this.menuContent = this.menu ? this.menu.querySelector('.popup-menu-content') : null;
+        
+        // Настройки скролла
+        this.lastScrollTop = 0;
+        this.scrollThreshold = 100; // Пикселей для срабатывания
+        this.scrollTimeout = null;
+        this.isScrolling = false;
+        this.isOpen = false;
         
         if (!this.menuBtn || !this.menu || !this.menuContent) {
             console.log('Popup menu elements not found');
@@ -208,12 +215,12 @@ class SimplePopupMenu {
         // Клик по кнопке меню
         this.menuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            e.preventDefault();
             this.toggleMenu();
         });
         
         // Закрытие при клике на оверлей (вне меню)
         this.menu.addEventListener('click', (e) => {
-            // Если клик был на самом меню (не на контенте)
             if (e.target === this.menu) {
                 this.closeMenu();
             }
@@ -230,20 +237,71 @@ class SimplePopupMenu {
         
         // Закрытие по Escape
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.menu.style.display === 'block') {
+            if (e.key === 'Escape' && this.isOpen) {
                 this.closeMenu();
             }
         });
         
-        // Закрытие при клике на ссылки внутри меню
+        // Закрытие при клике на ссылки
         const menuLinks = this.menu.querySelectorAll('a');
         menuLinks.forEach(link => {
             link.addEventListener('click', () => this.closeMenu());
         });
+        
+        // Закрытие при клике в любое место вне меню
+        document.addEventListener('click', (e) => {
+            if (this.isOpen && 
+                !this.menu.contains(e.target) && 
+                e.target !== this.menuBtn) {
+                this.closeMenu();
+            }
+        });
+        
+        // Эффект скрытия/показа при скролле
+        window.addEventListener('scroll', () => this.handleScroll());
+        
+        // Показываем кнопку при загрузке
+        this.menuBtn.classList.remove('hidden');
+    }
+    
+    handleScroll() {
+        // Получаем текущую позицию скролла
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Определяем направление скролла
+        if (currentScroll > this.lastScrollTop && currentScroll > this.scrollThreshold) {
+            // Скролл ВНИЗ - скрываем
+            this.hideMenuButton();
+        } else {
+            // Скролл ВВЕРХ или в начале страницы - показываем
+            this.showMenuButton();
+        }
+        
+        this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        
+        // Задержка для предотвращения мерцания
+        this.debounceScroll();
+    }
+    
+    hideMenuButton() {
+        this.menuBtn.classList.add('hidden');
+        this.menuBtn.style.transform = 'translateY(-20px)';
+    }
+    
+    showMenuButton() {
+        this.menuBtn.classList.remove('hidden');
+        this.menuBtn.style.transform = 'translateY(0)';
+    }
+    
+    debounceScroll() {
+        clearTimeout(this.scrollTimeout);
+        this.scrollTimeout = setTimeout(() => {
+            this.isScrolling = false;
+        }, 100);
     }
     
     toggleMenu() {
-        if (this.menu.style.display === 'block') {
+        if (this.isOpen) {
             this.closeMenu();
         } else {
             this.openMenu();
@@ -252,14 +310,19 @@ class SimplePopupMenu {
     
     openMenu() {
         this.menu.style.display = 'block';
+        this.isOpen = true;
+        document.body.style.overflow = 'hidden'; // Блокируем скролл страницы
         console.log('Menu opened');
     }
     
     closeMenu() {
         this.menu.style.display = 'none';
+        this.isOpen = false;
+        document.body.style.overflow = ''; // Разблокируем скролл
         console.log('Menu closed');
     }
 }
+
 
 // ================================
 // ИНИЦИАЛИЗАЦИЯ (с новой версией PopupMenu)
@@ -588,10 +651,6 @@ function setupOutsideClickClose(element, closeCallback, excludeElements = []) {
 
 
 
-
-// ================================
-// МОДУЛЬ: SPLIT-SCREEN СЛАЙДЕР (два независимых слайдера)
-// ================================
 class SplitSliderManager {
     constructor() {
         this.leftPanel = document.querySelector('.left-panel');
@@ -601,12 +660,10 @@ class SplitSliderManager {
     }
     
     init() {
-        // Инициализируем левый слайдер
         if (this.leftPanel) {
             this.initSlider(this.leftPanel, 'left');
         }
         
-        // Инициализируем правый слайдер
         if (this.rightPanel) {
             this.initSlider(this.rightPanel, 'right');
         }
@@ -623,21 +680,35 @@ class SplitSliderManager {
         let currentIndex = 0;
         
         const showSlide = (index) => {
+            // Скрываем все слайды
             slides.forEach(slide => {
                 slide.classList.remove('active');
                 slide.style.opacity = '0';
+                slide.style.display = 'none';
+                slide.style.visibility = 'hidden';
             });
             
-            slides[index].classList.add('active');
-            slides[index].style.opacity = '1';
+            // Показываем текущий слайд
+            const activeSlide = slides[index];
+            activeSlide.classList.add('active');
+            activeSlide.style.opacity = '1';
+            activeSlide.style.display = 'block';
+            activeSlide.style.visibility = 'visible';
             
+            // Обновляем индикаторы
             indicators.forEach((indicator, i) => {
                 indicator.classList.toggle('active', i === index);
             });
             
             currentIndex = index;
+            
+            // Форсируем перерисовку для мобильных
+            setTimeout(() => {
+                activeSlide.style.transform = 'translateZ(0)';
+            }, 50);
         };
         
+        // Кнопки
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
                 let newIndex = currentIndex - 1;
@@ -654,37 +725,19 @@ class SplitSliderManager {
             });
         }
         
+        // Индикаторы
         indicators.forEach((indicator, index) => {
             indicator.addEventListener('click', () => {
                 showSlide(index);
             });
         });
         
+        // Показываем первый слайд
         showSlide(0);
+        
+        // Автоматически перерисовываем при изменении размера окна
+        window.addEventListener('resize', () => {
+            showSlide(currentIndex);
+        });
     }
 }
-
-// ================================
-// ИНИЦИАЛИЗАЦИЯ (ОБНОВЛЁННАЯ)
-// ================================
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Initializing website...');
-    
-    // Инициализируем модули
-    const modules = {
-        portfolioSlider: new PortfolioSlider(),
-        teamSlider: new TeamSlider(),
-        splitSlider: new SplitSliderManager(), // ← ИЗМЕНИЛИ ИМЯ ТУТ
-        mobileMenu: new MobileMenu(),
-        popupMenu: new PopupMenu(),
-        contactForm: new ContactForm(),
-        modalManager: new ModalManager()
-    };
-    
-    // Вспомогательные функции
-    initSmoothScroll();
-    initLazyLoading();
-    
-    window.app = modules;
-    console.log('Website initialized!');
-});

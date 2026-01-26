@@ -2438,7 +2438,7 @@ body {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #cfb26d, #a08852);
+   
     border-radius: 2px;
 }
 
@@ -2717,8 +2717,8 @@ body {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #cfb26d, #a08852, #cfb26d);
-    background-size: 200% 100%;
+   
+    
     animation: shimmer 3s ease-in-out infinite;
 }
 

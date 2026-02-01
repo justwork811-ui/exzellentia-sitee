@@ -741,3 +741,623 @@ class SplitSliderManager {
         });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+// ===== ПОРТФОЛИО JavaScript =====
+
+// Данные проектов (все берется из HTML)
+const portfolioProjects = {
+  renovation: {
+    id: 'renovation',
+    title: "Luxus-Renovierung",
+    description: "Vollständige Renovierung einer Wohnung unter Berücksichtigung aller technischen und ästhetischen Aspekte. Moderne Lösungen mit hochwertigen Materialien."
+  },
+  furniture: {
+    id: 'furniture',
+    title: "Designer Möbel",
+    description: "Maßgefertigte Möbel, Einbauschränke und individuelle Einrichtungen mit hochwertigen Materialien und modernem Design."
+  }
+};
+
+// Инициализация портфолио
+document.addEventListener('DOMContentLoaded', function() {
+  // Элементы DOM
+  const portfolioCards = document.querySelectorAll('.portfolio-card');
+  const modal = document.querySelector('.portfolio-modal');
+  const modalSlides = document.querySelector('.modal-slides');
+  const modalTitle = document.querySelector('.modal-title');
+  const modalDescription = document.querySelector('.modal-description');
+  const currentSlideSpan = document.querySelector('.current-slide');
+  const totalSlidesSpan = document.querySelector('.total-slides');
+  const closeBtn = document.querySelector('.modal-close');
+  const prevBtn = document.querySelector('.modal-prev');
+  const nextBtn = document.querySelector('.modal-next');
+  
+  let currentProject = null;
+  let currentSlideIndex = 0;
+  let totalSlides = 0;
+  let isLoading = false;
+  
+  // ===== ОТКРЫТИЕ МОДАЛЬНОГО ОКНА =====
+  portfolioCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const projectId = this.getAttribute('data-project');
+      openModal(projectId);
+    });
+  });
+  
+  function openModal(projectId) {
+    // Находим карточку проекта
+    const card = document.querySelector(`[data-project="${projectId}"]`);
+    if (!card) {
+      console.error('Card not found:', projectId);
+      return;
+    }
+    
+    // Берем заголовок и описание из карточки
+    const cardTitle = card.querySelector('.card-title')?.textContent || portfolioProjects[projectId]?.title || "Projekt";
+    const cardDescription = card.querySelector('.card-subtitle')?.textContent || portfolioProjects[projectId]?.description || "";
+    
+    // Берем ВСЕ изображения и видео из скрытого блока gallery-images
+    const galleryImages = card.querySelector('.gallery-images');
+    let mediaElements = [];
+    
+    if (galleryImages) {
+      // Собираем все изображения и видео
+      mediaElements = Array.from(galleryImages.children);
+    } else {
+      // Если нет gallery-images, берем главное изображение из карточки
+      const mainImg = card.querySelector('.card-image img');
+      if (mainImg && mainImg.src) {
+        const tempImg = document.createElement('div');
+        tempImg.innerHTML = `<img data-src="${mainImg.src}" alt="${mainImg.alt || 'Bild'}">`;
+        mediaElements = Array.from(tempImg.children);
+      }
+    }
+    
+    // Если нет медиа-элементов, используем заглушку
+    if (mediaElements.length === 0) {
+      console.warn('No media found for project:', projectId, 'using fallback');
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = `<img data-src="https://via.placeholder.com/800x600/F8F9FA/666?text=Keine+Bilder+gefunden" alt="Keine Bilder">`;
+      mediaElements = Array.from(tempDiv.children);
+    }
+    
+    // Подготавливаем массив медиафайлов
+    const mediaItems = mediaElements.map(el => {
+      const src = el.getAttribute('data-src') || el.src || '';
+      const alt = el.getAttribute('alt') || el.getAttribute('data-alt') || 'Bild';
+      
+      if (el.tagName === 'VIDEO' || el.getAttribute('data-type') === 'video' || src.includes('.mp4') || src.includes('.webm')) {
+        return {
+          type: 'video',
+          src: src,
+          alt: alt,
+          autoplay: el.getAttribute('data-autoplay') === 'true',
+          muted: el.getAttribute('data-muted') !== 'false',
+          loop: el.getAttribute('data-loop') !== 'false'
+        };
+      } else {
+        return {
+          type: 'image',
+          src: src,
+          alt: alt
+        };
+      }
+    }).filter(item => item.src);
+    
+    if (mediaItems.length === 0) {
+      console.error('No valid media found for project:', projectId);
+      showErrorModal();
+      return;
+    }
+    
+    // Устанавливаем текущий проект
+    currentProject = {
+      id: projectId,
+      title: cardTitle,
+      description: cardDescription,
+      media: mediaItems
+    };
+    
+    currentSlideIndex = 0;
+    totalSlides = mediaItems.length;
+    
+    // Показываем индикатор загрузки
+    isLoading = true;
+    const slider = document.querySelector('.modal-slider');
+    slider.classList.add('loading');
+    
+    // Устанавливаем информацию
+    modalTitle.textContent = currentProject.title;
+    modalDescription.textContent = currentProject.description;
+    totalSlidesSpan.textContent = totalSlides;
+    currentSlideSpan.textContent = currentSlideIndex + 1;
+    
+    // Очищаем слайды
+    modalSlides.innerHTML = '';
+    
+    // Создаем слайды
+    mediaItems.forEach((media, index) => {
+      if (media.type === 'video') {
+        createVideoSlide(media.src, media.alt, index, media);
+      } else {
+        createImageSlide(media.src, media.alt, index);
+      }
+    });
+    
+    // Скрываем индикатор загрузки и показываем модальное окно
+    setTimeout(() => {
+      isLoading = false;
+      slider.classList.remove('loading');
+      
+      // Показываем модальное окно
+      modal.classList.add('active');
+      document.body.classList.add('modal-open');
+      
+      // Обновляем кнопки навигации
+      updateNavButtons();
+      
+      // Прокручиваем к первому слайду
+      updateSlider();
+      
+      // Обновляем счетчик
+      updateCounter();
+      
+      // Фокус для клавиатурной навигации
+      closeBtn.focus();
+      
+      // Пытаемся запустить видео после открытия
+      setTimeout(() => {
+        const firstVideo = modalSlides.querySelector('video');
+        if (firstVideo) {
+          firstVideo.play().catch(e => {
+            console.log('Video autoplay failed:', e);
+          });
+        }
+      }, 100);
+      
+    }, 300);
+  }
+  
+  // ===== СОЗДАНИЕ СЛАЙДА С ИЗОБРАЖЕНИЕМ =====
+  function createImageSlide(imgSrc, alt, index) {
+    const slide = document.createElement('div');
+    slide.className = 'modal-slide';
+    slide.dataset.index = index;
+    slide.style.width = '100%';
+    slide.style.flexShrink = '0';
+    slide.style.display = 'flex';
+    slide.style.alignItems = 'center';
+    slide.style.justifyContent = 'center';
+    slide.style.padding = '20px';
+    slide.style.boxSizing = 'border-box';
+    slide.style.backgroundColor = '#000';
+    
+    const imgContainer = document.createElement('div');
+    imgContainer.style.width = '100%';
+    imgContainer.style.height = '100%';
+    imgContainer.style.display = 'flex';
+    imgContainer.style.alignItems = 'center';
+    imgContainer.style.justifyContent = 'center';
+    imgContainer.style.position = 'relative';
+    
+    const img = document.createElement('img');
+    img.src = imgSrc;
+    img.alt = alt;
+    img.loading = 'lazy';
+    img.style.maxWidth = '85%';
+    img.style.maxHeight = '85%';
+    img.style.objectFit = 'contain';
+    img.style.borderRadius = '8px';
+    img.style.boxShadow = '0 10px 30px rgba(0,0,0,0.4)';
+    img.style.backgroundColor = '#111';
+    img.style.padding = '10px';
+    img.style.transition = 'opacity 0.5s ease';
+    img.style.opacity = '0';
+    
+    // Обработка ошибки загрузки изображения
+    img.onerror = function() {
+      console.warn('Bild nicht gefunden:', imgSrc);
+      this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMTExIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4cHgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIGZpbGw9IiM2NjYiPkJpbGQgZmVobHQ8L3RleHQ+PC9zdmc+';
+      this.alt = 'Bild konnte nicht geladen werden';
+      this.style.opacity = '1';
+    };
+    
+    // Успешная загрузка
+    img.onload = function() {
+      setTimeout(() => {
+        img.style.opacity = '1';
+      }, 100);
+    };
+    
+    imgContainer.appendChild(img);
+    slide.appendChild(imgContainer);
+    modalSlides.appendChild(slide);
+  }
+  
+  // ===== СОЗДАНИЕ СЛАЙДА С ВИДЕО =====
+  function createVideoSlide(videoSrc, alt, index, options = {}) {
+    console.log('Creating video slide:', videoSrc);
+    
+    const slide = document.createElement('div');
+    slide.className = 'modal-slide';
+    slide.dataset.index = index;
+    slide.style.width = '100%';
+    slide.style.flexShrink = '0';
+    slide.style.display = 'flex';
+    slide.style.alignItems = 'center';
+    slide.style.justifyContent = 'center';
+    slide.style.padding = '20px';
+    slide.style.boxSizing = 'border-box';
+    slide.style.backgroundColor = '#000';
+    slide.style.position = 'relative';
+    
+    // Контейнер
+    const container = document.createElement('div');
+    container.style.width = '100%';
+    container.style.height = '100%';
+    container.style.display = 'flex';
+    container.style.alignItems = 'center';
+    container.style.justifyContent = 'center';
+    container.style.position = 'relative';
+    
+    // Видео элемент - ТАКОЙ ЖЕ РАЗМЕР КАК ФОТО
+    const video = document.createElement('video');
+    video.src = videoSrc;
+    video.autoplay = options.autoplay !== false;
+    video.muted = options.muted !== false;
+    video.loop = options.loop !== false;
+    video.playsInline = true;
+    video.controls = true;
+    video.preload = 'auto';
+    
+    // ТОЧНО ТАКИЕ ЖЕ СТИЛИ КАК У ФОТО
+    video.style.maxWidth = '85%';
+    video.style.maxHeight = '85%';
+    video.style.objectFit = 'contain';
+    video.style.borderRadius = '8px';
+    video.style.boxShadow = '0 10px 30px rgba(0,0,0,0.4)';
+    video.style.backgroundColor = '#111';
+    video.style.padding = '10px';
+    video.style.display = 'block';
+    
+    const source = document.createElement('source');
+    source.src = videoSrc;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+    
+    // Метка "Video"
+    const videoLabel = document.createElement('div');
+    videoLabel.className = 'video-label';
+    videoLabel.textContent = 'VIDEO';
+    videoLabel.style.position = 'absolute';
+    videoLabel.style.top = '20px';
+    videoLabel.style.right = '20px';
+    videoLabel.style.background = 'rgba(207, 178, 109, 0.9)';
+    videoLabel.style.color = 'white';
+    videoLabel.style.padding = '6px 12px';
+    videoLabel.style.borderRadius = '12px';
+    videoLabel.style.fontSize = '12px';
+    videoLabel.style.fontWeight = 'bold';
+    videoLabel.style.zIndex = '10';
+    videoLabel.style.textTransform = 'uppercase';
+    
+    // Обработка ошибки
+    video.onerror = function() {
+      console.error('Video error:', videoSrc);
+      container.innerHTML = `
+        <div style="
+          max-width: 85%;
+          max-height: 85%;
+          background: #111;
+          border-radius: 8px;
+          padding: 40px;
+          text-align: center;
+          color: white;
+        ">
+          <div style="font-size: 48px;">🎬</div>
+          <p>Video konnte nicht geladen werden</p>
+        </div>
+      `;
+    };
+    
+    // Автозапуск
+    video.addEventListener('canplay', () => {
+      video.play().catch(e => {
+        console.log('Video autoplay failed:', e);
+      });
+    });
+    
+    container.appendChild(video);
+    container.appendChild(videoLabel);
+    slide.appendChild(container);
+    modalSlides.appendChild(slide);
+    
+    return video;
+  }
+  
+  // ===== ПОКАЗАТЬ ОКНО С ОШИБКОЙ =====
+  function showErrorModal() {
+    modalSlides.innerHTML = `
+      <div class="error-slide" style="width: 100%; display: flex; align-items: center; justify-content: center; padding: 40px;">
+        <div style="text-align: center; max-width: 500px;">
+          <div style="font-size: 64px; margin-bottom: 20px; color: #cfb26d;">📷</div>
+          <h3 style="color: #333; margin-bottom: 15px; font-size: 24px;">Keine Medien gefunden</h3>
+          <p style="color: #666; line-height: 1.6; margin-bottom: 25px;">
+            Für dieses Projekt wurden keine Bilder oder Videos gefunden.
+          </p>
+        </div>
+      </div>
+    `;
+    
+    modalTitle.textContent = "Keine Medien";
+    modalDescription.textContent = "Bitte Medien für dieses Projekt hinzufügen";
+    
+    isLoading = false;
+    const slider = document.querySelector('.modal-slider');
+    slider.classList.remove('loading');
+    
+    modal.classList.add('active');
+    document.body.classList.add('modal-open');
+    
+    updateNavButtons();
+  }
+  
+  // ===== ЗАКРЫТИЕ МОДАЛЬНОГО ОКНА =====
+  function closeModal() {
+    // Останавливаем все видео
+    document.querySelectorAll('.modal-slide video').forEach(video => {
+      video.pause();
+      video.currentTime = 0;
+    });
+    
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    currentProject = null;
+    currentSlideIndex = 0;
+    
+    // Сбрасываем состояние кнопок
+    prevBtn.disabled = false;
+    nextBtn.disabled = false;
+    prevBtn.classList.remove('disabled');
+    nextBtn.classList.remove('disabled');
+  }
+  
+  // ===== НАВИГАЦИЯ ПО СЛАЙДАМ =====
+  function showPrevSlide() {
+    if (isLoading || !currentProject) return;
+    
+    if (currentSlideIndex > 0) {
+      // Останавливаем текущее видео
+      const currentVideo = modalSlides.children[currentSlideIndex]?.querySelector('video');
+      if (currentVideo) {
+        currentVideo.pause();
+      }
+      
+      currentSlideIndex--;
+      updateSlider();
+      updateCounter();
+      updateNavButtons();
+    }
+  }
+  
+  function showNextSlide() {
+    if (isLoading || !currentProject) return;
+    
+    if (currentSlideIndex < totalSlides - 1) {
+      // Останавливаем текущее видео
+      const currentVideo = modalSlides.children[currentSlideIndex]?.querySelector('video');
+      if (currentVideo) {
+        currentVideo.pause();
+      }
+      
+      currentSlideIndex++;
+      updateSlider();
+      updateCounter();
+      updateNavButtons();
+    }
+  }
+  
+  // ===== ОБНОВЛЕНИЕ СЛАЙДЕРА =====
+  function updateSlider() {
+    if (!modalSlides.children.length) return;
+    
+    const slideWidth = 100;
+    modalSlides.style.transform = `translateX(-${currentSlideIndex * slideWidth}%)`;
+    modalSlides.style.transition = 'transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1)';
+  }
+  
+  // ===== ОБНОВЛЕНИЕ СЧЕТЧИКА =====
+  function updateCounter() {
+    currentSlideSpan.textContent = currentSlideIndex + 1;
+  }
+  
+  // ===== ОБНОВЛЕНИЕ КНОПОК НАВИГАЦИИ =====
+  function updateNavButtons() {
+    if (!currentProject) return;
+    
+    const slides = modalSlides.children;
+    if (!slides.length) return;
+    
+    prevBtn.disabled = currentSlideIndex === 0;
+    nextBtn.disabled = currentSlideIndex === totalSlides - 1;
+    
+    if (prevBtn.disabled) {
+      prevBtn.classList.add('disabled');
+    } else {
+      prevBtn.classList.remove('disabled');
+    }
+    
+    if (nextBtn.disabled) {
+      nextBtn.classList.add('disabled');
+    } else {
+      nextBtn.classList.remove('disabled');
+    }
+  }
+  
+  // ===== ОБРАБОТЧИКИ СОБЫТИЙ =====
+  
+  // Закрытие модального окна
+  closeBtn.addEventListener('click', closeModal);
+  
+  // Закрытие по клику на оверлей
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+  
+  // Навигация по слайдам
+  prevBtn.addEventListener('click', showPrevSlide);
+  nextBtn.addEventListener('click', showNextSlide);
+  
+  // Управление с клавиатуры
+  document.addEventListener('keydown', function(e) {
+    if (!modal.classList.contains('active')) return;
+    if (isLoading) return;
+    
+    switch(e.key) {
+      case 'Escape':
+        closeModal();
+        e.preventDefault();
+        break;
+      case 'ArrowLeft':
+        showPrevSlide();
+        e.preventDefault();
+        break;
+      case 'ArrowRight':
+        showNextSlide();
+        e.preventDefault();
+        break;
+      case ' ':
+        const currentVideo = modalSlides.children[currentSlideIndex]?.querySelector('video');
+        if (currentVideo) {
+          if (currentVideo.paused) {
+            currentVideo.play();
+          } else {
+            currentVideo.pause();
+          }
+          e.preventDefault();
+        }
+        break;
+    }
+  });
+  
+  // Свайпы на мобильных
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let isSwiping = false;
+  
+  modalSlides.addEventListener('touchstart', function(e) {
+    if (isLoading) return;
+    touchStartX = e.changedTouches[0].screenX;
+    isSwiping = true;
+  }, { passive: true });
+  
+  modalSlides.addEventListener('touchmove', function(e) {
+    if (!isSwiping || isLoading) return;
+    e.preventDefault();
+  }, { passive: false });
+  
+  modalSlides.addEventListener('touchend', function(e) {
+    if (!isSwiping || isLoading) return;
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+    isSwiping = false;
+  }, { passive: true });
+  
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        showNextSlide();
+      } else {
+        showPrevSlide();
+      }
+    }
+  }
+  
+  // Предзагрузка
+  function preloadFirstImages() {
+    portfolioCards.forEach(card => {
+      const gallery = card.querySelector('.gallery-images');
+      if (gallery) {
+        const firstMedia = gallery.children[0];
+        if (firstMedia) {
+          const src = firstMedia.getAttribute('data-src') || firstMedia.src;
+          if (src) {
+            if (firstMedia.tagName === 'VIDEO') {
+              const video = document.createElement('video');
+              video.preload = 'metadata';
+              video.src = src;
+            } else {
+              const img = new Image();
+              img.src = src;
+            }
+          }
+        }
+      }
+    });
+  }
+  
+  // Запуск предзагрузки
+  window.addEventListener('load', function() {
+    setTimeout(preloadFirstImages, 1000);
+  });
+  
+  // Инициализация
+  updateNavButtons();
+  
+  // Добавляем CSS для анимации загрузки
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .modal-slider.loading::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50px;
+      height: 50px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #cfb26d;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      z-index: 100;
+      transform: translate(-50%, -50%);
+    }
+    .modal-slider.loading .modal-slides {
+      opacity: 0.3;
+    }
+    .modal-close, .modal-prev, .modal-next {
+      transition: all 0.3s ease;
+    }
+    .modal-prev.disabled, .modal-next.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: scale(0.9);
+    }
+  `;
+  document.head.appendChild(style);
+});
+
+console.log('Portfolio script loaded');
+
+
+
+

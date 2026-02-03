@@ -1217,7 +1217,6 @@ html {
 
 
 
-
 /* ===== ПОРТФОЛИО СЕКЦИЯ ===== */
 .portfolio-section {
   padding: 100px 0;
@@ -1238,34 +1237,113 @@ html {
 }
 
 .portfolio-section .section-label {
-  font-size: 55px;
-  letter-spacing: 3px;
+  font-size: 40px; /* Уменьшен размер */
+  letter-spacing: 2.5px; /* Немного уменьшен отступ */
   font-weight: 700;
   color: #cfb26d;
-  margin-bottom: 15px;
+  margin-bottom: 12px; /* Уменьшен отступ */
   text-transform: uppercase;
   position: relative;
   display: inline-block;
 }
 
-.portfolio-section .section-label::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: #cfb26d;
-  border-radius: 2px;
-}
 
 .portfolio-section h2 {
-  font-size: 2.8em;
-  margin-bottom: 60px;
+  font-size: 2.4em; /* Уменьшен размер */
+  margin-bottom: 50px; /* Уменьшен отступ */
   color: #1c1c1c;
   font-weight: 600;
   line-height: 1.3;
+}
+
+/* ===== УЛУЧШЕННЫЕ ИКОНКИ С АНИМАЦИЕЙ ===== */
+.column-icon {
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.column-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(207, 178, 109, 0.08);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  z-index: -1;
+}
+
+.portfolio-column:hover .column-icon::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.portfolio-column:first-child:hover .column-icon::before {
+  background: rgba(207, 178, 109, 0.12);
+}
+
+.portfolio-column:last-child:hover .column-icon::before {
+  background: rgba(74, 101, 114, 0.12);
+}
+
+.column-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  z-index: -1;
+  background: rgba(207, 178, 109, 0.05);
+  transition: all 0.4s ease;
+}
+
+.portfolio-column:hover .column-icon::after {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(207, 178, 109, 0.08);
+}
+
+.column-icon svg {
+  width: 50px;
+  height: 50px;
+  stroke-width: 1.8;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  transform-origin: center;
+}
+
+.portfolio-column:hover .column-icon svg {
+  transform: scale(1.15);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+/* Уменьшение размера текста в заголовках колонок */
+.column-title {
+  font-size: 1.9em; /* Уменьшен с 2.2em */
+  font-weight: 700;
+  color: #1c1c1c;
+  margin: 0 0 10px 0; /* Уменьшен отступ */
+  text-transform: uppercase;
+  letter-spacing: 1.2px; /* Уменьшен отступ */
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.column-subtitle {
+  font-size: 1em; /* Уменьшен с 1.15em */
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.5; /* Уменьшен межстрочный */
+  max-width: 280px; /* Немного уменьшена ширина */
+  margin: 0 auto;
 }
 
 /* ===== КОЛОНКИ ПОРТФОЛИО - АДАПТИВНЫЕ ===== */
@@ -1289,12 +1367,16 @@ html {
   }
   
   .portfolio-section h2 {
-    font-size: 2.4em;
-    margin-bottom: 50px;
+    font-size: 2.1em; /* Уменьшен для планшетов */
+    margin-bottom: 40px;
+  }
+  
+  .portfolio-section .section-label {
+    font-size: 42px;
   }
 }
 
-/* Для планшетов в портрете (до 768px) - 2 колонки, но меньше */
+/* Для планшетов в портрете (до 768px) */
 @media (max-width: 768px) {
   .portfolio-columns {
     gap: 30px;
@@ -1305,34 +1387,38 @@ html {
   }
   
   .portfolio-section .section-label {
-    font-size: 45px;
+    font-size: 36px; /* Уменьшен для мобильных */
   }
   
   .portfolio-section h2 {
-    font-size: 2em;
-    margin-bottom: 40px;
+    font-size: 1.8em; /* Уменьшен для мобильных */
+    margin-bottom: 35px;
   }
   
   .column-header {
-    padding: 30px 20px;
+    padding: 25px 20px; /* Уменьшен padding */
+  }
+  
+  .column-title {
+    font-size: 1.7em; /* Уменьшен для мобильных */
+  }
+  
+  .column-subtitle {
+    font-size: 0.95em; /* Уменьшен для мобильных */
+    max-width: 240px;
   }
   
   .column-content {
-    padding: 25px 20px;
-    min-height: 250px;
+    padding: 20px; /* Уменьшен padding */
+    min-height: 220px; /* Уменьшена минимальная высота */
   }
 }
 
 /* ДЛЯ ТЕЛЕФОНОВ (до 600px) - 1 КОЛОНКА В СТОЛБИК */
 @media (max-width: 600px) {
   .portfolio-columns {
-    grid-template-columns: 1fr !important; /* Одна колонка */
-    gap: 40px !important; /* Больше вертикального отступа */
-  }
-  
-  /* Убираем разделительную линию между колонками */
-  .portfolio-columns::before {
-    display: none !important;
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
   }
   
   .portfolio-section {
@@ -1340,87 +1426,39 @@ html {
   }
   
   .portfolio-section .section-label {
-    font-size: 38px;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
-  }
-  
-  .portfolio-section h2 {
-    font-size: 1.8em;
-    margin-bottom: 30px;
-    line-height: 1.4;
-  }
-  
-  .portfolio-column {
-    margin-bottom: 20px; /* Отступ между карточками */
-  }
-  
-  .column-header {
-    padding: 25px 20px;
-  }
-  
-  .column-title {
-    font-size: 1.8em !important;
-  }
-  
-  .column-subtitle {
-    font-size: 1em !important;
-    max-width: 100% !important;
-  }
-  
-  .column-content {
-    padding: 20px;
-    min-height: auto; /* Автоматическая высота */
-  }
-  
-  .card-image {
-    aspect-ratio: 16/9;
-  }
-}
-
-/* Очень маленькие телефоны (до 480px) */
-@media (max-width: 480px) {
-  .portfolio-section .section-label {
     font-size: 32px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
   }
   
   .portfolio-section h2 {
     font-size: 1.6em;
-  }
-  
-  .column-title {
-    font-size: 1.6em !important;
-  }
-  
-  .column-subtitle {
-    font-size: 0.95em !important;
-  }
-  
-  .card-title {
-    font-size: 1.3em !important;
-  }
-  
-  .card-subtitle {
-    font-size: 0.9em !important;
-  }
-}
-
-/* Очень маленькие телефоны (до 360px) */
-@media (max-width: 360px) {
-  .portfolio-section .section-label {
-    font-size: 28px;
-  }
-  
-  .portfolio-section h2 {
-    font-size: 1.4em;
+    margin-bottom: 25px;
+    line-height: 1.3;
   }
   
   .column-header {
     padding: 20px 15px;
   }
   
-  .column-content {
-    padding: 15px;
+  .column-title {
+    font-size: 1.5em !important;
+    letter-spacing: 1px;
+  }
+  
+  .column-subtitle {
+    font-size: 0.9em !important;
+    max-width: 100% !important;
+    line-height: 1.4;
+  }
+  
+  .column-icon {
+    margin-bottom: 15px;
+  }
+  
+  .column-icon svg {
+    width: 42px;
+    height: 42px;
   }
 }
 
@@ -1459,7 +1497,7 @@ html {
 
 /* Заголовок колонки */
 .column-header {
-  padding: 40px 30px;
+  padding: 35px 25px; /* Уменьшен padding */
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -1482,70 +1520,10 @@ html {
   background: linear-gradient(90deg, #4a6572, #5d7a8a);
 }
 
-.column-icon {
-  margin-bottom: 20px;
-  position: relative;
-  display: inline-block;
-}
-
-.column-icon::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  z-index: -1;
-}
-
-.portfolio-column:first-child .column-icon::after {
-  background: rgba(207, 178, 109, 0.1);
-}
-
-.portfolio-column:last-child .column-icon::after {
-  background: rgba(74, 101, 114, 0.1);
-}
-
-.column-icon svg {
-  width: 50px;
-  height: 50px;
-  stroke-width: 1.8;
-}
-
-.column-title {
-  font-size: 2.2em;
-  font-weight: 700;
-  color: #1c1c1c;
-  margin: 0 0 12px 0;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  position: relative;
-}
-
-.portfolio-column:first-child .column-title {
-  color: #cfb26d;
-}
-
-.portfolio-column:last-child .column-title {
-  color: #4a6572;
-}
-
-.column-subtitle {
-  font-size: 1.15em;
-  color: #666;
-  margin: 0;
-  font-weight: 400;
-  line-height: 1.6;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
 /* Контент колонки */
 .column-content {
-  padding: 35px 30px;
-  min-height: 300px;
+  padding: 30px 25px; /* Уменьшен padding */
+  min-height: 280px; /* Уменьшена высота */
 }
 
 /* Карточки внутри колонок */
@@ -1598,7 +1576,7 @@ html {
     rgba(0, 0, 0, 0.4) 75%,
     transparent 100%);
   color: white;
-  padding: 35px 25px 25px;
+  padding: 30px 20px 20px; /* Уменьшен padding */
   transform: translateY(5px);
   transition: transform 0.4s ease;
 }
@@ -1610,15 +1588,15 @@ html {
 /* Тег карточки */
 .card-tag {
   display: inline-block;
-  padding: 8px 18px;
+  padding: 7px 16px; /* Уменьшен padding */
   background: #cfb26d;
   color: white;
   border-radius: 25px;
-  font-size: 0.9em;
+  font-size: 0.85em; /* Уменьшен размер шрифта */
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 12px; /* Уменьшен отступ */
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.7px; /* Уменьшен отступ */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -1632,33 +1610,29 @@ html {
 
 /* Заголовок карточки */
 .card-title {
-  font-size: 1.5em;
-  margin: 0 0 10px 0;
+  font-size: 1.35em; /* Уменьшен с 1.5em */
+  margin: 0 0 8px 0; /* Уменьшен отступ */
   font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: 0.5px;
+  line-height: 1.25; /* Уменьшен межстрочный */
+  letter-spacing: 0.4px; /* Уменьшен отступ */
 }
 
 .card-subtitle {
-  font-size: 1em;
+  font-size: 0.95em; /* Уменьшен с 1em */
   opacity: 0.9;
   margin: 0;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.4; /* Уменьшен межстрочный */
 }
 
-
-
 /* ===== ИСПРАВЛЕННЫЕ СТИЛИ ДЛЯ МОДАЛЬНОГО ОКНА ===== */
-
-/* Для модального окна */
 .portfolio-modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.98); /* Более темный фон */
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -1675,19 +1649,19 @@ html {
 
 .modal-content {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px; /* Увеличен максимальный размер */
   max-height: 100vh;
-  background: #000;
-  border-radius: 12px;
+  background: #000; /* Полностью черный */
+  border-radius: 8px; /* Уменьшен радиус */
   overflow: hidden;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8);
 }
 
 /* Основной слайдер */
 .modal-slider {
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 100px); /* Увеличен размер под фото/видео */
   background: #000;
   overflow: hidden;
 }
@@ -1707,47 +1681,51 @@ html {
   align-items: center;
   justify-content: center;
   background: #000;
+  padding: 20px; /* Добавлен padding */
 }
 
-/* СТИЛИ ДЛЯ ФОТО (УВЕЛИЧЕННЫЙ РАЗМЕР) */
+/* УВЕЛИЧЕННЫЙ РАЗМЕР ФОТО */
 .modal-slide img {
-  max-width: 100%; /* УВЕЛИЧИЛИ с 85% до 92% */
-  max-height: 100%; /* УВЕЛИЧИЛИ с 85% до 92% */
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  background: #111;
-  padding: 10px;
+  max-width: 100% !important; /* Увеличен размер */
+  max-height: 100% !important; /* Увеличен размер */
+  object-fit: contain !important;
+  border-radius: 4px !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6) !important;
+  background: #000 !important;
+  padding: 0 !important; /* Убран padding */
+  display: block !important;
+  margin: 0 auto !important;
 }
 
-/* СТИЛИ ДЛЯ ВИДЕО - УВЕЛИЧЕННЫЙ РАЗМЕР */
+/* УВЕЛИЧЕННЫЙ РАЗМЕР ВИДЕО */
 .modal-slide video {
-  max-width: 100%; /* УВЕЛИЧИЛИ с 85% до 92% */
-  max-height: 100%; /* УВЕЛИЧИЛИ с 85% до 92% */
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  background: #111;
-  padding: 10px;
-  display: block;
-  margin: 0 auto;
+  max-width: 100% !important; /* Увеличен размер */
+  max-height: 100% !important; /* Увеличен размер */
+  object-fit: contain !important;
+  border-radius: 4px !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6) !important;
+  background: #000 !important;
+  padding: 0 !important; /* Убран padding */
+  display: block !important;
+  margin: 0 auto !important;
 }
 
-/* Индикатор видео */
+/* Метка видео */
 .video-label {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(207, 178, 109, 0.9);
-  color: white;
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 700;
-  z-index: 10;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 15px rgba(207, 178, 109, 0.3);
+  position: absolute !important;
+  top: 25px !important;
+  right: 25px !important;
+  background: rgba(207, 178, 109, 0.95) !important;
+  color: white !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  z-index: 10 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 /* Кнопки навигации */
@@ -1756,85 +1734,87 @@ html {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   border: none;
-  width: 60px;
-  height: 60px;
+  width: 65px; /* Немного увеличены */
+  height: 65px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 30px; /* Немного увеличен */
   color: white;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
   z-index: 10;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .modal-prev:hover,
 .modal-next:hover {
-  background: rgba(207, 178, 109, 0.9);
-  transform: translateY(-50%) scale(1.1);
+  background: rgba(207, 178, 109, 0.95);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 10px 30px rgba(207, 178, 109, 0.3);
 }
 
 .modal-prev {
-  left: 20px;
+  left: 25px;
 }
 
 .modal-next {
-  right: 20px;
+  right: 25px;
 }
 
 .modal-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.15);
+  top: 25px;
+  right: 25px;
+  background: rgba(255, 255, 255, 0.12);
   border: none;
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 26px;
   color: white;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1);
   z-index: 10;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .modal-close:hover {
-  background: rgba(207, 178, 109, 0.9);
+  background: rgba(207, 178, 109, 0.95);
   transform: rotate(90deg);
+  box-shadow: 0 10px 30px rgba(207, 178, 109, 0.3);
 }
 
-/* Информационная панель */
+/* Информационная панель - СДЕЛАНА ЧЕРНОЙ */
 .modal-info {
-  padding: 25px 30px;
-  background: #111;
+  padding: 20px 30px;
+  background: #000; /* Черный цвет */
   color: white;
-  border-top: 1px solid #333;
+  border-top: 1px solid #222; /* Темная граница */
 }
 
 .modal-info-content {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .modal-title {
-  font-size: 22px;
-  color: white;
-  margin-bottom: 8px;
+  font-size: 20px; /* Немного уменьшен */
+  color: #fff;
+  margin-bottom: 6px;
   font-weight: 600;
 }
 
 .modal-description {
-  color: #ccc;
-  font-size: 15px;
+  color: #aaa; /* Светло-серый для контраста */
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -1845,14 +1825,14 @@ html {
 }
 
 .modal-counter {
-  font-size: 15px;
+  font-size: 14px;
   color: #cfb26d;
   font-weight: 700;
 }
 
 .modal-hint {
-  font-size: 13px;
-  color: #999;
+  font-size: 12px;
+  color: #666; /* Темно-серый для слабой видимости */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1865,148 +1845,121 @@ html {
   .modal-content {
     width: 98%;
     max-height: 98vh;
-    border-radius: 8px;
+    border-radius: 4px;
   }
   
   .modal-slider {
-    height: 60vh;
+    height: calc(100vh - 90px);
   }
   
   .modal-slide img,
   .modal-slide video {
-    max-width: 95%; /* УВЕЛИЧИЛИ с 90% до 95% */
-    max-height: 95%; /* УВЕЛИЧИЛИ с 90% до 95% */
+    max-width: 96% !important;
+    max-height: 96% !important;
   }
   
   .modal-prev,
   .modal-next {
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
+    width: 55px;
+    height: 55px;
+    font-size: 26px;
   }
   
   .modal-prev {
-    left: 10px;
+    left: 15px;
   }
   
   .modal-next {
-    right: 10px;
+    right: 15px;
   }
   
   .modal-close {
-    width: 45px;
-    height: 45px;
-    top: 15px;
-    right: 15px;
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .modal-info {
+    padding: 15px 20px;
   }
 }
 
 /* Телефоны (до 768px) */
 @media (max-width: 768px) {
   .modal-slider {
-    height: 55vh; /* УВЕЛИЧИЛИ высоту */
+    height: calc(100vh - 80px);
   }
   
-  .modal-slide img,
-  .modal-slide video {
-    max-width: 96%; /* УВЕЛИЧИЛИ с 92% до 96% */
-    max-height: 96%; /* УВЕЛИЧИЛИ с 92% до 96% */
-    padding: 8px;
-  }
-  
-  .modal-info {
-    padding: 20px;
-  }
-  
-  .modal-title {
-    font-size: 19px;
-  }
-  
-  .modal-description {
-    font-size: 14px;
-  }
-  
-  .video-label {
-    top: 15px;
-    right: 15px;
-    padding: 6px 14px;
-    font-size: 12px;
-  }
-}
-
-/* Маленькие телефоны (до 480px) */
-@media (max-width: 480px) {
-  .modal-slider {
-    height: 50vh; /* УВЕЛИЧИЛИ высоту */
-  }
-  
-  .modal-slide img,
-  .modal-slide video {
-    max-width: 98%; /* УВЕЛИЧИЛИ с 94% до 98% */
-    max-height: 98%; /* УВЕЛИЧИЛИ с 94% до 98% */
-    padding: 5px;
-  }
-  
-  .modal-prev,
-  .modal-next {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-  
-  .modal-close {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-  
-  .modal-info {
+  .modal-slide {
     padding: 15px;
   }
   
+  .modal-slide img,
+  .modal-slide video {
+    max-width: 98% !important;
+    max-height: 98% !important;
+  }
+  
+  .modal-info {
+    padding: 12px 15px;
+  }
+  
   .modal-title {
-    font-size: 17px;
+    font-size: 18px;
   }
   
   .modal-description {
     font-size: 13px;
   }
   
-  .modal-counter {
-    font-size: 14px;
-  }
-}
-
-/* Очень маленькие телефоны (до 360px) */
-@media (max-width: 360px) {
-  .modal-slider {
-    height: 45vh; /* УВЕЛИЧИЛИ высоту */
-  }
-  
-  .modal-slide img,
-  .modal-slide video {
-    max-width: 100%; /* УВЕЛИЧИЛИ с 96% до 100% */
-    max-height: 100%; /* УВЕЛИЧИЛИ с 96% до 100% */
-    padding: 3px;
+  .video-label {
+    top: 20px;
+    right: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
   }
   
   .modal-prev,
   .modal-next {
-    width: 35px;
-    height: 35px;
-    font-size: 18px;
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Маленькие телефоны (до 480px) */
+@media (max-width: 480px) {
+  .modal-slider {
+    height: calc(100vh - 70px);
+  }
+  
+  .modal-slide {
+    padding: 10px;
+  }
+  
+  .modal-slide img,
+  .modal-slide video {
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+  
+  .modal-prev,
+  .modal-next {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
   
   .modal-close {
-    width: 35px;
-    height: 35px;
-    font-size: 18px;
-    top: 10px;
-    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
   }
   
   .modal-info {
-    padding: 12px;
+    padding: 10px 12px;
   }
   
   .modal-title {
@@ -2016,8 +1969,45 @@ html {
   .modal-description {
     font-size: 12px;
   }
+  
+  .modal-counter {
+    font-size: 13px;
+  }
 }
 
+/* Очень маленькие телефоны (до 360px) */
+@media (max-width: 360px) {
+  .modal-slider {
+    height: calc(100vh - 60px);
+  }
+  
+  .modal-prev,
+  .modal-next {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+  
+  .modal-close {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    top: 15px;
+    right: 15px;
+  }
+  
+  .modal-info {
+    padding: 8px 10px;
+  }
+  
+  .modal-title {
+    font-size: 15px;
+  }
+  
+  .modal-description {
+    font-size: 11px;
+  }
+}
 
 
 
@@ -4273,12 +4263,13 @@ html {
     transform: rotate(90deg);
 }
 
-/* Дополнительная информация */
 .modal-info {
-    background: white;
-    padding: 20px 30px;
-    border-top: 1px solid #eee;
-    text-align: center;
+  padding: 20px 30px;
+  background: #000 !important;
+  color: white;
+  border-top: 1px solid #000 !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .modal-info p {

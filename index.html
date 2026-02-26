@@ -222,18 +222,15 @@
 
 
 
-
-
 <!-- ===== PORTFOLIO ===== -->
 <section class="portfolio-section">
   <div class="container">
     <span class="section-label">Portfolio</span>
     <h2>Unsere aktuellen Projekte</h2>
     
-    <!-- Две колонки портфолио -->
     <div class="portfolio-columns">
       
-      <!-- ЛЕВАЯ КОЛОНКА: Ремонт -->
+      <!-- ЛЕВАЯ КОЛОНКА: Renovierung -->
       <div class="portfolio-column">
         <div class="column-header">
           <div class="column-icon">
@@ -247,24 +244,10 @@
         </div>
         
         <div class="column-content">
-          <div class="portfolio-card" data-project="renovation">
+          <!-- ПЕРВЫЙ КЕЙС -->
+          <div class="portfolio-card" onclick="openGallery(1)">
             <div class="card-image">
               <img src="images/Portfolio/Osnova.png" alt="Luxus-Renovierung">
-              
-              <!-- ГАЛЕРЕЯ RENOVIERUNG -->
-              <div class="gallery-images" style="display: none;">
-                <img data-src="images/Portfolio/Osnova.png" alt="Renovierung 1">
-                <img data-src="images/Portfolio/Vanna.jpg" alt="Renovierung 2">
-                <img data-src="images/Portfolio/vanna2.jpg" alt="Renovierung 3">
-                <img data-src="images/Portfolio/komnata2.jpg" alt="Renovierung 4">
-                <img data-src="images/Portfolio/Osnova5.jpg" alt="Renovierung 5">
-                <img data-src="images/Portfolio/Osnova6.jpg" alt="Renovierung 6">
-                <img data-src="images/Portfolio/Osnova7.jpg" alt="Renovierung 7">
-                <img data-src="images/Portfolio/Osnova8.jpg" alt="Renovierung 8">
-                <img data-src="images/Portfolio/Osnova9.jpg" alt="Renovierung 9">
-                <img data-src="images/Portfolio/Osnova10.jpg" alt="Renovierung 10">
-              </div>
-              
               <div class="card-overlay">
                 <div class="card-tag">Renovierung</div>
                 <h4 class="card-title">Luxus-Renovierung</h4>
@@ -272,10 +255,23 @@
               </div>
             </div>
           </div>
+          
+          <!-- ВТОРОЙ КЕЙС - ИСПРАВЛЕННЫЙ ПУТЬ -->
+          <div class="portfolio-card" onclick="openGallery(2)">
+            <div class="card-image">
+              <!-- Главное фото для второго кейса (1.jpg) -->
+              <img src="modernerenovir/1.jpg" alt="Moderne Renovierung">
+              <div class="card-overlay">
+                <div class="card-tag">Renovierung</div>
+                <h4 class="card-title">Moderne Renovierung</h4>
+                <p class="card-subtitle">Zeitgenössisches Design & Komfort</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       
-      <!-- ПРАВАЯ КОЛОНКА: Мебель -->
+      <!-- ПРАВАЯ КОЛОНКА: Möbel -->
       <div class="portfolio-column">
         <div class="column-header">
           <div class="column-icon">
@@ -290,30 +286,9 @@
         </div>
         
         <div class="column-content">
-          <div class="portfolio-card" data-project="furniture">
+          <div class="portfolio-card" onclick="openGallery(3)">
             <div class="card-image">
-              <!-- Основное изображение для Möbel -->
-              <img src="images/mebel/mebel1.jpg" alt="Designer Möbel" onerror="this.src='https://via.placeholder.com/400x300/F8F9FA/666?text=Möbel+Bild'">
-              
-              <!-- ГАЛЕРЕЯ MÖBEL (ВИДЕО ПЕРВЫМ) -->
-              <div class="gallery-images" style="display: none;">
-                <!-- ВИДЕО ПЕРВЫМ -->
-                <video 
-                  data-src="images/mebel/mebel3.mp4" 
-                  data-autoplay="true"
-                  data-muted="true"
-                  data-loop="true"
-                  alt="Möbel Video">
-                </video>
-                
-                <!-- Затем фото -->
-                <img data-src="images/mebel/mebel5.jpg" alt="Möbel 5">
-                <img data-src="images/mebel/mebel4.jpg" alt="Möbel 4">
-                <img data-src="images/mebel/mebel2.jpg" alt="Möbel 2">
-                <img data-src="images/mebel/mebel1.jpg" alt="Möbel 1">
-                
-              </div>
-              
+              <img src="images/mebel/mebel1.jpg" alt="Designer Möbel">
               <div class="card-overlay">
                 <div class="card-tag">Möbel</div>
                 <h4 class="card-title">Designer Möbel</h4>
@@ -324,37 +299,338 @@
         </div>
       </div>
       
-    </div> <!-- /.portfolio-columns -->
-    
-  </div> <!-- /.container -->
-  
-  <!-- Модальное окно для просмотра -->
-  <div class="portfolio-modal">
-    <div class="modal-content">
-      <button class="modal-close">&times;</button>
-      
-      <!-- Основной слайдер -->
-      <div class="modal-slider">
-        <div class="modal-slides">
-          <!-- Слайды будут добавлены через JavaScript -->
-        </div>
-        <button class="modal-prev">‹</button>
-        <button class="modal-next">›</button>
-      </div>
-      
-      <!-- Информация о проекте -->
-      <div class="modal-info">
-        <h3 class="modal-title">Projekttitel</h3>
-        <p class="modal-description">Projektbeschreibung wird hier angezeigt</p>
-        <div class="modal-counter">
-          <span class="current-slide">1</span> / <span class="total-slides">0</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
+<!-- МОДАЛЬНОЕ ОКНО -->
+<div id="galleryModal" class="gallery-modal">
+  <div class="gallery-modal-content">
+    <span class="gallery-close" onclick="closeGallery()">&times;</span>
+    <div class="gallery-container">
+      <img id="galleryImage" class="gallery-image" src="" alt="">
+      <video id="galleryVideo" class="gallery-video" controls style="display: none;"></video>
+    </div>
+    <div class="gallery-controls">
+      <button class="gallery-btn" onclick="prevImage()">❮</button>
+      <span id="imageCounter" class="image-counter">1/1</span>
+      <button class="gallery-btn" onclick="nextImage()">❯</button>
+    </div>
+  </div>
+</div>
 
+<script>
+// Массивы с фото для каждого кейса - ИСПРАВЛЕННЫЕ ПУТИ
+const galleries = {
+  1: [ // Первый кейс - 10 фото
+    'images/Portfolio/Osnova.png',
+    'images/Portfolio/Vanna.jpg',
+    'images/Portfolio/vanna2.jpg',
+    'images/Portfolio/komnata2.jpg',
+    'images/Portfolio/Osnova5.jpg',
+    'images/Portfolio/Osnova6.jpg',
+    'images/Portfolio/Osnova7.jpg',
+    'images/Portfolio/Osnova8.jpg',
+    'images/Portfolio/Osnova9.jpg',
+    'images/Portfolio/Osnova10.jpg'
+  ],
+  2: [ // Второй кейс - 12 фото (ПУТЬ БЕЗ images/ в начале, как у вас)
+    'modernerenovir/1.jpg',
+    'modernerenovir/2.jpg',
+    'modernerenovir/3.jpg',
+    'modernerenovir/4.jpg',
+    'modernerenovir/5.jpg',
+    'modernerenovir/6.jpg',
+    'modernerenovir/7.jpg',
+    'modernerenovir/8.jpg',
+    'modernerenovir/9.jpg',
+    'modernerenovir/10.jpg',
+    'modernerenovir/11.jpg',
+    'modernerenovir/12.jpg'
+  ],
+  3: [ // Третий кейс (мебель) - видео и фото
+    'images/mebel/mebel3.mp4',
+    'images/mebel/mebel5.jpg',
+    'images/mebel/mebel4.jpg',
+    'images/mebel/mebel2.jpg',
+    'images/mebel/mebel1.jpg'
+  ]
+};
+
+let currentGallery = [];
+let currentIndex = 0;
+
+function openGallery(galleryId) {
+  currentGallery = galleries[galleryId];
+  currentIndex = 0;
+  
+  if (!currentGallery || currentGallery.length === 0) {
+    alert('Keine Bilder gefunden');
+    return;
+  }
+  
+  // Показываем первый элемент
+  showCurrentMedia();
+  
+  // Открываем модальное окно
+  document.getElementById('galleryModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function showCurrentMedia() {
+  const img = document.getElementById('galleryImage');
+  const video = document.getElementById('galleryVideo');
+  const counter = document.getElementById('imageCounter');
+  
+  const mediaPath = currentGallery[currentIndex];
+  
+  // Проверяем, видео это или фото
+  if (mediaPath.toLowerCase().endsWith('.mp4')) {
+    // Это видео
+    img.style.display = 'none';
+    video.style.display = 'block';
+    video.src = mediaPath;
+    video.load();
+    video.play();
+  } else {
+    // Это фото
+    video.style.display = 'none';
+    video.pause();
+    img.style.display = 'block';
+    img.src = mediaPath;
+  }
+  
+  counter.textContent = (currentIndex + 1) + '/' + currentGallery.length;
+}
+
+function nextImage() {
+  if (currentIndex < currentGallery.length - 1) {
+    currentIndex++;
+    showCurrentMedia();
+  }
+}
+
+function prevImage() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    showCurrentMedia();
+  }
+}
+
+function closeGallery() {
+  document.getElementById('galleryModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+  
+  // Останавливаем видео
+  const video = document.getElementById('galleryVideo');
+  video.pause();
+  video.src = '';
+}
+
+// Закрытие по ESC
+document.addEventListener('keydown', function(e) {
+  if (document.getElementById('galleryModal').style.display === 'block') {
+    if (e.key === 'Escape') {
+      closeGallery();
+    } else if (e.key === 'ArrowLeft') {
+      prevImage();
+    } else if (e.key === 'ArrowRight') {
+      nextImage();
+    }
+  }
+});
+
+// Закрытие по клику вне модалки
+document.getElementById('galleryModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeGallery();
+  }
+});
+</script>
+
+<style>
+/* Стили для модального окна */
+.gallery-modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+.gallery-modal-content {
+  position: relative;
+  margin: auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 1000px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gallery-close {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+.gallery-close:hover {
+  color: #cfb26d;
+}
+
+.gallery-container {
+  width: 100%;
+  height: calc(100% - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+}
+
+.gallery-image,
+.gallery-video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+.gallery-btn {
+  background: #cfb26d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.gallery-btn:hover {
+  background: #a08852;
+  transform: scale(1.05);
+}
+
+.image-counter {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Стили для карточек портфолио */
+.portfolio-card {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  color: white;
+  padding: 20px;
+}
+
+.card-tag {
+  background: #cfb26d;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Стили для колонок */
+.portfolio-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.portfolio-column {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.column-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.column-title {
+  color: #333;
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+.column-subtitle {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+  .portfolio-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .card-image img {
+    height: 200px;
+  }
+}
+</style>
 
 
 

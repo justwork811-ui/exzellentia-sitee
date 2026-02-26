@@ -1361,3 +1361,259 @@ console.log('Portfolio script loaded');
 
 
 
+// ===== ОБНОВЛЕННЫЙ КОД ДЛЯ ПОРТФОЛИО =====
+
+document.addEventListener('DOMContentLoaded', function() {
+    initPortfolio();
+});
+
+function initPortfolio() {
+    const modal = document.querySelector('.portfolio-modal');
+    const modalSlides = document.querySelector('.modal-slides');
+    const modalTitle = document.querySelector('.modal-title');
+    const modalDescription = document.querySelector('.modal-description');
+    const modalClose = document.querySelector('.modal-close');
+    const modalPrev = document.querySelector('.modal-prev');
+    const modalNext = document.querySelector('.modal-next');
+    const currentSlideSpan = document.querySelector('.current-slide');
+    const totalSlidesSpan = document.querySelector('.total-slides');
+    const projectsThumbnails = document.querySelector('.projects-thumbnails');
+    const projectPrevBtn = document.querySelector('.project-prev');
+    const projectNextBtn = document.querySelector('.project-next');
+    
+    let currentProject = null;
+    let currentSlideIndex = 0;
+    let projectImages = [];
+    let allProjects = [];
+    let currentProjectIndex = 0;
+    
+    // Собираем все проекты
+    document.querySelectorAll('.portfolio-card').forEach((card, index) => {
+        const projectId = card.getAttribute('data-project');
+        const projectName = card.getAttribute('data-project-name') || 'Projekt';
+        const projectDesc = card.getAttribute('data-project-desc') || '';
+        const mainImage = card.querySelector('img')?.src || '';
+        
+        allProjects.push({
+            id: projectId,
+            name: projectName,
+            desc: projectDesc,
+            card: card,
+            mainImage: mainImage,
+            index: index
+        });
+    });
+    
+    // Открытие модального окна при клике на карточку
+    document.querySelectorAll('.portfolio-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const projectId = this.getAttribute('data-project');
+            const projectIndex = allProjects.findIndex(p => p.id === projectId);
+            if (projectIndex !== -1) {
+                openProject(projectIndex);
+            }
+        });
+    });
+    
+    // Функция открытия проекта
+    function openProject(projectIndex) {
+        currentProjectIndex = projectIndex;
+        const project = allProjects[projectIndex];
+        
+        // Находим галерею для этого проекта
+        const gallery = document.querySelector(`.gallery-images[data-project="${project.id}"]`);
+        
+        if (!gallery) return;
+        
+        // Собираем все изображения и видео
+        projectImages = [];
+        const items = gallery.children;
+        
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            if (item.tagName === 'IMG') {
+                projectImages.push({
+                    type: 'image',
+                    src: item.getAttribute('data-src') || item.src,
+                    alt: item.alt
+                });
+            } else if (item.tagName === 'VIDEO') {
+                projectImages.push({
+                    type: 'video',
+                    src: item.getAttribute('data-src'),
+                    autoplay: item.getAttribute('data-autoplay') === 'true',
+                    muted: item.getAttribute('data-muted') === 'true',
+                    loop: item.getAttribute('data-loop') === 'true',
+                    alt: item.alt
+                });
+            }
+        }
+        
+        if (projectImages.length === 0) return;
+        
+        // Устанавливаем заголовок и описание
+        modalTitle.textContent = project.name;
+        modalDescription.textContent = project.desc;
+        
+        // Обновляем общее количество слайдов
+        totalSlidesSpan.textContent = projectImages.length;
+        
+        // Открываем первый слайд
+        currentSlideIndex = 0;
+        renderCurrentSlide();
+        
+        // Обновляем миниатюры проектов
+        updateProjectThumbnails();
+        
+        // Показываем модальное окно
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Отрисовка текущего слайда
+    function renderCurrentSlide() {
+        if (!projectImages.length) return;
+        
+        modalSlides.innerHTML = '';
+        const slide = projectImages[currentSlideIndex];
+        
+        const slideDiv = document.createElement('div');
+        slideDiv.className = 'modal-slide';
+        
+        if (slide.type === 'image') {
+            const img = document.createElement('img');
+            img.src = slide.src;
+            img.alt = slide.alt || 'Projekt Bild';
+            img.loading = 'lazy';
+            img.onload = function() { this.classList.add('loaded'); };
+            slideDiv.appendChild(img);
+        } else if (slide.type === 'video') {
+            const video = document.createElement('video');
+            video.src = slide.src;
+            video.controls = true;
+            if (slide.autoplay) video.autoplay = true;
+            if (slide.muted) video.muted = true;
+            if (slide.loop) video.loop = true;
+            video.alt = slide.alt || 'Projekt Video';
+            slideDiv.appendChild(video);
+        }
+        
+        modalSlides.appendChild(slideDiv);
+        currentSlideSpan.textContent = currentSlideIndex + 1;
+    }
+    
+    // Обновление миниатюр проектов
+    function updateProjectThumbnails() {
+        if (!projectsThumbnails) return;
+        
+        projectsThumbnails.innerHTML = '';
+        
+        allProjects.forEach((project, index) => {
+            const thumb = document.createElement('div');
+            thumb.className = 'thumbnail';
+            if (index === currentProjectIndex) {
+                thumb.classList.add('active');
+            }
+            
+            const img = document.createElement('img');
+            img.src = project.mainImage;
+            img.alt = project.name;
+            img.loading = 'lazy';
+            
+            thumb.appendChild(img);
+            
+            thumb.addEventListener('click', function() {
+                if (index !== currentProjectIndex) {
+                    openProject(index);
+                }
+            });
+            
+            projectsThumbnails.appendChild(thumb);
+        });
+    }
+    
+    // Навигация по слайдам
+    if (modalPrev) {
+        modalPrev.addEventListener('click', function() {
+            if (projectImages.length > 0) {
+                currentSlideIndex = (currentSlideIndex - 1 + projectImages.length) % projectImages.length;
+                renderCurrentSlide();
+            }
+        });
+    }
+    
+    if (modalNext) {
+        modalNext.addEventListener('click', function() {
+            if (projectImages.length > 0) {
+                currentSlideIndex = (currentSlideIndex + 1) % projectImages.length;
+                renderCurrentSlide();
+            }
+        });
+    }
+    
+    // Навигация по проектам
+    if (projectPrevBtn) {
+        projectPrevBtn.addEventListener('click', function() {
+            const newIndex = (currentProjectIndex - 1 + allProjects.length) % allProjects.length;
+            openProject(newIndex);
+        });
+    }
+    
+    if (projectNextBtn) {
+        projectNextBtn.addEventListener('click', function() {
+            const newIndex = (currentProjectIndex + 1) % allProjects.length;
+            openProject(newIndex);
+        });
+    }
+    
+    // Закрытие модального окна
+    if (modalClose) {
+        modalClose.addEventListener('click', closeModal);
+    }
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (modal.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'ArrowLeft') {
+                if (e.ctrlKey || e.metaKey) {
+                    // Ctrl+Left - предыдущий проект
+                    if (projectPrevBtn) projectPrevBtn.click();
+                } else {
+                    // Left - предыдущий слайд
+                    if (modalPrev) modalPrev.click();
+                }
+            } else if (e.key === 'ArrowRight') {
+                if (e.ctrlKey || e.metaKey) {
+                    // Ctrl+Right - следующий проект
+                    if (projectNextBtn) projectNextBtn.click();
+                } else {
+                    // Right - следующий слайд
+                    if (modalNext) modalNext.click();
+                }
+            }
+        }
+    });
+    
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        // Останавливаем видео при закрытии
+        const videos = modalSlides.querySelectorAll('video');
+        videos.forEach(video => {
+            video.pause();
+        });
+    }
+}
+
+
+
+
+

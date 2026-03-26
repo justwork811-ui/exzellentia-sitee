@@ -3623,13 +3623,7 @@ a {
         rgba(207, 178, 109, 0.3) 0%, 
         rgba(207, 178, 109, 0.1) 50%, 
         rgba(207, 178, 109, 0.3) 100%);
-     -webkit-mask:
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-}
+  }
 
 /* Или вариант с простой элегантной рамкой */
 #contact .container {

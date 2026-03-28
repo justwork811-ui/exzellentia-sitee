@@ -1545,11 +1545,11 @@ section {
 }
 
 .portfolio-column:first-child .column-header::before {
-  background: linear-gradient(90deg, #cfb26d, #e6c98a);
+  background: linear-gradient(90deg, #ffffff, #ffffff);
 }
 
 .portfolio-column:last-child .column-header::before {
-  background: linear-gradient(90deg, #4a6572, #5d7a8a);
+  background: linear-gradient(90deg, #ffffff, #ffffff);
 }
 
 /* Контент колонки */

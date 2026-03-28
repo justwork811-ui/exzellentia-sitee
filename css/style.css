@@ -108,6 +108,29 @@ html {
   background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный для затемнения фона */
   z-index: -1; /* Фон будет под текстом */
 }
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.45); /* было слабое — усиливаем */
+}
+.hero h1 {
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}
+
+.hero-subtitle {
+  color: #cfb26d;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+}
+
+
+
+
+
+.hero-box {
+  background: rgba(0,0,0,0.55);
+  padding: 30px;
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+}
 
 
 /* Содержимое текста поверх фона */
@@ -1091,6 +1114,15 @@ html {
   margin: 0 auto 15px;
   transition: transform 0.3s, filter 0.3s;
 }
+
+section {
+  scroll-margin-top: 80px; /* высота header */
+}
+
+
+
+
+
 
 .service-card:hover .service-icon-img {
   transform: scale(1.1);
@@ -5139,6 +5171,7 @@ html {
     align-items: center;
     color: #fff;
 }
+
 
 /* затемнение сильнее + красивее */
 .service-hero .overlay {
